@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MobileSidebarComponent } from './mobile-sidebar/mobile-sidebar.component';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
     MobileSidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
   ],
   exports: [
     NgxNeoComponentsComponent,
