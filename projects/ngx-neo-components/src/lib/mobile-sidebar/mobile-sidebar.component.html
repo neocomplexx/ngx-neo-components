@@ -1,0 +1,9 @@
+<div *ngIf="showSidebar" (swipeleft)="closeSidebar()">
+  <div class="mobile-sidebar overflow-auto">
+    <neo-sidebar>
+      <ng-content></ng-content>
+    </neo-sidebar>
+  </div>
+
+  <div class="mobile-sidebar-backdrop" (click)="closeSidebar()"></div>
+</div>

@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { NgxNeoComponentsComponent } from './ngx-neo-components.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MobileSidebarComponent } from './mobile-sidebar/mobile-sidebar.component';
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  declarations: [
+    NgxNeoComponentsComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    MobileSidebarComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    NgxNeoComponentsComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    MobileSidebarComponent
+  ]
+})
+export class NgxNeoComponentsModule { }
