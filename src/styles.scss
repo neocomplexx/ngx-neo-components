@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'dist/styles/main.scss';
+
 .lg-logo{
   width: 100px;
   height: 30px;
+}
+
+
+.neo-navbar {
+  background-color: white;
+  .nav-link {
+    color: black;
+  }
+}
+
+.neo-footer {
+  background-color: black;
 }
