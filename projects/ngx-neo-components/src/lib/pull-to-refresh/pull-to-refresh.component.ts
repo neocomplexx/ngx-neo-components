@@ -10,6 +10,7 @@ import { HeaderService } from '../header/header.service';
     <div style="position: absolute; top: 0; left: 50%; z-index: 999">
       <div style="margin-left: -35px" [style.transform]="positionTranslate3d$ | async">
         <svg width="70px" height="70" [style.transform]="rotateTransform$ | async">
+          <circle cx="35" cy="35" fill="#808080" r="30"></circle>
           <circle cy="15" cx="35" r="10" fill="#e7b015"></circle>
         </svg>
       </div>
@@ -33,7 +34,6 @@ export class PullToRefreshComponent {
 
   drag$ = this.touchstart$.pipe(
     switchMap(start => {
-      tap(console.log);
       let pos = 0;
       return this.touchmove$.pipe(
         map(move => move.touches[0].pageY - start.touches[0].pageY),
@@ -43,11 +43,12 @@ export class PullToRefreshComponent {
       );
     }),
     tap(p => {
+      console.log(p);
       if (p >= window.innerHeight / 2) {
         this.headerService.requestLoad.next();
       }
     }),
-    takeWhile(p => p < 70),
+    takeWhile(p => p < window.innerHeight / 2),
     repeat()
   );
 
@@ -58,7 +59,7 @@ export class PullToRefreshComponent {
   );
 
 
-  positionTranslate3d$: Observable<string> = this.position$.pipe(map(p => `translate3d(0, ${p - 250}px, 0)`));
+  positionTranslate3d$: Observable<string> = this.position$.pipe(map(p => `translate3d(0, ${p - 150}px, 0)`));
 
   // Start rotating when a request is made and spin until it completes
   rotate$: Observable<number> = this.headerService.requestLoad.pipe(
