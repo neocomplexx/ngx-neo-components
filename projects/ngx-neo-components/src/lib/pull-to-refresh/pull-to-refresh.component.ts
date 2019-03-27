@@ -33,6 +33,7 @@ export class PullToRefreshComponent {
 
   drag$ = this.touchstart$.pipe(
     switchMap(start => {
+      tap(console.log);
       let pos = 0;
       return this.touchmove$.pipe(
         map(move => move.touches[0].pageY - start.touches[0].pageY),
