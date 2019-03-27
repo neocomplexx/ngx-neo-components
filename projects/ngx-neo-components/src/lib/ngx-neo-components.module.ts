@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MobileSidebarComponent } from './mobile-sidebar/mobile-sidebar.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PullToRefreshComponent } from './pull-to-refresh/pull-to-refresh.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
-    MobileSidebarComponent
+    MobileSidebarComponent,
+    PullToRefreshComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
-    MobileSidebarComponent
+    MobileSidebarComponent,
+    PullToRefreshComponent
   ]
 })
 export class NgxNeoComponentsModule { }
