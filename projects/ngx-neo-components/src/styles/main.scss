@@ -38,13 +38,13 @@ ncg-layout {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
-  line-height: 60px;
+  height: 40px;
+  line-height: 40px;
   background-color: $stl-color-footer;
 }
 
 
-.header-logo-default {
+.sm-logo-default {
   background-image: url(assets/img/logo-v3-both.png);
   background-position: 100% 0;
   background-repeat: no-repeat;
@@ -56,7 +56,7 @@ ncg-layout {
   width: 150px;
 }
 
-.header-logo {
+.sm-logo {
   bottom: 0;
   display: block;
   height: 30px;
@@ -93,4 +93,28 @@ ncg-layout {
 
 .overflow-auto {
   touch-action: pan-y;
+}
+
+
+.navbar-light .navbar-toggler {
+  border-color: transparent;
+  outline: none;
+}
+
+.footer-button .fas {
+  font-size: x-large;
+  color: white;
+}
+
+.footer-button {
+  width: 100%;
+  padding-bottom: 0;
+  padding-top: 0;
+  border: none;
+  background: none;
+  outline: none !important;
+}
+
+.footer-border {
+  border-top: 1px solid #e1e1e1;
 }
