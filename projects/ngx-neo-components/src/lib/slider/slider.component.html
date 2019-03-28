@@ -1,5 +1,6 @@
 <div class="neo-slider">
-    <div (swipeleft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
+    <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
+        (panleft)="onPanLeft($event)" (panright)="onPanRight($event)">
         <div [@notificationAnimator]="this.visibility" > 
             <ng-content></ng-content>
         </div>
