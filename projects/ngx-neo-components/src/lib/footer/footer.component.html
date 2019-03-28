@@ -1,8 +1,8 @@
-<footer class="footer neo-footer" [ngClass]="{'footer-border': border}">
+<footer class="footer neo-footer d-flex" [ngClass]="{'footer-border': border}">
   <div class="d-none d-lg-block">
       <span class="text-muted">{{message}}</span>
   </div>
-  <div class="d-flex d-lg-none justify-content-around">
+  <div class="d-flex d-lg-none justify-content-around align-items-center flex-fill">
     <button class="footer-button" *ngFor="let smButton of smButtons" (click)="smButton.callFunction()">
         <i class="fas fa-home" [class]="smButton.icon"></i>
     </button>
