@@ -53,6 +53,12 @@ export const slideOutLeft = [
     style({transform: 'none'})
 ];
 
+export const slideOutRight = [
+    style({transform: 'translate3d(0, 0, 0)'}),
+    style({transform: 'translate3d(+100%, 0, 0)', visibility: 'hidden'}),
+    style({transform: 'none'})
+];
+
 export const zoomOut = [
     style({opacity: 1}),
     style({transform: 'scale3d(0.3, 0.3, 0.3)', opacity: 0}),
