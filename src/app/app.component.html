@@ -28,22 +28,23 @@
     </neo-sidebar>
   </div>
   <div class="flex-grow-1 h-100 overflow-auto">
-    <!-- <neo-pull-to-refresh></neo-pull-to-refresh> -->
-    <!--       <router-outlet></router-outlet> -->
-    <div class="form-group">
-      <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+    <neo-pull-to-refresh></neo-pull-to-refresh>
+    <div class="container-fluid">
+      <!--       <router-outlet></router-outlet> -->
+      <div class="form-group">
+        <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+      </div>
+
+      <section class="list-group">
+        <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false"
+          [item]="user" (focusItem)="onActive(user)">
+          {{user.name }}
+        </neo-list-item>
+        <p class="mt-4">
+          {{selected | json}}
+        </p>
+      </section>
     </div>
-
-    <section class="list-group">
-      <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false"
-        [item]="user" (focusItem)="onActive(user)">
-        {{user.name }}
-      </neo-list-item>
-      <p class="mt-4">
-        {{selected | json}}
-      </p>
-    </section>
-
   </div>
 </div>
 
