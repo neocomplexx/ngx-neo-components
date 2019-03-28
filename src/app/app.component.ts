@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { ListItemComponent } from 'ngx-neo-components';
+import { ListItemComponent, Labeled } from 'ngx-neo-components';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 
@@ -13,7 +13,7 @@ export class AppComponent implements AfterViewInit {
   @ViewChildren(ListItemComponent) items: QueryList<ListItemComponent<User>>;
 
   // tslint:disable-next-line:max-line-length
-  users: User[] = [{ name: 'One name' }, { name: 'Two name' }, { name: 'Three name' }, { name: 'Fourteen name' }, { name: 'Hello name' }, { name: 'Hello name' }, { name: 'Hola name' }];
+  users: User[];
 
   public selected: User;
 
@@ -43,9 +43,17 @@ export class AppComponent implements AfterViewInit {
     }
   ];
 
+  constructor() {
+
+    this.users = Array.from(
+      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+      x => new User(x));
+  }
+
   ngAfterViewInit() {
     this.keyManager = new ActiveDescendantKeyManager(this.items)
-      .withWrap();
+      .withWrap()
+      .withTypeAhead();
   }
 
   onSwipeRight(event) {
@@ -67,9 +75,13 @@ export class AppComponent implements AfterViewInit {
 
 }
 
-export interface User {
+class User implements Labeled {
   name: string;
 
+  constructor(name: string) { this.name = name; }
 
+  getLabel() {
+    return this.name;
+  }
 
 }
