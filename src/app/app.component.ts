@@ -9,22 +9,22 @@ export class AppComponent {
   title = 'neo-components';
   buttons = [
     {
-      callFunction: () => {console.log('CASA'); return; },
+      callFunction: () => {console.log('Home'); return; },
       icon: 'fas fa-home',
       text: 'Home',
     },
     {
-      callFunction: () => {console.log('Dolar'); return; },
+      callFunction: () => {console.log('Phone'); return; },
       icon: 'fas fa-phone',
       text: 'Phone',
     },
     {
-      callFunction: () => {console.log('MACRI'); return; },
+      callFunction: () => {console.log('Info'); return; },
       icon: 'fas fa-info-circle',
       text: 'Info',
     },
     {
-      callFunction: () => {console.log('HELICOPTER'); return; },
+      callFunction: () => {console.log('Message'); return; },
       icon: 'fas fa-paper-plane',
       text: 'Message',
     }
