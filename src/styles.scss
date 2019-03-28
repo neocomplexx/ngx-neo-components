@@ -14,13 +14,22 @@
   .nav-link {
     color: black;
   }
+  border-bottom: 1px solid #e1e1e1;
 }
 
 .neo-footer {
-  background-color: black;
+  background: #ffffff !important;
+  color: black;
+  border-top: 1px solid #e1e1e1;
 }
 
 
 .navbar-toggler-icon {
 
+}
+
+// Lo que estaba en el style cambiar!
+.main-container {
+  width: 300px; 
+  height: 300px;
 }

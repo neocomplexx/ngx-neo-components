@@ -48,12 +48,12 @@ ncg-layout {
   background-image: url(assets/img/logo-v3-both.png);
   background-position: 100% 0;
   background-repeat: no-repeat;
-  background-size: 150px 30px;
+  background-size: 130px 30px;
   height: 30px;
   position: absolute;
   right: 0;
   top: 0;
-  width: 150px;
+  width: 130px;
 }
 
 .sm-logo {
@@ -61,10 +61,10 @@ ncg-layout {
   display: block;
   height: 30px;
   left: 50%;
-  margin-left: -75px;
+  margin-left: -65px;
   position: absolute;
   top: 12px;
-  width: 150px;
+  width: 130px;
   text-align: center;
   transition: .1s ease;
   z-index: 2;
@@ -103,8 +103,8 @@ ncg-layout {
 }
 
 .footer-button .fas {
-  font-size: x-large;
-  color: white;
+  font-size: large;
+  color: #1d84bf;
 }
 
 .footer-button {

@@ -15,19 +15,23 @@ export class AppComponent {
     },
     {
       callFunction: () => {console.log('Dolar'); return; },
-      icon: 'fas fa-comments-dollar',
-      text: 'Home',
+      icon: 'fas fa-phone',
+      text: 'Phone',
     },
     {
       callFunction: () => {console.log('MACRI'); return; },
-      icon: 'fas fa-cat',
-      text: 'Macri',
+      icon: 'fas fa-info-circle',
+      text: 'Info',
     },
     {
       callFunction: () => {console.log('HELICOPTER'); return; },
-      icon: 'fas fa-helicopter',
-      text: 'Go Home',
+      icon: 'fas fa-paper-plane',
+      text: 'Message',
     }
   ];
+
+  onSwipeRight(event) {
+    console.log('Swipping right!');
+  }
 
 }
