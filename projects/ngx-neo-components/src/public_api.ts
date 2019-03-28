@@ -12,4 +12,5 @@ export * from './lib/sidebar/sidebar.component';
 export * from './lib/mobile-sidebar/mobile-sidebar.component';
 export * from './lib/ngx-neo-components.module';
 export * from './lib/list-item/list-item.component';
+export * from './lib/slider/slider.component';
 export * from './lib/shared/animations/keyframes';

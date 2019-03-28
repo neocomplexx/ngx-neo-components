@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PullToRefreshComponent } from './pull-to-refresh/pull-to-refresh.component';
 import { ListItemComponent } from './list-item/list-item.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ListItemComponent } from './list-item/list-item.component';
     SidebarComponent,
     MobileSidebarComponent,
     PullToRefreshComponent,
-    ListItemComponent
+    ListItemComponent,
+    SliderComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { ListItemComponent } from './list-item/list-item.component';
     SidebarComponent,
     MobileSidebarComponent,
     PullToRefreshComponent,
-    ListItemComponent
+    ListItemComponent,
+    SliderComponent
   ]
 })
 export class NgxNeoComponentsModule { }

@@ -18,9 +18,10 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   constructor(private mobileSidebarService: MobileSidebarService) { }
 
   ngOnInit() {
-    this.sidebarShowSubscription.add(this.mobileSidebarService.showSidebar.subscribe((value) => {
-      console.log(this.showSidebar, value);
-      this.showSidebar = value;
+    this.sidebarShowSubscription.add(
+      this.mobileSidebarService.showSidebar.subscribe((value) => {
+        console.log(this.showSidebar, value);
+        this.showSidebar = value;
     }));
   }
 

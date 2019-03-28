@@ -35,11 +35,11 @@ ncg-layout {
 
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 40px;
- 
+  line-height: 40px;
   background-color: $stl-color-footer;
 }
 
@@ -118,9 +118,4 @@ ncg-layout {
 
 .footer-border {
   border-top: 1px solid #e1e1e1;
-}
-
-.neo-slider {
-  background: #e6e4e4;
-  border-radius: 0.5rem;
 }

@@ -73,6 +73,10 @@ export class AppComponent implements AfterViewInit {
     console.log('over:', user);
   }
 
+  public onNotify(event) {
+    console.log(event, 'ON NOTIFY');
+  }
+
 }
 
 class User implements Labeled {
