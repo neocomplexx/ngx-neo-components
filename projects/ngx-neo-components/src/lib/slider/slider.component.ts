@@ -6,34 +6,32 @@ import * as kf from '../../lib/shared/animations/keyframes';
     selector: 'neo-slider',
     templateUrl: './slider.component.html',
     styleUrls: ['./slider.component.scss'],
-    // animations: [
-    //     trigger('notificationAnimator', [
-    //         transition('normal => right', animate(1000, keyframes(kf.sladeInLeft))),
-    //         transition('left => right', animate(1000, keyframes(kf.sladeInLeft))),
-    //         transition('normal => left', animate(1000, keyframes(kf.slideOutLeft))),
-    //         transition('right => left', animate(1000, keyframes(kf.slideOutLeft))),
-    //     ]),
-    // ]
+    animations: [
+        trigger('notificationAnimator', [
+            transition('* => right', animate(1000, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1000, keyframes(kf.slideOutLeft))),
+        ]),
+    ]
   })
   export class SliderComponent {
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
-   // public visibility: string;
+    public visibility: string;
 
       constructor() {
-        //   this.visibility = 'normal';
+           this.visibility = 'normal';
       }
 
       onSwipeLeft(): void {
-        // this.visibility = 'left';
+         this.visibility = 'left';
           this.notify.emit('SwipeLeft');
           
       }
 
       onSwipeRight(): void {
           this.notify.emit('SwipeRight');
-        //   this.visibility = 'right';
+           this.visibility = 'right';
       }
 
       
