@@ -22,30 +22,34 @@ export class AppComponent implements AfterViewInit {
   title = 'neo-components';
   buttons = [
     {
-      callFunction: () => { console.log('CASA'); return; },
+      callFunction: () => { console.log('Home'); return; },
       icon: 'fas fa-home',
       text: 'Home',
     },
     {
-      callFunction: () => { console.log('Dolar'); return; },
-      icon: 'fas fa-comments-dollar',
-      text: 'Home',
+      callFunction: () => { console.log('Phone'); return; },
+      icon: 'fas fa-phone',
+      text: 'Phone',
     },
     {
-      callFunction: () => { console.log('MACRI'); return; },
-      icon: 'fas fa-cat',
-      text: 'Macri',
+      callFunction: () => { console.log('Info'); return; },
+      icon: 'fas fa-info-circle',
+      text: 'Info',
     },
     {
-      callFunction: () => { console.log('HELICOPTER'); return; },
-      icon: 'fas fa-helicopter',
-      text: 'Go Home',
+      callFunction: () => { console.log('Message'); return; },
+      icon: 'fas fa-paper-plane',
+      text: 'Message',
     }
   ];
 
   ngAfterViewInit() {
     this.keyManager = new ActiveDescendantKeyManager(this.items)
       .withWrap();
+  }
+
+  onSwipeRight(event) {
+    console.log('Swipping right!');
   }
 
   public onKeydown(event) {
@@ -58,11 +62,14 @@ export class AppComponent implements AfterViewInit {
   }
 
   public onActive(user: User) {
-    console.log('over:',user);
+    console.log('over:', user);
   }
 
 }
 
 export interface User {
   name: string;
+
+
+
 }

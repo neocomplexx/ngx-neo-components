@@ -1,11 +1,5 @@
 <neo-header></neo-header>
-<div style="width: 300px; height: 300px">
-  <neo-pull-to-refresh></neo-pull-to-refresh>
-</div>
-
-
 <neo-mobile-sidebar>
-
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action active">
       Cras justo odio
@@ -16,19 +10,42 @@
     <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
   </div>
 </neo-mobile-sidebar>
+<!-- <section (swipeRight)="onSwipeRight($event)" class="main-container">
+  <neo-pull-to-refresh></neo-pull-to-refresh>
+</section> -->
+<div class="d-flex flex-row align-items-stretch h-100" (swipeRight)="onSwipeRight($event)">
+  <div class="d-none d-lg-flex overflow-auto">
+    <neo-sidebar>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+          Cras justo odio
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+      </div>
+    </neo-sidebar>
+  </div>
+  <div class="flex-grow-1 h-100 overflow-auto">
+    <!-- <neo-pull-to-refresh></neo-pull-to-refresh> -->
+    <!--       <router-outlet></router-outlet> -->
+    <div class="form-group">
+      <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+    </div>
 
-<div class="form-group">
-  <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+    <section class="list-group">
+      <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false"
+        [item]="user" (focusItem)="onActive(user)">
+        {{user.name }}
+      </neo-list-item>
+      <p class="mt-4">
+        {{selected | json}}
+      </p>
+    </section>
+
+  </div>
 </div>
 
-<section class="list-group">
-  <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false" [item]="user"
-    (focusItem)="onActive(user)">
-    {{user.name }}
-  </neo-list-item>
-  <p class="mt-4">
-    {{selected | json}}
-  </p>
-</section>
 
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
