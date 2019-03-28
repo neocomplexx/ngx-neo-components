@@ -1,6 +1,10 @@
 <neo-header></neo-header>
 <neo-pull-to-refresh></neo-pull-to-refresh>
 <neo-mobile-sidebar>
+  <label class="image-item ">
+    <img src="assets/img/logo-lg.png" />
+  </label>
+  <hr class="separator-line">
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action active">
       Cras justo odio
@@ -29,6 +33,10 @@
     </neo-sidebar>
   </div>
   <div class="flex-grow-1 h-100 overflow-auto pt-3">
+    <div class="connection-lost text-center">
+      No hay conexión
+    </div>
+
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
       <div class="form-group">
@@ -45,7 +53,7 @@
         </p>
       </section>
 
-      <neo-slider (notify)="onNotify($event)" >
+      <neo-slider (notify)="onNotify($event)">
         <div class="card">
           <div class="card-body">
             <p>Soy una card con slider!</p>
