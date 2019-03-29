@@ -126,6 +126,15 @@ neo-layout {
   overflow-x: hidden;
 }
 
+.neo-slider-primary {
+  background: $stl-color-primary;
+}
+
+.neo-slider-secondary {
+  background: $stl-color-secondary;
+}
+
+
 .navbar-toggler-icon {
   width: auto;
   height: auto;

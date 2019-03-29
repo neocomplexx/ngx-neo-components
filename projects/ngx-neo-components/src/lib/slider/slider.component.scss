@@ -1,12 +1,18 @@
 .slider{
     display: flex;
-    width: 100% * 3;
+  //  width: 100% * 3;
 }
   
  
 .slider-panel{
-    padding-top: 10%;
+  //  padding-top: 10%;
     width: 100%;
+    z-index: 2;
+}
+
+.slider-panel-auxiliar{
+    z-index: 1;
+    position: absolute;
 }
  
 
@@ -14,4 +20,25 @@
     overflow: hidden;
     width: 100%
 }
-  
+
+.leyenda-slider-izq{
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    left: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.leyenda-slider-der {
+    position: absolute;
+    bottom: 0;
+    right: 1%;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slideable {
+    z-index: 3;
+}
