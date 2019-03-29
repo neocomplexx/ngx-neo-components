@@ -1,8 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
-import { fromEvent, Observable, concat, defer, merge, Subscription } from 'rxjs';
-import { map, switchMap, tap, takeUntil, takeWhile, repeat, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'neo-slider',
@@ -15,7 +13,7 @@ import { map, switchMap, tap, takeUntil, takeWhile, repeat, startWith } from 'rx
         ]),
     ]
   })
-  export class SliderComponent implements OnInit {
+  export class SliderComponent {
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
@@ -23,91 +21,19 @@ import { map, switchMap, tap, takeUntil, takeWhile, repeat, startWith } from 'rx
 
     public visibility: string;
 
-    public subscription: Subscription;
+    public x = 0;
+    public y = 0;
+    public startX = 0;
+    public startY = 0;
 
-    public prevDeltaX: number;
-    public prevDeltaY: number;
-    public translateX: number;
-    public translateY: number;
+    constructor() {
+      this.visibility = 'normal';
+    }
 
-
-    x = 0;
-    y = 0;
-    title = 'Drag Me!';
-  
-    startX = 0;
-    startY = 0;
-
-    // currentPos = 0;
-
-    // drag$ = this.touchstart$.pipe(
-    //      switchMap(start => {
-    //        let pos = 0;
-    //        return this.touchmove$.pipe(
-    //         map(move => move.touches[0].pageY - start.touches[0].pageY),
-    //          tap(p => pos = p),
-    //          takeUntil(this.touchend$),
-    //       );
-    //      }),
-    //      tap(p => {
-    //     //   if (p >= 300) {
-    //     //     this.headerService.requestLoad.next();
-    //     //   }
-    //      }),
-    //     // takeWhile(p => p < 300),
-    //     // repeat()
-    //   );
-    
-    // position$: Observable<number> = this.drag$.pipe(
-    //     // merge(this.completeAnimation$),
-    //     // startWith(0),
-    //     // tap(pos => this.currentPos = pos)
-    // );
-    
-
-
-    // positionTranslate3d$: Observable<string> = this.position$.pipe(map(p => `translate3d(0, ${p - 250}px, 0)`));
-
-      constructor() {
-           this.visibility = 'normal';
-           this.prevDeltaX = 0;
-           this.prevDeltaY = 0;
-           this.translateX = 0;
-           this.translateY = 0;
-      }
-
-      ngOnInit() {
-
-      }
-
-      onSwipeLeft(event): void {
-         this.visibility = 'left';
-          this.notify.emit('SwipeLeft');
-          
-      }
-
-      // onPan(event): void {
-      //   //     var percentage = 100 / 3 * event.deltaX / window.innerWidth;
-      //   //     var transformPercentage = percentage - 100 / 3;
-      //   //   this.positionTranslate3d = 'translateX( ' + transformPercentage + '% )';// `translate3d(-50px, 0px, 0)`;
-      //   console.log(event.deltaX, event.deltaY);
-      //   var percentage = event.deltaX / window.innerWidth;
-      //     this.positionTranslate3d = 'translate3d(' + percentage  + '%)';
-      //     this.notify.emit('Pan');
-      // }
-      
-      // onPan(event) {
-       
-      //     this.translateX += event.deltaX - this.prevDeltaX;
-      //     this.translateY += event.deltaY - this.prevDeltaY;
-      
-      //     this.positionTranslate3d = 'translateX(' + this.translateX + ', 0, 0)';
-      //     this.prevDeltaX = event.deltaX;
-      //     this.prevDeltaY = event.deltaY;
-
-      //     this.notify.emit('Pan');
-
-      // }
+    onSwipeLeft(event): void {
+      this.visibility = 'left';
+      this.notify.emit('SwipeLeft');
+    }
 
       onPanStart(event: any): void {
         this.startX = this.x;
@@ -118,20 +44,31 @@ import { map, switchMap, tap, takeUntil, takeWhile, repeat, startWith } from 'rx
         event.preventDefault();
         this.x = this.startX + event.deltaX;
         this.y = this.startY + event.deltaY;
+        if (this.x < -20) {
+            this.visibility = 'left';
+            console.log('Entre en el left');
+            setTimeout(async () =>  {
+              this.visibility = 'normal';
+              this.x = 0;
+              console.log('Ejecutando el timeout left');
+          }, 800);
+          this.notify.emit('PanLeft');
+        } else if (this.x >= 60) { // (window.innerWidth / 3)
+            this.visibility = 'right';
+            console.log('Entre en el right');
+            setTimeout(async () =>  {
+              this.visibility = 'normal';
+              this.x = 0;
+              console.log('Ejecutando el timeout right');
+          }, 800);
+          this.notify.emit('PanRight');
+        }
+        console.log('PAN', this.x, this.y, window.innerWidth);
       }
 
       onSwipeRight(event): void {
            this.visibility = 'right';
            this.notify.emit('SwipeRight');
       }
-
-    //   onPanRight(event): void {
-    //    // this.positionTranslate3d = `translate3d(50px, 0px, 0)`;
-    // //    var percentage = 100 / 3 * event.deltaX / window.innerWidth;
-    // //         var transformPercentage = percentage - 100 / 3;
-    // //       this.positionTranslate3d = 'translateX( -' + transformPercentage + '% )';
-    //     this.notify.emit('PanRight');
-    // }
-
 
 }
