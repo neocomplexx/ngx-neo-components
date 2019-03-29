@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, HostBinding, ElementRef, Output, EventEmitter } from '@angular/core';
-import { Highlightable, FocusableOption } from '@angular/cdk/a11y';
+import { Highlightable, FocusableOption, ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'neo-list-item',
   template: `<ng-content></ng-content>`,
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent<T> implements Highlightable {
+export class ListItemComponent<T extends Labeled> implements Highlightable {
 
   @Input() item: T;
 
@@ -22,13 +22,23 @@ export class ListItemComponent<T> implements Highlightable {
 
   constructor() { }
 
-  setActiveStyles() {
+  public setActiveStyles() {
     this._isActive = true;
     this.focusItem.emit(true);
   }
 
-  setInactiveStyles() {
+  public setInactiveStyles() {
     this._isActive = false;
     this.leaveItem.emit(true);
   }
+
+  public getLabel() {
+    return this.item.getLabel();
+  }
 }
+
+export interface Labeled {
+  getLabel(): string;
+  toString(): string;
+}
+

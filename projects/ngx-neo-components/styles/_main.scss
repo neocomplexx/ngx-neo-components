@@ -123,8 +123,17 @@ neo-layout {
 .neo-slider {
   background: #e6e4e4;
   border-radius: 0.5rem;
-  overflow-x: hidden;
+  overflow: hidden;
 }
+
+.neo-slider-primary {
+  background: $stl-color-primary;
+}
+
+.neo-slider-secondary {
+  background: $stl-color-secondary;
+}
+
 
 .navbar-toggler-icon {
   width: auto;

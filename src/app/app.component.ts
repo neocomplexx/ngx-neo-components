@@ -3,6 +3,7 @@ import { ListItemComponent, HeaderService } from 'ngx-neo-components';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MobileSidebarService } from 'ngx-neo-components';
+import { Labeled } from 'ngx-neo-components';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,12 @@ import { MobileSidebarService } from 'ngx-neo-components';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChildren(ListItemComponent) items: QueryList<ListItemComponent<User>>;
-
   // tslint:disable-next-line:max-line-length
-  users: User[] = [{ name: 'One name' }, { name: 'Two name' }, { name: 'Three name' }, { name: 'Fourteen name' }, { name: 'Hello name' }, { name: 'Hello name' }, { name: 'Hola name' }];
+  users: User[];
+  users2: User[];
 
   public selected: User;
 
-  private keyManager: ActiveDescendantKeyManager<ListItemComponent<User>>;
 
   title = 'neo-components';
   buttons = [
@@ -45,11 +44,26 @@ export class AppComponent implements AfterViewInit {
   ];
 
   constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
+
+    this.users = Array.from(
+      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+      x => new User(x));
+
+    this.users2 = Array.from(
+      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+      x => new User(x));
+
+    setTimeout(() => {
+      const aux = Array.from(
+        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+        x => new User(x));
+      aux.forEach(x => {
+        this.users.push(x);
+      });
+    }, 5000);
   }
 
   ngAfterViewInit() {
-    this.keyManager = new ActiveDescendantKeyManager(this.items)
-      .withWrap();
   }
 
   public onKeydown(event) {
@@ -63,6 +77,10 @@ export class AppComponent implements AfterViewInit {
 
   public onActive(user: User) {
     console.log('over:', user);
+  }
+
+  public onDeactive(user: User) {
+    console.log('leaver:', user);
   }
 
   public onNotify(event) {
@@ -82,9 +100,13 @@ export class AppComponent implements AfterViewInit {
 
 }
 
-export interface User {
+class User implements Labeled {
   name: string;
 
+  constructor(name: string) { this.name = name; }
 
+  getLabel() {
+    return this.name;
+  }
 
 }
