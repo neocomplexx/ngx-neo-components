@@ -8,8 +8,8 @@ import * as kf from '../../lib/shared/animations/keyframes';
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('sliderAnimator', [
-            transition('* => right', animate(1000, keyframes(kf.slideOutRight))),
-            transition('* => left', animate(1000, keyframes(kf.slideOutLeft))),
+            transition('* => right', animate(1300, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1300, keyframes(kf.slideOutLeft))),
         ]),
     ]
   })
@@ -38,46 +38,43 @@ import * as kf from '../../lib/shared/animations/keyframes';
       this.notify.emit('SwipeLeft');
     }
 
-      onPanStart(event: any): void {
-        this.startX = this.x;
-        this.startY = this.y;
-      }
-    
-      onPan(event: any): void { 
-        event.preventDefault();
-        console.log(event.type, 'El delta ' + event.deltaX, 'El previo ' + this.xPrev, 'El x ', this.x);
-        if (event.type !== 'panend') {
-            this.xPrev = this.x;
-        }
-        
-        this.x = this.startX + event.deltaX;
-        console.log('Me muevo desde ' + this.xPrev + ' a ' + this.x);
-        if ( (this.xPrev > this.x) && event.type === 'panend') { // this.x < -20
-            this.visibility = 'left';
-            console.log('Entre en el left');
-            setTimeout(async () =>  {
-              this.visibility = 'normal';
-              this.x = 0;
-              this.xPrev = 0;
-              console.log('Ejecutando el timeout left');
-          }, 800);
-          this.notify.emit('PanLeft');
-        } else if (this.xPrev <= this.x && event.type === 'panend') { // (window.innerWidth / 3) (this.x >= 60) && 
-            this.visibility = 'right';
-            console.log('Entre en el right');
-            setTimeout(async () =>  {
-              this.visibility = 'normal';
-              this.x = 0;
-              this.xPrev = 0;
-              console.log('Ejecutando el timeout right');
-          }, 800);
-          this.notify.emit('PanRight');
-        }
-      }
+    onPanStart(event: any): void {
+      this.startX = this.x;
+      this.startY = this.y;
+    }
 
-      onSwipeRight(event): void {
-           this.visibility = 'right';
-           this.notify.emit('SwipeRight');
+    onPan(event: any): void { 
+      event.preventDefault();
+      if (event.type !== 'panend') {
+        this.xPrev = this.x;
       }
+      this.x = this.startX + event.deltaX;
+
+      if ((this.xPrev > this.x) && event.type === 'panend') { // this.x < -20
+          this.visibility = 'left';
+          setTimeout(async () =>  {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+              
+          }, 1200);
+          this.notify.emit('PanLeft');
+      } else if (this.xPrev <= this.x && event.type === 'panend') { // (window.innerWidth / 3) (this.x >= 60) && 
+          this.visibility = 'right';
+        
+          setTimeout(async () =>  {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+    
+          }, 1200);
+          this.notify.emit('PanRight');
+      }
+    }
+
+    onSwipeRight(event): void {
+      this.visibility = 'right';
+      this.notify.emit('SwipeRight');
+    }
 
 }
