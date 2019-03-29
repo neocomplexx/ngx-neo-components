@@ -8,8 +8,8 @@ import * as kf from '../../lib/shared/animations/keyframes';
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('sliderAnimator', [
-            transition('* => right', animate(1300, keyframes(kf.slideOutRight))),
-            transition('* => left', animate(1300, keyframes(kf.slideOutLeft))),
+            transition('* => right', animate(1200, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1200, keyframes(kf.slideOutLeft))),
         ]),
     ]
   })
@@ -49,25 +49,21 @@ import * as kf from '../../lib/shared/animations/keyframes';
         this.xPrev = this.x;
       }
       this.x = this.startX + event.deltaX;
-
-      if ((this.xPrev > this.x) && event.type === 'panend') { // this.x < -20
+      if ((this.xPrev > this.x) && event.type === 'panend') {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-              
-          }, 1200);
+          }, 1100);
           this.notify.emit('PanLeft');
-      } else if (this.xPrev <= this.x && event.type === 'panend') { // (window.innerWidth / 3) (this.x >= 60) && 
+      } else if (this.xPrev <= this.x && event.type === 'panend') {
           this.visibility = 'right';
-        
           setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-    
-          }, 1200);
+          }, 1100);
           this.notify.emit('PanRight');
       }
     }

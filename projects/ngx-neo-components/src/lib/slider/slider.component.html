@@ -7,9 +7,9 @@
 </div> -->
 
 <div class="neo-slider">
-  <div class="position-relative" [style.left.px]="x" (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
+  <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
                                                      (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
-    <div [@sliderAnimator]="this.visibility" class="position-absolute">
+    <div [@sliderAnimator]="this.visibility" class="position-relative" [style.left.px]="x" >
       <ng-content></ng-content>
     </div>
     
