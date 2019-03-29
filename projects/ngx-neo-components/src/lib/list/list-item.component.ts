@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding, ElementRef, Output, EventEmitter } from '@angular/core';
-import { Highlightable, FocusableOption } from '@angular/cdk/a11y';
+import { Highlightable, FocusableOption, ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'neo-list-item',
@@ -41,3 +41,4 @@ export interface Labeled {
   getLabel(): string;
   toString(): string;
 }
+

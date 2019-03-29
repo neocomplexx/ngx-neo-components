@@ -30,22 +30,17 @@
   <div class="flex-grow-1 h-100 overflow-auto">
     <neo-pull-to-refresh></neo-pull-to-refresh>
     <div class="container-fluid">
-      <!--       <router-outlet></router-outlet> -->
       <div class="form-group">
-        <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+        <input #input class="form-control" placeholder="Search...">
       </div>
-
-      <section class="list-group">
-        <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false"
-          [item]="user" (focusItem)="onActive(user)">
+      <!--       <router-outlet></router-outlet> -->
+      <neo-list [neoListKeydown]="input" class="list-group">
+        <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
+          (focusItem)="onActive(user)">
           {{user.name }}
         </neo-list-item>
-        <p class="mt-4">
-          {{selected | json}}
-        </p>
-      </section>
-
-      <neo-slider (notify)="onNotify($event)" >
+      </neo-list>
+      <neo-slider (notify)="onNotify($event)">
         <div class="card">
           <div class="card-body">
             <p>Soy una card con slider!</p>

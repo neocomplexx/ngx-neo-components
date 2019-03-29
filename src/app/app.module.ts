@@ -9,7 +9,7 @@ import { CustomHammerConfig } from 'projects/ngx-neo-components/src/lib/shared/s
 @NgModule({
   declarations: [
     AppComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

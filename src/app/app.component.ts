@@ -1,7 +1,6 @@
 import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ListItemComponent, Labeled } from 'ngx-neo-components';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +9,12 @@ import { ENTER } from '@angular/cdk/keycodes';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChildren(ListItemComponent) items: QueryList<ListItemComponent<User>>;
-
   // tslint:disable-next-line:max-line-length
   users: User[];
+  users2: User[];
 
   public selected: User;
 
-  private keyManager: ActiveDescendantKeyManager<ListItemComponent<User>>;
 
   title = 'neo-components';
   buttons = [
@@ -48,29 +45,34 @@ export class AppComponent implements AfterViewInit {
     this.users = Array.from(
       ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
       x => new User(x));
+
+    this.users2 = Array.from(
+      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+      x => new User(x));
+
+    setTimeout(() => {
+      const aux = Array.from(
+        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+        x => new User(x));
+      aux.forEach(x => {
+        this.users.push(x);
+      });
+    }, 5000);
   }
 
   ngAfterViewInit() {
-    this.keyManager = new ActiveDescendantKeyManager(this.items)
-      .withWrap()
-      .withTypeAhead();
   }
 
   onSwipeRight(event) {
     console.log('Swipping right!');
   }
 
-  public onKeydown(event) {
-    if (event.keyCode === ENTER) {
-      this.selected = this.keyManager.activeItem.item;
-      window.alert(this.selected.name);
-    } else {
-      this.keyManager.onKeydown(event);
-    }
-  }
-
   public onActive(user: User) {
     console.log('over:', user);
+  }
+
+  public onDeactive(user: User) {
+    console.log('leaver:', user);
   }
 
   public onNotify(event) {
