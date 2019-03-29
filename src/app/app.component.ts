@@ -1,9 +1,7 @@
 import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding, HostListener } from '@angular/core';
-import { ListItemComponent, HeaderService } from 'ngx-neo-components';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { HeaderService, MobileSidebarService } from 'ngx-neo-components';
 import { ENTER } from '@angular/cdk/keycodes';
-import { MobileSidebarService } from 'ngx-neo-components';
-import { Labeled } from 'ngx-neo-components';
+import { Labeled } from 'projects/ngx-neo-components/src/lib/list/list-item.component';
 
 @Component({
   selector: 'app-root',
@@ -65,16 +63,6 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
   }
-
-  public onKeydown(event) {
-    if (event.keyCode === ENTER) {
-      this.selected = this.keyManager.activeItem.item;
-      window.alert(this.selected.name);
-    } else {
-      this.keyManager.onKeydown(event);
-    }
-  }
-
   public onActive(user: User) {
     console.log('over:', user);
   }
