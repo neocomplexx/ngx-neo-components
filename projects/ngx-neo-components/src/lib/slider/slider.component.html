@@ -1,16 +1,9 @@
 <div class="neo-slider">
-    <div (swipeleft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
-        <div [@notificationAnimator]="this.visibility" > 
+  <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
+       (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
+      <div [@sliderAnimator]="this.visibility" class="position-relative" [style.left.px]="x" >
             <ng-content></ng-content>
-        </div>
-    </div>
-</div>
-<!-- <div class="has-slider">
-  <div class="slider">
-    <div class="slider-panel neo-slider"></div>
-    <div class="slider-panel">
-        <ng-content></ng-content>
-    </div>
-    <div class="slider-panel neo-slider"></div>
+      </div>   
   </div>
-</div> -->
+</div>
+

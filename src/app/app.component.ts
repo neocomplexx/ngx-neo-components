@@ -1,11 +1,10 @@
-import { Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { ListItemComponent, Labeled } from 'ngx-neo-components';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { Component, AfterViewInit } from '@angular/core';
+import { Labeled } from 'ngx-neo-components';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
 

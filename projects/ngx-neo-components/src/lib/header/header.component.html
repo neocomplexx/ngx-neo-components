@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg neo-navbar navbar-light">
+<nav class="navbar navbar-expand-lg neo-navbar">
   <!-- Brand Desktop -->
   <a class="navbar-brand d-none d-lg-block" href="#">
-    <img class="lg-logo" src="assets/img/logo-v3-both.png" alt="">
+    <img class="lg-logo" src="assets/img/logo-lg.png" alt="">
   </a>
   <!-- Brand Mobile -->
   <a class="sm-logo d-lg-none">
@@ -9,14 +9,18 @@
   </a>
   <!-- Toggler Sidebar -->
   <button class="navbar-toggler" type="button" (click)="showSidebar()">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon">
+        <i class="fas fa-bars neo-icon"></i>
+    </span>
   </button>
 
   <!-- Opciones lado derecho -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-        <a class="animated notification"></a>
-        <!-- [class.show-count]="notificationService.notificationsNotSeen !==0"
+      <a class="animated bell-container">
+          <i class="fas fa-bell neo-icon"></i>
+      </a>
+      <!-- [class.show-count]="notificationService.notificationsNotSeen !==0"
         [class.notify]="notificationService.notificationsNotSeen !==0"
         [class.notification-high]="notificationService.notificationMaxPriority == 2"
         [attr.value]="notificationService.notificationsNotSeen"

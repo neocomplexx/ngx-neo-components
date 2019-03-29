@@ -1,5 +1,10 @@
 <neo-header></neo-header>
+<neo-pull-to-refresh></neo-pull-to-refresh>
 <neo-mobile-sidebar>
+  <label class="image-item ">
+    <img src="assets/img/logo-lg.png" />
+  </label>
+  <hr class="separator-line">
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action active">
       Cras justo odio
@@ -27,28 +32,41 @@
       </div>
     </neo-sidebar>
   </div>
-  <div class="flex-grow-1 h-100 overflow-auto">
-    <neo-pull-to-refresh></neo-pull-to-refresh>
+  <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
-      <div class="form-group">
-        <input #input class="form-control" placeholder="Search...">
-      </div>
       <!--       <router-outlet></router-outlet> -->
-      <neo-list [neoListKeydown]="input" class="list-group">
-        <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
-          (focusItem)="onActive(user)">
-          {{user.name }}
-        </neo-list-item>
-      </neo-list>
-      <neo-slider (notify)="onNotify($event)">
-        <div class="card">
-          <div class="card-body">
-            <p>Soy una card con slider!</p>
+      <div class="form-group">
+        <input class="form-control" placeholder="Search..." #input>
+      </div>
+
+      <section class="list-group">
+        <neo-list [neoListKeydown]="input" class="list-group">
+          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
+            (focusItem)="onActive(user)">
+            {{user.name }}
+          </neo-list-item>
+        </neo-list>
+        <p class="mt-4">
+          {{selected | json}}
+        </p>
+      </section>
+      <section>
+        <neo-slider (notify)="onNotify($event)">
+          <div class="card">
+            <div class="card-body">
+              <p>Soy una card con slider!</p>
+            </div>
           </div>
+        </neo-slider>
+        <div class="mt-1">
+          <neo-slider (notify)="onNotify($event)">
+            <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
+          </neo-slider>
         </div>
-      </neo-slider>
+      </section>
     </div>
   </div>
 </div>
+
 
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>

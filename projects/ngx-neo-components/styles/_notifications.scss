@@ -5,7 +5,7 @@
     position: relative;
     border-radius: 0.2em;
     font-size: 1.1em;
-    outline: none;
+    outline: none !important;
     text-decoration: none !important;
 }
 
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 991px) {
     .notification::before {
-        color: #1d84bf;
+/*         color: #1d84bf; */
         font-size: x-large;
     }
 }
