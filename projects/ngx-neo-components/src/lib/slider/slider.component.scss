@@ -28,6 +28,10 @@
     left: 1%;
     top: 50%;
     transform: translateY(-50%);
+
+    .btn {
+        color: white;
+    }
 }
 
 .leyenda-slider-der {
@@ -37,6 +41,10 @@
     z-index: 2;
     top: 50%;
     transform: translateY(-50%);
+
+    .btn {
+        color: white;
+    }
 }
 
 .slideable {

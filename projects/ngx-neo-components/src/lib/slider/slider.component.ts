@@ -20,6 +20,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
     @Input() iconoder: string;
     @Input() textoizq: string;
     @Input() textoder: string;
+    @Input() clasefondo: string;
 
     public visibility: string;
     public x = 0;
