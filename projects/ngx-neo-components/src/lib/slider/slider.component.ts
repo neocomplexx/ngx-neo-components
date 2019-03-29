@@ -26,6 +26,9 @@ import * as kf from '../../lib/shared/animations/keyframes';
     public startX = 0;
     public startY = 0;
 
+    public xPrev = 0;
+    public yPrev = 0;
+
     constructor() {
       this.visibility = 'normal';
     }
@@ -40,30 +43,36 @@ import * as kf from '../../lib/shared/animations/keyframes';
         this.startY = this.y;
       }
     
-      onPan(event: any): void { console.log(event.type);
+      onPan(event: any): void { 
         event.preventDefault();
+        console.log(event.type, 'El delta ' + event.deltaX, 'El previo ' + this.xPrev, 'El x ', this.x);
+        if (event.type !== 'panend') {
+            this.xPrev = this.x;
+        }
+        
         this.x = this.startX + event.deltaX;
-        this.y = this.startY + event.deltaY;
-        if (this.x < -20 && event.type === 'panend') {
+        console.log('Me muevo desde ' + this.xPrev + ' a ' + this.x);
+        if ( (this.xPrev > this.x) && event.type === 'panend') { // this.x < -20
             this.visibility = 'left';
             console.log('Entre en el left');
             setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
+              this.xPrev = 0;
               console.log('Ejecutando el timeout left');
           }, 800);
           this.notify.emit('PanLeft');
-        } else if (this.x >= 60 && event.type === 'panend') { // (window.innerWidth / 3)
+        } else if (this.xPrev <= this.x && event.type === 'panend') { // (window.innerWidth / 3) (this.x >= 60) && 
             this.visibility = 'right';
             console.log('Entre en el right');
             setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
+              this.xPrev = 0;
               console.log('Ejecutando el timeout right');
           }, 800);
           this.notify.emit('PanRight');
         }
-        console.log('PAN', this.x, this.y, window.innerWidth);
       }
 
       onSwipeRight(event): void {
