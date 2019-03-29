@@ -12,6 +12,10 @@ app-root{
   right: 0;
 }
 
+app-root.noConection {
+  top: 74px;
+}
+
 neo-header {
   position: fixed;
   top: 0;
@@ -48,23 +52,23 @@ neo-layout {
   background-image: url(assets/img/logo-sm.png);
   background-position: 100% 0;
   background-repeat: no-repeat;
-  background-size: 30px 30px;
-  height: 30px;
+  background-size: 36px 36px;
+  height: 36px;
   position: absolute;
   right: 0;
   top: 0;
-  width: 30px;
+  width: 36px;
 }
 
 .sm-logo {
   bottom: 0;
   display: block;
-  height: 30px;
+  height: 36px;
   left: 50%;
-  margin-left: -15px;
+  margin-left: -18px;
   position: absolute;
-  top: 10px;
-  width: 30px;
+  top: 7px;
+  width: 36px;
   text-align: center;
   transition: .1s ease;
   z-index: 2;
@@ -98,7 +102,7 @@ neo-layout {
 
 .navbar-toggler {
   border-color: transparent;
-  outline: none;
+  outline: none !important;
   margin-left: -12px;
 }
 
@@ -126,7 +130,12 @@ neo-layout {
   height: auto;
 }
 
-.fas.neo-icon {
+.fas.neo-icon::before{
   font-size:larger;
   color: #1d84bf;
+}
+
+.bell-container {
+  margin: -10px;
+  padding: 10px;
 }
