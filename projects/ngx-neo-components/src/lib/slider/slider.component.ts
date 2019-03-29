@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
 
@@ -8,8 +8,8 @@ import * as kf from '../../lib/shared/animations/keyframes';
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('sliderAnimator', [
-            transition('* => right', animate(1200, keyframes(kf.slideOutRight))),
-            transition('* => left', animate(1200, keyframes(kf.slideOutLeft))),
+            transition('* => right', animate(1300, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1300, keyframes(kf.slideOutLeft))),
         ]),
     ]
   })
@@ -17,15 +17,11 @@ import * as kf from '../../lib/shared/animations/keyframes';
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
-    public positionTranslate3d;
-
     public visibility: string;
-
     public x = 0;
     public y = 0;
     public startX = 0;
     public startY = 0;
-
     public xPrev = 0;
     public yPrev = 0;
 
@@ -46,7 +42,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
     onPan(event: any): void { 
       event.preventDefault();
       if (event.type !== 'panend') {
-        this.xPrev = this.x;
+          this.xPrev = this.x;
       }
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
@@ -55,7 +51,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1100);
+          }, 1200);
           this.notify.emit('PanLeft');
       } else if (this.xPrev <= this.x && event.type === 'panend') {
           this.visibility = 'right';
@@ -63,7 +59,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1100);
+          }, 1200);
           this.notify.emit('PanRight');
       }
     }

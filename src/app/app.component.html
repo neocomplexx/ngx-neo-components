@@ -48,14 +48,20 @@
           {{selected | json}}
         </p>
       </section>
-
-      <neo-slider (notify)="onNotify($event)">
-        <div class="card">
-          <div class="card-body">
-            <p>Soy una card con slider!</p>
+      <section>
+        <neo-slider (notify)="onNotify($event)">
+          <div class="card">
+            <div class="card-body">
+              <p>Soy una card con slider!</p>
+            </div>
           </div>
-        </div>
-      </neo-slider>
+        </neo-slider>
+        <div class="mt-1">
+        <neo-slider (notify)="onNotify($event)">
+          <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
+        </neo-slider>
+      </div>
+      </section>
     </div>
   </div>
 </div>

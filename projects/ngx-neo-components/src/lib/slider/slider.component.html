@@ -1,26 +1,9 @@
-<!-- <div class="neo-slider">
-    <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" (pan)="onPan($event)">
-        <div [@sliderAnimator]="this.visibility" [style.transform]="positionTranslate3d" > 
-            <ng-content></ng-content>
-        </div>
-    </div>
-</div> -->
-
 <div class="neo-slider">
   <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
-                                                     (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
-    <div [@sliderAnimator]="this.visibility" class="position-relative" [style.left.px]="x" >
-      <ng-content></ng-content>
-    </div>
-    
+       (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
+      <div [@sliderAnimator]="this.visibility" class="position-relative" [style.left.px]="x" >
+            <ng-content></ng-content>
+      </div>   
   </div>
 </div>
-
-
-<!-- <div class="neo-slider position-relative" [style.left.px]="x"  (panstart)="onPanStart($event)" (panmove)="onPan($event)">
-  <div class="position-absolute">
-    <ng-content></ng-content>
-  </div>
-  
-</div> -->
 
