@@ -1,7 +1,8 @@
-import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding } from '@angular/core';
-import { ListItemComponent } from 'ngx-neo-components';
+import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding, HostListener } from '@angular/core';
+import { ListItemComponent, HeaderService } from 'ngx-neo-components';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
+import { MobileSidebarService } from 'ngx-neo-components';
 
 @Component({
   selector: 'app-root',
@@ -43,13 +44,12 @@ export class AppComponent implements AfterViewInit {
     }
   ];
 
+  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
+  }
+
   ngAfterViewInit() {
     this.keyManager = new ActiveDescendantKeyManager(this.items)
       .withWrap();
-  }
-
-  onSwipeRight(event) {
-    console.log('Swipping right!');
   }
 
   public onKeydown(event) {
@@ -68,6 +68,17 @@ export class AppComponent implements AfterViewInit {
   public onNotify(event) {
     console.log(event, 'ON NOTIFY');
   }
+
+  @HostListener('swipeleft', ['$event'])
+  public hideSidebar($event) {
+    this.mobileSidebarService.showSidebar.next(false);
+  }
+
+  @HostListener('swiperight', ['$event'])
+  public showSidebar($event) {
+    this.mobileSidebarService.showSidebar.next(true);
+  }
+
 
 }
 
