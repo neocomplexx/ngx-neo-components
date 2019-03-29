@@ -29,17 +29,17 @@ import * as kf from '../../lib/shared/animations/keyframes';
       this.visibility = 'normal';
     }
 
-    onSwipeLeft(event): void {
-      this.visibility = 'left';
-      this.notify.emit('SwipeLeft');
-    }
-
     onPanStart(event: any): void {
       this.startX = this.x;
       this.startY = this.y;
     }
 
-    onPan(event: any): void { 
+    /**
+     * Explicación: mantengo la posición previa para poder saber si deslizo a izquierda o a derecha cuando detecto un panend
+     * Cada vez que hago un panmove le sumo a la posición x el delta x del evento
+     * @param event evento pan
+     */
+    onPan(event: any): void {
       event.preventDefault();
       if (event.type !== 'panend') {
           this.xPrev = this.x;
@@ -62,6 +62,11 @@ import * as kf from '../../lib/shared/animations/keyframes';
           }, 1200);
           this.notify.emit('PanRight');
       }
+    }
+
+    onSwipeLeft(event): void {
+      this.visibility = 'left';
+      this.notify.emit('SwipeLeft');
     }
 
     onSwipeRight(event): void {
