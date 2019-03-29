@@ -51,18 +51,19 @@
         </p>
       </section>
       <section>
-        <neo-slider (notify)="onNotify($event)">
+        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" 
+                    [iconoder]="'fas fa-archive'" [textoder]="''" (notify)="onNotify($event)">
           <div class="card">
             <div class="card-body">
               <p>Soy una card con slider!</p>
             </div>
           </div>
         </neo-slider>
-        <div class="mt-1">
+        <!-- <div class="mt-1">
           <neo-slider (notify)="onNotify($event)">
             <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
           </neo-slider>
-        </div>
+        </div> -->
       </section>
     </div>
   </div>

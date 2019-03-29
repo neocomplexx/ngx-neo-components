@@ -1,10 +1,10 @@
 <div #slider class="neo-slider position-relative">
-  <div class="leyenda-slider-izq" *ngIf="this.visibility!= 'left'"><button class="btn btn-primary btn-sm"><i class="fas fa-archive"></i></button></div>
+  <div class="leyenda-slider-izq" *ngIf="this.visibility!= 'left'"><button class="btn btn-primary btn-sm"><i [ngClass]="iconoizq"></i>{{textoizq}}</button></div>
   <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
        (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
       <div [@sliderAnimator]="this.visibility" class="position-relative slideable" [style.left.px]="x" >
             <ng-content></ng-content>
       </div>   
   </div>
-  <div class="leyenda-slider-der" *ngIf="this.visibility!= 'right'" ><button class="btn btn-primary btn-sm"><i class="fas fa-archive"></i></button></div>
+  <div class="leyenda-slider-der" *ngIf="this.visibility!= 'right'" ><button class="btn btn-primary btn-sm"><i [ngClass]="iconoder"></i>{{textoder}}</button></div>
 </div>
