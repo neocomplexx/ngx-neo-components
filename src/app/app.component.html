@@ -36,14 +36,16 @@
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
       <div class="form-group">
-        <input class="form-control" placeholder="Search..." (keyup)="onKeydown($event)" #input>
+        <input class="form-control" placeholder="Search..." #input>
       </div>
 
       <section class="list-group">
-        <neo-list-item class="list-group-item" *ngFor="let user of users | filter: 'name' : input.value; let ia = false"
-          [item]="user" (focusItem)="onActive(user)">
-          {{user.name }}
-        </neo-list-item>
+        <neo-list [neoListKeydown]="input" class="list-group">
+          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
+            (focusItem)="onActive(user)">
+            {{user.name }}
+          </neo-list-item>
+        </neo-list>
         <p class="mt-4">
           {{selected | json}}
         </p>
@@ -57,10 +59,10 @@
           </div>
         </neo-slider>
         <div class="mt-1">
-        <neo-slider (notify)="onNotify($event)">
-          <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
-        </neo-slider>
-      </div>
+          <neo-slider (notify)="onNotify($event)">
+            <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
+          </neo-slider>
+        </div>
       </section>
     </div>
   </div>
