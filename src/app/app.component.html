@@ -48,6 +48,15 @@
             {{user.name }}
           </neo-list-item>
         </neo-list>
+        <div class="form-group">
+          <input class="form-control" placeholder="Search..." #input2>
+        </div>
+        <neo-list 
+          [neoListKeydown]="input2" [command]="testItemCmd2" class="list-group">
+          <neo-list-item *ngFor="let user of users2" class="list-group-item" [item]="user">
+            {{user.name }}
+          </neo-list-item>
+        </neo-list>
         <p class="mt-4">
           {{selected | json}}
         </p>

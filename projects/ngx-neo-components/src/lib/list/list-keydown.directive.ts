@@ -1,4 +1,4 @@
-import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input, Renderer, OnDestroy } from '@angular/core';
+import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input, Renderer, OnDestroy, HostListener } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Labeled, ListItemComponent } from './list-item.component';
 import { ListService } from './list.service';
@@ -20,6 +20,22 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
   constructor(private renderer: Renderer, private listService: ListService) { }
 
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (this.listService.isTableActive) {
+      this.listService.keyListenerFunc(event);
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickEvent(event: MouseEvent) {
+    if (!this.listService.skipInactive) {
+      this.listService.isTableActive = false;
+    }
+    this.listService.skipInactive = false;
+  }
+
   ngAfterViewInit() {
     this.addKeyManagerListener();
 
@@ -36,7 +52,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
-        this.listService.keyListenerFunc(event, this.items.length);
+        event.preventDefault();
+        event.stopPropagation();
+        this.listService.keyListenerFunc(event);
       });
     } else {
       throw Error('htmlInput listener was not setted in neoListKeydown');
@@ -44,6 +62,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   }
 
   private initPreselectedIndex(): void {
+    this.listService.itemsLength = this.items.length;
     // If the list is loaded on init, we select the elment and set preSelect to null so it's not used again on change event.
     if (this.listService.preSelectIndex && this.listService.preSelectIndex < this.items.length) {
       this.selectItem();
@@ -52,6 +71,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     // We need to set selected index in change event because list can be async loaded
     this.subs.add(
       this.items.changes.subscribe(() => {
+        this.listService.itemsLength = this.items.length;
         if (this.listService.preSelectIndex) {
           if (this.listService.preSelectIndex < this.items.length) {
             this.selectItem();
@@ -64,6 +84,8 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(this.listService.clickedObservable.subscribe((item) => {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
+      this.listService.isTableActive = true;
+      this.listService.executeCommand();
     }));
   }
 

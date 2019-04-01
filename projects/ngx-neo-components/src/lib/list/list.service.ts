@@ -20,9 +20,15 @@ export class ListService implements OnDestroy {
    */
   private _preSelectIndex: number = null;
 
+  private _itemsLength = 0;
+
   private _keyManager: ActiveDescendantKeyManager<ListItemComponent<Labeled>>;
 
   private _command: ICommand;
+
+  private _isTableActive: boolean;
+
+  private _skipInactive = false;
 
   public activeObservable = new Subject<number>();
 
@@ -35,26 +41,29 @@ export class ListService implements OnDestroy {
   get preSelectIndex(): number { return this._preSelectIndex; }
   set preSelectIndex(value: number) { this._preSelectIndex = value; }
 
+  get itemsLength(): number { return this._itemsLength; }
+  set itemsLength(value: number) { this._itemsLength = value; }
+
+  get isTableActive(): boolean { return this._isTableActive; }
+  set isTableActive(value: boolean) { this._isTableActive = value; }
+
+  get skipInactive(): boolean { return this._skipInactive; }
+  set skipInactive(value: boolean) { this._skipInactive = value; }
+
   get keyManager(): ActiveDescendantKeyManager<ListItemComponent<Labeled>> { return this._keyManager; }
   set keyManager(value: ActiveDescendantKeyManager<ListItemComponent<Labeled>>) { this._keyManager = value; }
 
   get command(): ICommand { return this._command; }
   set command(value: ICommand) { this._command = value; }
 
-  constructor() { console.log('cons'); }
+  constructor() { }
 
-  public keyListenerFunc(event: KeyboardEvent, itemsLength: number) {
+  public keyListenerFunc(event: KeyboardEvent) {
     if (this._keyManager) {
       const active = this._keyManager.activeItemIndex;
       switch (event.keyCode) {
         case 13:
-          if (this.command) {
-            if (this._keyManager.activeItem) {
-              this.command.execute(this._keyManager.activeItem.item);
-            } else {
-              console.warn('Not selected item');
-            }
-          }
+          this.executeCommand();
           break;
         case 33:
           event.preventDefault();
@@ -66,7 +75,7 @@ export class ListService implements OnDestroy {
           break;
         case 34:
           event.preventDefault();
-          if (this._keyManager.activeItemIndex + 10 < itemsLength) {
+          if (this._keyManager.activeItemIndex + 10 < this._itemsLength) {
             this._keyManager.setActiveItem(active + 10);
           } else {
             this._keyManager.setLastItemActive();
@@ -87,9 +96,20 @@ export class ListService implements OnDestroy {
     }
   }
 
+  public executeCommand() {
+    if (this.command) {
+      if (this._keyManager.activeItem) {
+        this.command.execute(this._keyManager.activeItem.item);
+      } else {
+        console.warn('Not selected item');
+      }
+    }
+  }
+
   ngOnDestroy() {
     this._command = null;
     this._keyManager = null;
     this._preSelectIndex = null;
+    this.itemsLength = 0;
   }
 }

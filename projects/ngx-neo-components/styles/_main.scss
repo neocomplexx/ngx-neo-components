@@ -41,6 +41,13 @@ neo-list-item {
   cursor: pointer!important;
 }
 
+neo-list-item:hover {
+  z-index: 1;
+  color: #495057;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -123,7 +130,7 @@ neo-list-item {
 
 .neo-slider {
   background: #e6e4e4;
-  border-radius: 0.4rem;
+  border-radius: .4rem;
   overflow: hidden;
 }
 
