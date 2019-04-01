@@ -8,7 +8,8 @@ import { Labeled } from './list-item.component';
   template: `
     <input *ngIf="searchBox" class="form-control" [placeholder]="searchPlaceholder" #neolistinput>
     <ng-content select="neo-list-item"></ng-content>
-  `
+  `,
+  providers: [ListService]
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 

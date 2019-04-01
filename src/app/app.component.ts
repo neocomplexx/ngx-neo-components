@@ -11,8 +11,10 @@ import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components
 export class AppComponent {
 
   users = new Array<User>();
+  users2 = new Array<User>();
 
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
+  public testItemCmd2: ICommand = new Command((value) => this.testCommand2(value), new BehaviorSubject(true), false);
 
   public selected: User;
 
@@ -52,10 +54,22 @@ export class AppComponent {
         this.users.push(x);
       });
     }, 3000);
+
+    setTimeout(() => {// Emulate async init
+      const aux = Array.from(
+        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+        x => new User(x));
+      aux.forEach(x => {
+        this.users2.push(x);
+      });
+    }, 3000);
   }
 
   private testCommand(user: User) {
     console.log('Command execution:', user);
+  }
+  private testCommand2(user: User) {
+    console.log('Command 2 execution:', user);
   }
   public onActive(user: User) {
     console.log('over:', user);
