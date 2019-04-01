@@ -2,7 +2,7 @@
 @import 'colors';
 @import 'notifications';
 
-app-root{
+app-root {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -37,6 +37,9 @@ neo-layout {
   height: 100%;
 }
 
+neo-list-item {
+  cursor: pointer!important;
+}
 
 .footer {
   position: absolute;
@@ -47,9 +50,8 @@ neo-layout {
   background-color: $stl-color-footer;
 }
 
-
 .sm-logo-default {
-  background-image: url(assets/img/logo-sm.png);
+  background-image: url("assets/img/logo-sm.png");
   background-position: 100% 0;
   background-repeat: no-repeat;
   background-size: 36px 36px;
@@ -99,7 +101,6 @@ neo-layout {
   touch-action: pan-y;
 }
 
-
 .navbar-toggler {
   border-color: transparent;
   outline: none !important;
@@ -122,7 +123,7 @@ neo-layout {
 
 .neo-slider {
   background: #e6e4e4;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   overflow: hidden;
 }
 
@@ -134,14 +135,13 @@ neo-layout {
   background: $stl-color-secondary;
 }
 
-
 .navbar-toggler-icon {
   width: auto;
   height: auto;
 }
 
-.fas.neo-icon::before{
-  font-size:larger;
+.fas.neo-icon::before {
+  font-size: larger;
   color: #1d84bf;
 }
 

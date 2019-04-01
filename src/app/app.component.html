@@ -39,9 +39,9 @@
       </div>
 
       <section class="list-group">
-        <neo-list [neoListKeydown]="input" class="list-group">
-          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
-            (focusItem)="onActive(user)">
+        <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
+          [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
+          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
             {{user.name }}
           </neo-list-item>
         </neo-list>
@@ -50,10 +50,10 @@
         </p>
       </section>
       <section>
-        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" 
-                    [iconoder]="'fas fa-archive'" [textoder]="''" 
-                    [clasefondo]="'neo-slider-primary'"
-                    (notify)="onNotify($event)">
+
+        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+          (notify)="onNotify($event)">
           <div class="card">
             <div class="card-body">
               <p>Soy una card con slider!</p>
@@ -65,6 +65,26 @@
             <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
           </neo-slider>
         </div> -->
+      </section>
+      <section>
+        <div class="mt-3">
+            <table class="table" sortable-table (sorted)="onSorted($event)">
+                <thead>
+                  <tr>
+                    <th sortable-column="age">Age</th>
+                    <th sortable-column="name">First Name</th>
+                    <th sortable-column="lastname" >Last Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of personList">
+                    <td>{{c.age}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.lastname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
       </section>
     </div>
   </div>

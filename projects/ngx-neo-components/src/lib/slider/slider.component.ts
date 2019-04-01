@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
 
@@ -13,14 +13,15 @@ import * as kf from '../../lib/shared/animations/keyframes';
         ]),
     ]
   })
-  export class SliderComponent implements AfterViewInit{
+  export class SliderComponent {
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
     @Input() iconoizq: string;
     @Input() iconoder: string;
     @Input() textoizq: string;
     @Input() textoder: string;
-    @Input() clasefondo: string;
+    @Input() leftBackground: string;
+    @Input() rightBackground: string;
 
     public visibility: string;
     public x = 0;
@@ -32,9 +33,6 @@ import * as kf from '../../lib/shared/animations/keyframes';
 
     constructor() {
       this.visibility = 'normal';
-    }
-
-    ngAfterViewInit() {
     }
 
     onPanStart(event: any): void {
@@ -49,11 +47,14 @@ import * as kf from '../../lib/shared/animations/keyframes';
      */
     onPan(event: any): void {
       event.preventDefault();
+
       if (event.type !== 'panend') {
           this.xPrev = this.x;
       }
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
+
+        if (this.x < -25) {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -61,7 +62,15 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.xPrev = 0;
           }, 1200);
           this.notify.emit('PanLeft');
+        } else {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+        }
+
       } else if (this.xPrev <= this.x && event.type === 'panend') {
+
+        if (this.x > 25) {
           this.visibility = 'right';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -69,15 +78,24 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.xPrev = 0;
           }, 1200);
           this.notify.emit('PanRight');
+        } else {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+        }
+
       }
     }
 
     onSwipeLeft(event): void {
+      event.preventDefault();
       this.visibility = 'left';
       this.notify.emit('SwipeLeft');
     }
 
     onSwipeRight(event): void {
+      event.preventDefault();
+    //  event.srcEvent.stopPropagation();
       this.visibility = 'right';
       this.notify.emit('SwipeRight');
     }

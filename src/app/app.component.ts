@@ -1,21 +1,24 @@
-import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding, HostListener } from '@angular/core';
-import { HeaderService, MobileSidebarService } from 'ngx-neo-components';
-import { ENTER } from '@angular/cdk/keycodes';
-import { Labeled } from 'projects/ngx-neo-components/src/lib/list/list-item.component';
+import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { BehaviorSubject } from 'rxjs';
+import { Component, HostListener } from '@angular/core';
+import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
-  // tslint:disable-next-line:max-line-length
-  users: User[];
-  users2: User[];
+  users = new Array<User>();
+
+  public personList: Array<Person>;
+
+  public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
   public selected: User;
 
+  public lastIndexSelected = 2;
 
   title = 'neo-components';
   buttons = [
@@ -43,25 +46,33 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
 
-    this.users = Array.from(
-      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
-      x => new User(x));
-
-    this.users2 = Array.from(
-      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
-      x => new User(x));
-
-    setTimeout(() => {
+    setTimeout(() => {// Emulate async init
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);
       });
-    }, 5000);
+    }, 3000);
+
+    this.personList = new Array<Person>();
+
+    const person: Person = new Person();
+    person.name = 'Bruce';
+    person.lastname = 'Wayne';
+    person.age = 40;
+    this.personList.push(person);
+    const person2 = new Person();
+    person2.name = 'Richard';
+    person2.lastname = 'Grayson';
+    person2.age = 20;
+    this.personList.push(person2);
+
+    this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
   }
 
-  ngAfterViewInit() {
+  private testCommand(user: User) {
+    console.log('Command execution:', user);
   }
   public onActive(user: User) {
     console.log('over:', user);
@@ -85,6 +96,31 @@ export class AppComponent implements AfterViewInit {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
+  onSorted($event){
+    this.getPeople($event);
+  }
+
+  getPeople(criteria: PersonSearchCriteria): Person[] {
+    console.log(criteria);
+    return this.personList.sort ((a, b) => {
+      if (criteria.sortDirection === 'desc') {
+        if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
+            return 1;
+        } else if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
+            return -1;
+        } else {return 0; }
+      } else { // asc
+        if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
+          return 1;
+        } else if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    });
+}
+
 
 }
 
@@ -97,4 +133,15 @@ class User implements Labeled {
     return this.name;
   }
 
+}
+
+class Person {
+  name: string;
+  lastname: string;
+  age: number;
+}
+
+export class PersonSearchCriteria {
+  sortColumn: string;
+  sortDirection: string;
 }

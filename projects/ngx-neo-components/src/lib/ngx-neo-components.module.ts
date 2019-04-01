@@ -11,6 +11,8 @@ import { ListItemComponent } from './list/list-item.component';
 import { ListComponent } from './list/list.component';
 import { SliderComponent } from './slider/slider.component';
 import { ListKeydownDirective } from './list/list-keydown.directive';
+import { SortableTableDirective } from './sortable-table/sortable-table.directive';
+import { SortableColumnComponent } from './sortable-table/sortable-column.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ListKeydownDirective } from './list/list-keydown.directive';
     ListComponent,
     ListKeydownDirective,
     SliderComponent,
+    SortableTableDirective,
+    SortableColumnComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { ListKeydownDirective } from './list/list-keydown.directive';
     ListItemComponent,
     ListComponent,
     ListKeydownDirective,
-    SliderComponent
+    SliderComponent,
+    SortableTableDirective,
+    SortableColumnComponent
   ]
 })
 export class NgxNeoComponentsModule { }
