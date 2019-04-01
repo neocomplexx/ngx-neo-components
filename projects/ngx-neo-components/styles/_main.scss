@@ -21,8 +21,12 @@ neo-header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 500;
   box-shadow: 3px 3px 10px 1px #ccc;
+}
+
+neo-sidebar {
+  z-index: 501;
 }
 
 neo-footer {
