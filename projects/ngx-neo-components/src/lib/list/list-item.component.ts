@@ -1,11 +1,10 @@
-import { Component, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, Input, HostBinding, HostListener } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 import { ListService } from './list.service';
 
 @Component({
   selector: 'neo-list-item',
-  template: `<ng-content></ng-content>`,
-  styleUrls: ['./list-item.component.scss']
+  template: `<ng-content></ng-content>`
 })
 export class ListItemComponent<T extends Labeled> implements Highlightable {
 
@@ -13,24 +12,26 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
 
   private _isActive = false;
 
-  @Output() focusItem: EventEmitter<boolean> = new EventEmitter();
-  @Output() leaveItem: EventEmitter<boolean> = new EventEmitter();
-
 
   @HostBinding('class.active') get isActive() {
     return this._isActive;
   }
 
-  constructor() { }
+  @HostListener('click', ['item'])
+  onClick(item: this) {
+    this.listService.clickedObservable.next(item);
+  }
+
+  constructor(private listService: ListService) { }
 
   public setActiveStyles() {
     this._isActive = true;
-    this.focusItem.emit(true);
+    this.listService.focusedObservable.next(this.item);
   }
 
   public setInactiveStyles() {
     this._isActive = false;
-    this.leaveItem.emit(true);
+    this.listService.leavedObservable.next(this.item);
   }
 
   public getLabel() {

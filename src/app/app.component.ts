@@ -1,6 +1,6 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
-import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
 
 @Component({
@@ -10,7 +10,6 @@ import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components
 })
 export class AppComponent {
 
-  // tslint:disable-next-line:max-line-length
   users = new Array<User>();
 
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);

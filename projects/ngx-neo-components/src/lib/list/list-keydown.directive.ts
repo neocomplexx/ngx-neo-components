@@ -26,10 +26,12 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.addKeyManagerListener();
 
     this.initPreselectedIndex();
+
+    this.addClickManagerListener();
   }
 
 
-  private addKeyManagerListener() {
+  private addKeyManagerListener(): void {
     this.keyManager = new ActiveDescendantKeyManager(this.items);
     if (this.htmlElement) {
       // Renderer return function to destroy listener
@@ -83,7 +85,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  private initPreselectedIndex() {
+  private initPreselectedIndex(): void {
     // If the list is loaded on init, we select the elment and set preSelect to null so it's not used again on change event.
     if (this.listService.preSelectIndex && this.listService.preSelectIndex < this.items.length) {
       this.selectItem();
@@ -98,6 +100,13 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
           }
         }
       }));
+  }
+
+  private addClickManagerListener() {
+    this.subs.add(this.listService.clickedObservable.subscribe((item) => {
+      const clickedItem = this.items.find(x => x.item === item);
+      this.keyManager.setActiveItem(clickedItem);
+    }));
   }
 
   private selectItem(): void {
