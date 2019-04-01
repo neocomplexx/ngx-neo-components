@@ -20,8 +20,6 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
     sort() {
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
         this.sortService.columnSorted({ sortColumn: this.columnName, sortDirection: this.sortDirection });
-
-        console.log(this.columnName, this.sortDirection);
     }
 
     ngOnInit() {
