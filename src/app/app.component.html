@@ -34,15 +34,13 @@
   <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
+      <section>
+          <neo-sortable-table></neo-sortable-table>
+        </section>
+
       <div class="form-group">
         <input class="form-control" placeholder="Search..." #input>
       </div>
-      <section>
-        <div class="form-group">
-            <neo-sortable-table></neo-sortable-table>
-        </div>
-      </section>
-
       <section class="list-group">
         <neo-list [(leavedIndex)]="lastIndexSelected" [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
           <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
