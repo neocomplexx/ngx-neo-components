@@ -14,6 +14,7 @@ import { ListKeydownDirective } from './list/list-keydown.directive';
 import { SortableTableDirective } from './sortable-table/sortable-table.directive';
 import { SortableColumnComponent } from './sortable-table/sortable-column.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
+import { UndoComponent } from './undo-component/undo.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    UndoComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    UndoComponent
   ]
 })
 export class NgxNeoComponentsModule { }

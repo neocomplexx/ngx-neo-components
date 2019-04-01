@@ -45,6 +45,10 @@ neo-list-item {
   cursor: pointer!important;
 }
 
+neo-undo{
+  z-index: 500;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
