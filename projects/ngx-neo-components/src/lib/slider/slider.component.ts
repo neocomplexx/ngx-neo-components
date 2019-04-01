@@ -91,11 +91,14 @@ import * as kf from '../../lib/shared/animations/keyframes';
     }
 
     onSwipeLeft(event): void {
+      event.preventDefault();
       this.visibility = 'left';
       this.notify.emit('SwipeLeft');
     }
 
     onSwipeRight(event): void {
+      event.preventDefault();
+    //  event.srcEvent.stopPropagation();
       this.visibility = 'right';
       this.notify.emit('SwipeRight');
     }
