@@ -20,6 +20,8 @@ export class AppComponent {
 
   public lastIndexSelected = 2;
 
+
+
   title = 'neo-components';
   buttons = [
     {
@@ -73,7 +75,7 @@ export class AppComponent {
     person3.age = 26;
     this.personList.push(person3);
 
-    this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
+    this.getPeople({ sortColumn: 'age', sortDirection: 'desc' });
   }
 
   private testCommand(user: User) {
@@ -101,19 +103,19 @@ export class AppComponent {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
-  onSorted($event){
+  onSorted($event) {
     this.getPeople($event);
   }
 
   getPeople(criteria: PersonSearchCriteria): Person[] {
     console.log(criteria);
-    return this.personList.sort ((a, b) => {
+    return this.personList.sort((a, b) => {
       if (criteria.sortDirection === 'desc') {
         if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
-            return 1;
+          return 1;
         } else if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
-            return -1;
-        } else {return 0; }
+          return -1;
+        } else { return 0; }
       } else { // asc
         if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
           return 1;
@@ -124,7 +126,7 @@ export class AppComponent {
         }
       }
     });
-}
+  }
 
 
 }

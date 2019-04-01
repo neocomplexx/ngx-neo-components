@@ -1,8 +1,8 @@
 
-  <div *ngIf="showSidebar" class="mobile-sidebar neo-mobile-sidebar overflow-auto" @sideShow>
+  <div class="mobile-sidebar neo-mobile-sidebar overflow-auto" @sideShow [style.transform]="getTranslation()">
     <neo-sidebar>
       <ng-content></ng-content>
     </neo-sidebar>
   </div>
 
-  <div *ngIf="showSidebar" class="mobile-sidebar-backdrop" @fadeShadow (click)="closeSidebar()"></div>
+  <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" (click)="closeSidebar()" [style.opacity]="getOpacity()"></div>
