@@ -67,6 +67,11 @@ export class AppComponent {
     person2.lastname = 'Grayson';
     person2.age = 20;
     this.personList.push(person2);
+    const person3 = new Person();
+    person3.name = 'Barbara';
+    person3.lastname = 'Gordon';
+    person3.age = 26;
+    this.personList.push(person3);
 
     this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
   }
