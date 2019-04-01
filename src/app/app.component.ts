@@ -67,6 +67,8 @@ export class AppComponent {
     person2.lastname = 'Grayson';
     person2.age = 20;
     this.personList.push(person2);
+
+    this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
   }
 
   private testCommand(user: User) {
@@ -95,8 +97,29 @@ export class AppComponent {
   }
 
   onSorted($event){
-   // this.getPerson($event);
+    this.getPeople($event);
   }
+
+  getPeople(criteria: PersonSearchCriteria): Person[] {
+    console.log(criteria);
+    return this.personList.sort ((a, b) => {
+      if (criteria.sortDirection === 'desc') {
+        if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
+            return 1;
+        } else if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
+            return -1;
+        } else {return 0; }
+      } else { // asc
+        if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
+          return 1;
+        } else if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    });
+}
 
 
 }
@@ -116,4 +139,9 @@ class Person {
   name: string;
   lastname: string;
   age: number;
+}
+
+export class PersonSearchCriteria {
+  sortColumn: string;
+  sortDirection: string;
 }
