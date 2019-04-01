@@ -15,7 +15,8 @@ import * as kf from '../../lib/shared/animations/keyframes';
   })
   export class SliderComponent {
 
-    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+    @Output() notifySwipeLeft: EventEmitter<string> = new EventEmitter<string>();
+    @Output() notifySwipeRight: EventEmitter<string> = new EventEmitter<string>();
     @Input() iconoizq: string;
     @Input() iconoder: string;
     @Input() textoizq: string;
@@ -61,7 +62,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
-          this.notify.emit('PanLeft');
+          this.notifySwipeLeft.emit('PanLeft');
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -77,7 +78,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
-          this.notify.emit('PanRight');
+          this.notifySwipeRight.emit('PanRight');
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -88,16 +89,17 @@ import * as kf from '../../lib/shared/animations/keyframes';
     }
 
     onSwipeLeft(event): void {
-      event.preventDefault();
+      event.srcEvent.preventDefault();
+      event.srcEvent.stopPropagation();
       this.visibility = 'left';
-      this.notify.emit('SwipeLeft');
+   //   this.notifySwipeLeft.emit('SwipeLeft');
     }
 
     onSwipeRight(event): void {
-      event.preventDefault();
-    //  event.srcEvent.stopPropagation();
+      event.srcEvent.preventDefault();
+      event.srcEvent.stopPropagation();
       this.visibility = 'right';
-      this.notify.emit('SwipeRight');
+     // this.notifySwipeRight.emit('SwipeRight');
     }
 
 }

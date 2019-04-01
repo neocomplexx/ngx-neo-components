@@ -34,13 +34,10 @@
   <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
-      <section>
-        <neo-sortable-table></neo-sortable-table>
-      </section>
-
       <div class="form-group">
         <input class="form-control" placeholder="Search..." #input>
       </div>
+
       <section class="list-group">
         <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
           [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
@@ -63,7 +60,7 @@
       </section>
       <section>
 
-        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+        <!-- <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
           [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
           (notify)="onNotify($event)">
           <div class="card">
@@ -71,16 +68,48 @@
               <p>Soy una card con slider!</p>
             </div>
           </div>
-        </neo-slider>
-        <!-- <div class="mt-1">
-          <neo-slider (notify)="onNotify($event)">
-            <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
+        </neo-slider> -->
+        <div class="mt-1" *ngFor="let noti of this.notifications">
+          <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+          (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)" 
+          *ngIf="noti.show">
+              <div class="card">
+                <div class="card-body">
+                  <p>{{noti.text}}</p>
+                </div>
+              </div>
           </neo-slider>
-        </div> -->
+        </div>
+      </section>
+      <section>
+        <div class="mt-3">
+            <table class="table" sortable-table (sorted)="onSorted($event)">
+                <thead>
+                  <tr>
+                    <th sortable-column="age">Age</th>
+                    <th sortable-column="name">First Name</th>
+                    <th sortable-column="lastname" >Last Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of personList">
+                    <td>{{c.age}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.lastname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </section>
+      <section>
+          <div class="mt-3">
+              <neo-datepicker></neo-datepicker>
+            </div>
       </section>
     </div>
   </div>
 </div>
 
-
+<neo-undo *ngIf="this.showUndo" [message]="this.undoMessage" [actionText]="this.actionText" (undo)="onUndo($event)"></neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
