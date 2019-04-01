@@ -49,11 +49,14 @@ import * as kf from '../../lib/shared/animations/keyframes';
      */
     onPan(event: any): void {
       event.preventDefault();
+
       if (event.type !== 'panend') {
           this.xPrev = this.x;
       }
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
+
+        if (this.x < -25) {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -61,7 +64,15 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.xPrev = 0;
           }, 1200);
           this.notify.emit('PanLeft');
+        } else {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+        }
+          
       } else if (this.xPrev <= this.x && event.type === 'panend') {
+
+        if (this.x > 25) {
           this.visibility = 'right';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -69,6 +80,12 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.xPrev = 0;
           }, 1200);
           this.notify.emit('PanRight');
+        } else {
+              this.visibility = 'normal';
+              this.x = 0;
+              this.xPrev = 0;
+        }
+          
       }
     }
 
