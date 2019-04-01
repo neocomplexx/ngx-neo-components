@@ -4,21 +4,20 @@
   <label class="image-item ">
     <img src="assets/img/logo-lg.png" />
   </label>
-  <hr class="separator-line">
-  <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active">
-      Cras justo odio
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-    <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-    <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+  <div class="list-group border-top">
+    <a href="#" class="list-group-item list-group-item-action">Opción 1</a>
+    <a href="#" class="list-group-item list-group-item-action">Opción 2</a>
+    <a href="#" class="list-group-item list-group-item-action">Opción 3</a>
+  </div>
+  <div class="list-group border-top">
+    <a href="#" class="list-group-item list-group-item-action">Configuracion</a>
+    <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
   </div>
 </neo-mobile-sidebar>
 <!-- <section (swipeRight)="onSwipeRight($event)" class="main-container">
   <neo-pull-to-refresh></neo-pull-to-refresh>
 </section> -->
-<div class="d-flex flex-row align-items-stretch h-100" (swipeRight)="onSwipeRight($event)">
+<div class="d-flex flex-row align-items-stretch h-100">
   <div class="d-none d-lg-flex overflow-auto">
     <neo-sidebar>
       <div class="list-group">
@@ -51,18 +50,21 @@
         </p>
       </section>
       <section>
-        <neo-slider (notify)="onNotify($event)">
+        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" 
+                    [iconoder]="'fas fa-archive'" [textoder]="''" 
+                    [clasefondo]="'neo-slider-primary'"
+                    (notify)="onNotify($event)">
           <div class="card">
             <div class="card-body">
               <p>Soy una card con slider!</p>
             </div>
           </div>
         </neo-slider>
-        <div class="mt-1">
+        <!-- <div class="mt-1">
           <neo-slider (notify)="onNotify($event)">
             <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
           </neo-slider>
-        </div>
+        </div> -->
       </section>
     </div>
   </div>

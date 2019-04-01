@@ -1,7 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { Labeled } from 'ngx-neo-components';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
+import { Component, ViewChildren, QueryList, AfterViewInit, HostBinding, HostListener } from '@angular/core';
+import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +43,7 @@ export class AppComponent {
     }
   ];
 
-  constructor() {
+  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
 
     setTimeout(() => {// Emulate async init
       const aux = Array.from(
@@ -58,11 +58,6 @@ export class AppComponent {
   private testCommand(user: User) {
     console.log('Command execution:', user);
   }
-
-  onSwipeRight(event) {
-    console.log('Swipping right!');
-  }
-
   public onActive(user: User) {
     console.log('over:', user);
   }
@@ -74,6 +69,17 @@ export class AppComponent {
   public onNotify(event) {
     console.log(event, 'ON NOTIFY');
   }
+
+  @HostListener('swipeleft', ['$event'])
+  public hideSidebar($event) {
+    this.mobileSidebarService.showSidebar.next(false);
+  }
+
+  @HostListener('swiperight', ['$event'])
+  public showSidebar($event) {
+    this.mobileSidebarService.showSidebar.next(true);
+  }
+
 
 }
 
