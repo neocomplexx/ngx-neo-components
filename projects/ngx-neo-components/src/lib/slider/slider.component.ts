@@ -20,7 +20,8 @@ import * as kf from '../../lib/shared/animations/keyframes';
     @Input() iconoder: string;
     @Input() textoizq: string;
     @Input() textoder: string;
-    @Input() clasefondo: string;
+    @Input() leftBackground: string; // [ngClass]="{'first': true, 'second': true, 'third': false}"
+    @Input() rightBackground: string;
 
     public visibility: string;
     public x = 0;
@@ -69,7 +70,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.x = 0;
               this.xPrev = 0;
         }
-          
+
       } else if (this.xPrev <= this.x && event.type === 'panend') {
 
         if (this.x > 25) {
@@ -85,7 +86,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.x = 0;
               this.xPrev = 0;
         }
-          
+
       }
     }
 
