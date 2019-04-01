@@ -39,9 +39,9 @@
       </div>
 
       <section class="list-group">
-        <neo-list [(leavedIndex)]="lastIndexSelected" [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
-          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
-            (focusItem)="onActive(user)" >
+        <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
+          [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
+          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
             {{user.name }}
           </neo-list-item>
         </neo-list>
@@ -50,11 +50,10 @@
         </p>
       </section>
       <section>
-        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" 
-                    [iconoder]="'fas fa-trash'" [textoder]="''" 
-                    [leftBackground]="'neo-slider-primary'"
-                    [rightBackground]="'neo-slider-secondary'"
-                    (notify)="onNotify($event)">
+
+        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+          (notify)="onNotify($event)">
           <div class="card">
             <div class="card-body">
               <p>Soy una card con slider!</p>

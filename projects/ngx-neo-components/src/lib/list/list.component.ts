@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, HostListener, Output, EventEmitter, OnDestroy, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListService } from './list.service';
+import { Labeled } from './list-item.component';
 
 @Component({
   selector: 'neo-list',
@@ -15,25 +16,32 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input() searchBox = false;
   @Input() searchPlaceholder = 'Search...';
-  @Input() leavedIndex: number = null;
-  @Output() leavedIndexChange: EventEmitter<number> = new EventEmitter();
 
+  @Input() activeIndex: number = null;
+  @Output() activeIndexChange: EventEmitter<number> = new EventEmitter();
 
-  @HostListener('click') onClick() {
-    window.alert('Host Element Clicked');
-  }
+  @Output() focusItem: EventEmitter<Labeled> = new EventEmitter();
+  @Output() leaveItem: EventEmitter<Labeled> = new EventEmitter();
+
 
   constructor(private listService: ListService) { }
 
   ngOnInit() {
     this.subs.add(this.listService.activeObservable.subscribe((index) => {
-      console.log('EMIT AI', index);
-      this.leavedIndexChange.emit(index);
+      this.activeIndexChange.emit(index);
+    }));
+
+    this.subs.add(this.listService.focusedObservable.subscribe((item) => {
+      this.focusItem.emit(item);
+    }));
+
+    this.subs.add(this.listService.leavedObservable.subscribe((item) => {
+      this.leaveItem.emit(item);
     }));
   }
 
   ngAfterContentInit() {
-    this.listService.preSelectIndex = this.leavedIndex;
+    this.listService.preSelectIndex = this.activeIndex;
   }
 
   ngOnDestroy() {
