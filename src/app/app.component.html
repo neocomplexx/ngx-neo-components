@@ -40,9 +40,9 @@
       </div>
 
       <section class="list-group">
-        <neo-list [neoListKeydown]="input" class="list-group">
+        <neo-list [(leavedIndex)]="lastIndexSelected" [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
           <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
-            (focusItem)="onActive(user)">
+            (focusItem)="onActive(user)" >
             {{user.name }}
           </neo-list-item>
         </neo-list>

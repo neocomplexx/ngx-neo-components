@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, HostBinding, ElementRef, Output, EventEmitter } from '@angular/core';
-import { Highlightable, FocusableOption, ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { Component, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Highlightable } from '@angular/cdk/a11y';
+import { ListService } from './list.service';
 
 @Component({
   selector: 'neo-list-item',

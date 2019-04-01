@@ -1,19 +1,23 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Labeled } from 'ngx-neo-components';
+import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
   // tslint:disable-next-line:max-line-length
-  users: User[];
-  users2: User[];
+  users = new Array<User>();
+
+  public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
   public selected: User;
 
+  public lastIndexSelected = 2;
 
   title = 'neo-components';
   buttons = [
@@ -41,25 +45,18 @@ export class AppComponent implements AfterViewInit {
 
   constructor() {
 
-    this.users = Array.from(
-      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
-      x => new User(x));
-
-    this.users2 = Array.from(
-      ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
-      x => new User(x));
-
-    setTimeout(() => {
+    setTimeout(() => {// Emulate async init
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);
       });
-    }, 5000);
+    }, 3000);
   }
 
-  ngAfterViewInit() {
+  private testCommand(user: User) {
+    console.log('Command execution:', user);
   }
 
   onSwipeRight(event) {
