@@ -70,7 +70,7 @@
         <div class="mt-3">
             <!-- <neo-sortable-table></neo-sortable-table> -->
             <label>Sortable table coming soon</label>
-            <table class="table">
+            <table class="table" sortable-table (sorted)="onSorted($event)">
                 <thead>
                   <tr>
                     <th sortable-column="age">Age</th>

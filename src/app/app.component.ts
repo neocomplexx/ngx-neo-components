@@ -94,6 +94,10 @@ export class AppComponent {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
+  onSorted($event){
+   // this.getPerson($event);
+  }
+
 
 }
 

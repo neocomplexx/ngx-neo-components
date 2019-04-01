@@ -11,7 +11,7 @@ import { ListItemComponent } from './list/list-item.component';
 import { ListComponent } from './list/list.component';
 import { SliderComponent } from './slider/slider.component';
 import { ListKeydownDirective } from './list/list-keydown.directive';
-import { SortableTableComponent } from './sortable-table/sortable-table.component';
+import { SortableTableDirective } from './sortable-table/sortable-table.directive';
 import { SortableColumnComponent } from './sortable-table/sortable-column.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { SortableColumnComponent } from './sortable-table/sortable-column.compon
     ListComponent,
     ListKeydownDirective,
     SliderComponent,
-    SortableTableComponent,
+    SortableTableDirective,
     SortableColumnComponent
   ],
   imports: [
@@ -44,7 +44,7 @@ import { SortableColumnComponent } from './sortable-table/sortable-column.compon
     ListComponent,
     ListKeydownDirective,
     SliderComponent,
-    SortableTableComponent,
+    SortableTableDirective,
     SortableColumnComponent
   ]
 })
