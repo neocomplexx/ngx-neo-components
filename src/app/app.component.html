@@ -34,13 +34,10 @@
   <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
-      <section>
-          <neo-sortable-table></neo-sortable-table>
-        </section>
-
       <div class="form-group">
         <input class="form-control" placeholder="Search..." #input>
       </div>
+
       <section class="list-group">
         <neo-list [(leavedIndex)]="lastIndexSelected" [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
           <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user" (leaveItem)="onDeactive(user)"
@@ -69,6 +66,28 @@
             <button class="btn btn-primary btn-sm btn-block">Button con slider</button>
           </neo-slider>
         </div> -->
+      </section>
+      <section>
+        <div class="mt-3">
+            <!-- <neo-sortable-table></neo-sortable-table> -->
+            <label>Sortable table coming soon</label>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of personList">
+                    <td>{{c.age}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.lastname}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
       </section>
     </div>
   </div>

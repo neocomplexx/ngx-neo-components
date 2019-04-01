@@ -13,6 +13,8 @@ export class AppComponent {
   // tslint:disable-next-line:max-line-length
   users = new Array<User>();
 
+  public personList: Array<Person>;
+
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
   public selected: User;
@@ -53,6 +55,19 @@ export class AppComponent {
         this.users.push(x);
       });
     }, 3000);
+
+    this.personList = new Array<Person>();
+
+    const person: Person = new Person();
+    person.name = 'Bruce';
+    person.lastname = 'Wayne';
+    person.age = 40;
+    this.personList.push(person);
+    const person2 = new Person();
+    person2.name = 'Richard';
+    person2.lastname = 'Grayson';
+    person2.age = 20;
+    this.personList.push(person2);
   }
 
   private testCommand(user: User) {
@@ -92,4 +107,10 @@ class User implements Labeled {
     return this.name;
   }
 
+}
+
+class Person {
+  name: string;
+  lastname: string;
+  age: number;
 }
