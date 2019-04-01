@@ -37,6 +37,11 @@
       <div class="form-group">
         <input class="form-control" placeholder="Search..." #input>
       </div>
+      <section>
+        <div class="form-group">
+            <neo-sortable-table></neo-sortable-table>
+        </div>
+      </section>
 
       <section class="list-group">
         <neo-list [(leavedIndex)]="lastIndexSelected" [neoListKeydown]="input" [command]="testItemCmd" class="list-group">

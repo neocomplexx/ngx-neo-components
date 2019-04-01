@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
 
@@ -13,14 +13,14 @@ import * as kf from '../../lib/shared/animations/keyframes';
         ]),
     ]
   })
-  export class SliderComponent implements AfterViewInit{
+  export class SliderComponent {
 
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
     @Input() iconoizq: string;
     @Input() iconoder: string;
     @Input() textoizq: string;
     @Input() textoder: string;
-    @Input() leftBackground: string; // [ngClass]="{'first': true, 'second': true, 'third': false}"
+    @Input() leftBackground: string;
     @Input() rightBackground: string;
 
     public visibility: string;
@@ -33,9 +33,6 @@ import * as kf from '../../lib/shared/animations/keyframes';
 
     constructor() {
       this.visibility = 'normal';
-    }
-
-    ngAfterViewInit() {
     }
 
     onPanStart(event: any): void {
