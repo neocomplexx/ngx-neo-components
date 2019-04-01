@@ -34,10 +34,13 @@
   <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
+      <section>
+        <neo-sortable-table></neo-sortable-table>
+      </section>
+
       <div class="form-group">
         <input class="form-control" placeholder="Search..." #input>
       </div>
-
       <section class="list-group">
         <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
           [neoListKeydown]="input" [command]="testItemCmd" class="list-group">
@@ -50,8 +53,10 @@
         </p>
       </section>
       <section>
-        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-archive'" [textoder]="''"
-          [clasefondo]="'neo-slider-primary'" (notify)="onNotify($event)">
+
+        <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+          (notify)="onNotify($event)">
           <div class="card">
             <div class="card-body">
               <p>Soy una card con slider!</p>

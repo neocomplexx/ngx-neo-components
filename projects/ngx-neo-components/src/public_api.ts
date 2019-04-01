@@ -16,4 +16,5 @@ export * from './lib/list/list-item.component';
 export * from './lib/list/list.component';
 export * from './lib/list/list-keydown.directive';
 export * from './lib/slider/slider.component';
+export * from './lib/sortable-table/sortable-table.component';
 export * from './lib/shared/animations/keyframes';
