@@ -15,6 +15,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() icommand: ICommand;
   @Input() commandOnClick = true;
   @Input() commandOnEnter = true;
+  @Input() typeAheadDelay = 300;
 
   private listenerFunction: Function;
 
@@ -36,7 +37,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
 
   private addKeyManagerListener(): void {
-    this.listService.keyManager = new ActiveDescendantKeyManager(this.items).withWrap();
+    this.listService.keyManager = new ActiveDescendantKeyManager(this.items)
+    .withWrap()
+    .withTypeAhead(this.typeAheadDelay);
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
