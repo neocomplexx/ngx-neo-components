@@ -1,4 +1,4 @@
-<div class="neo-undo mb-2" *ngIf="this.showUndo" >
+<div class="neo-undo" *ngIf="this.showUndo" >
     <div class="d-flex nowrap flex-nowrap justify-content-between align-items-center">
             <label>{{this.message}}</label>
             <a (click)="undoAction()" >{{this.actionText}}</a>
