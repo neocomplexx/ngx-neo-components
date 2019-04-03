@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, HostBinding, HostListener, ElementRef, Renderer } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 import { ListService } from './list.service';
 
@@ -12,25 +12,23 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
 
   private _isActive = false;
 
+  @HostBinding('attr.tabindex') tabindex = -1;
 
   @HostBinding('class.active') get isActive() {
     return this._isActive;
   }
 
-  @HostBinding('attr.tabindex') tabindex  = -1;
-
-  @HostListener('click', ['item', '$event'])
-  onClick(item: this, $event: MouseEvent) {
-    this.listService.skipInactive = true;
+  @HostListener('click', ['item'])
+  onClick(item: this) {
     this.listService.clickedObservable.next(item);
   }
 
-  constructor(private listService: ListService, private element: ElementRef) { }
+  constructor(private listService: ListService, private hostElement: ElementRef, private renderer: Renderer) { }
 
   public setActiveStyles() {
     this._isActive = true;
+    this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
     this.listService.focusedObservable.next(this.item);
-    this.element.nativeElement.focus();
   }
 
   public setInactiveStyles() {

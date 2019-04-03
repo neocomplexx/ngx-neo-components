@@ -22,22 +22,6 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
   constructor(private renderer: Renderer, private listService: ListService) { }
 
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.listService.isTableActive) {
-      this.listService.keyListenerFunc(event);
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  handleClickEvent(event: MouseEvent) {
-    if (!this.listService.skipInactive) {
-      this.listService.isTableActive = false;
-    }
-    this.listService.skipInactive = false;
-  }
-
   ngAfterViewInit() {
     this.addKeyManagerListener();
 
@@ -88,7 +72,6 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(this.listService.clickedObservable.subscribe((item) => {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
-      this.listService.isTableActive = true;
       if (this.listService.commandOnClick) {
         this.listService.executeCommand();
       }

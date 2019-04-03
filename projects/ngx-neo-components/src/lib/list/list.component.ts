@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit, HostBinding, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListService } from './list.service';
 import { Labeled } from './list-item.component';
@@ -13,6 +13,8 @@ import { Labeled } from './list-item.component';
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
+  @HostBinding('attr.tabindex') tabindex = -1;
+
   private subs = new Subscription();
 
   @Input() searchBox = false;
@@ -24,6 +26,10 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
   @Output() focusItem: EventEmitter<Labeled> = new EventEmitter();
   @Output() leaveItem: EventEmitter<Labeled> = new EventEmitter();
 
+  @HostListener('keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.listService.keyListenerFunc(event);
+  }
 
   constructor(private listService: ListService) { }
 

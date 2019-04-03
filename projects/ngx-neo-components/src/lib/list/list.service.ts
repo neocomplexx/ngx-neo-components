@@ -26,13 +26,9 @@ export class ListService implements OnDestroy {
 
   private _command: ICommand;
 
-  private _isTableActive: boolean;
-
   private _commandOnClick: boolean;
 
   private _commandOnEnter: boolean;
-
-  private _skipInactive = false;
 
   public activeObservable = new Subject<number>();
 
@@ -48,17 +44,11 @@ export class ListService implements OnDestroy {
   get itemsLength(): number { return this._itemsLength; }
   set itemsLength(value: number) { this._itemsLength = value; }
 
-  get isTableActive(): boolean { return this._isTableActive; }
-  set isTableActive(value: boolean) { this._isTableActive = value; }
-
   get commandOnClick(): boolean { return this._commandOnClick; }
   set commandOnClick(value: boolean) { this._commandOnClick = value; }
 
   get commandOnEnter(): boolean { return this._commandOnEnter; }
   set commandOnEnter(value: boolean) { this._commandOnEnter = value; }
-
-  get skipInactive(): boolean { return this._skipInactive; }
-  set skipInactive(value: boolean) { this._skipInactive = value; }
 
   get keyManager(): ActiveDescendantKeyManager<ListItemComponent<Labeled>> { return this._keyManager; }
   set keyManager(value: ActiveDescendantKeyManager<ListItemComponent<Labeled>>) { this._keyManager = value; }
