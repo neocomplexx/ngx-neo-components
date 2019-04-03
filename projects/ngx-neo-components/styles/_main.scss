@@ -12,8 +12,16 @@ app-root {
   right: 0;
 }
 
+app-root.ios-root {
+  top: 76px;
+}
+
 app-root.noConection {
   top: 74px;
+}
+
+app-root.ios-root.noConection {
+  top: 90px;
 }
 
 neo-header {
@@ -23,6 +31,10 @@ neo-header {
   right: 0;
   z-index: 500;
   box-shadow: 3px 3px 10px 1px #ccc;
+}
+
+neo-header.ios-header {
+  padding-top: 20px;
 }
 
 neo-sidebar {
@@ -170,6 +182,7 @@ neo-undo{
 
 .bell-container {
   margin: -10px;
+  margin-left: -5px;
   padding: 10px;
   border-radius: 50%;
 }
