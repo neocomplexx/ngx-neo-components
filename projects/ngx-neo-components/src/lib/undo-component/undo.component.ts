@@ -27,7 +27,6 @@ import { UndoService } from './undo.service';
 
         this._subscription = this.undoService.showingUndo.subscribe ((res) => 
         {   this.showUndo = res;
-            console.log('Observo, valor undo ', res);
             if (res) {
                 this.showUndoComponent();
             }
@@ -53,7 +52,8 @@ import { UndoService } from './undo.service';
         }
 
         this.undoTimeOutSubscription = timer(this.undoTimeOutLapse).subscribe((e) => {
-            this.showUndo = false;
+           // this.showUndo = false;
+            this.undoService.showUndo.next(false);
             this.undoTimeOut.emit();
         });
        // this.showUndo = true;
