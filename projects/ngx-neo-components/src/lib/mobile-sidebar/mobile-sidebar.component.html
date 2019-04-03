@@ -1,5 +1,5 @@
 
-  <div class="mobile-sidebar neo-mobile-sidebar overflow-auto" [@sideShow]="state" [style.left.px]="getTranslation()">
+  <div class="mobile-sidebar neo-mobile-sidebar overflow-auto" [ngClass]="{'mobile-sidebar-transition': !isTouching}" [style.left.px]="getTranslation()">
     <neo-sidebar>
       <ng-content></ng-content>
     </neo-sidebar>

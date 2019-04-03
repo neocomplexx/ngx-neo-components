@@ -20,7 +20,7 @@ export const fadeInLight = [
 ];
 
 export const fadeOut = [
-    style({ opacity: 1 }),
+    style({ opacity: 0.5 }),
     style({ opacity: 0 }),
     style({transform: 'none'})
 ];

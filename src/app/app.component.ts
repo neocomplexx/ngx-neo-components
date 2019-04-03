@@ -129,7 +129,7 @@ export class AppComponent {
 
   public onNotifySwipeLeft(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
-     setTimeout(() =>  { 
+     setTimeout(() =>  {
        this.undoMessage = '1 eliminada';
        notif.show = false;
        this.notificacionObtenida = notif;
@@ -170,11 +170,6 @@ export class AppComponent {
   public undoSwipeLeft() {
     console.log('Deshago el swipe left');
     this.notificacionObtenida.show = true;
-  }
-
-  @HostListener('swipeleft', ['$event'])
-  public hideSidebar($event) {
-    this.mobileSidebarService.showSidebar.next(false);
   }
 
   @HostListener('swiperight', ['$event'])

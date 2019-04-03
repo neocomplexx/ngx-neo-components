@@ -19,13 +19,9 @@ enum State {
   templateUrl: './mobile-sidebar.component.html',
   styleUrls: ['./mobile-sidebar.component.scss'],
   animations: [
-    trigger('sideShow', [
-      transition('* => OPEN', animate(500, keyframes(kf.slideInLeft))),
-      transition('* => CLOSED', animate(500, keyframes(kf.slideOutLeft))),
-    ]),
     trigger('fadeShadow', [
-      transition('* => OPEN', animate(500, keyframes(kf.fadeIn))),
-      transition('* => CLOSED', animate(500, keyframes(kf.fadeOut))),
+      transition('CLOSED => OPEN', animate(500, keyframes(kf.fadeIn))),
+      transition('OPEN => CLOSED', animate(500, keyframes(kf.fadeOut))),
       transition(':leave', animate(500, keyframes(kf.fadeOut))),
     ]),
   ]
@@ -36,6 +32,8 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public x = 0;
   public startX = 0;
   public xPrev = 0;
+
+  public isTouching = true;
 
   public state: State = State.CLOSED;
 
@@ -62,11 +60,9 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   public closeSidebar() {
     this.state = State.CLOSED;
-    setTimeout(() => {
-      this.startX = 0;
-      this.x = 0;
-      this.xPrev = 0;
-    }, 500);
+    this.startX = 0;
+    this.x = 0;
+    this.xPrev = 0;
   }
 
   private getPercentFromWidth(currentWidth: number) {
@@ -99,10 +95,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
       && event.velocityY < event.velocityX // Swiped in the X axis more than the Y
       && event.center.x !== 0 && event.center.y !== 0 // Avoid bug of hammerJS
     ) {
+      this.isTouching = true;
       this.state = State.OPENING;
       this.startX = this.x;
     } else {
       if (this.state === State.OPEN) {
+        this.isTouching = true;
         this.state = State.CLOSING;
         this.startX = this.x;
       }
@@ -123,13 +121,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   @HostListener('document:panend', ['$event'])
   public onPanEnd(event) {
+    this.isTouching = false;
     if (this.getPercentFromWidth(this.x) < 40) {
       this.state = State.CLOSED;
-      setTimeout(() => {
-        this.startX = 0;
-        this.x = 0;
-        this.xPrev = 0;
-      }, 500);
+      this.startX = 0;
+      this.x = 0;
+      this.xPrev = 0;
     } else {
       this.startX = this.getWidthFromPercent(85);
       this.x = this.getWidthFromPercent(85);

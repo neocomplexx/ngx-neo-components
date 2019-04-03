@@ -22,7 +22,8 @@
     "cordova:ios": "cd ./cordova && cordova build ios",
     "build:run:android": "npm run build:cordova && npm run cordova:android",
     "build:run:android:debug": "npm run build:cordova:debug && npm run cordova:android",
-    "build:run:ios": "npm run build:cordova && npm run cordova:ios"
+    "build:run:ios": "npm run build:cordova && npm run cordova:ios",
+    "build:run:ios:debug": "npm run build:cordova:debug && npm run cordova:ios"
   },
   "private": true,
   "dependencies": {
