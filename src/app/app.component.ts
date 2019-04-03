@@ -117,28 +117,21 @@ export class AppComponent {
     console.log('leaver:', user);
   }
 
-  public onNotifySwipeRight(event, notif: Notification) {
-    console.log(event, 'ON NOTIFY');
-     setTimeout(() =>  {
-      this.undoMessage = '1 archivada';
-      notif.show = false;
-      this.notificacionObtenida = notif;
-      this.notificationSwipeRight = true;
-     }, 800);
+  public onNotifySwipeRight(notif: Notification) {
+    this.notificacionObtenida = notif;
+    this.undoMessage = '1 archivada';
+    this.notificacionObtenida.show = false;
+    this.notificationSwipeRight = true;
   }
 
-  public onNotifySwipeLeft(event, notif: Notification) {
-    console.log(event, 'ON NOTIFY');
-     setTimeout(() =>  {
-       this.undoMessage = '1 eliminada';
-       notif.show = false;
-       this.notificacionObtenida = notif;
-       this.notificationSwipeRight = false;
-     }, 800);
+  public onNotifySwipeLeft(notif: Notification) {
+    this.notificacionObtenida = notif;
+    this.undoMessage = '1 eliminada';
+    this.notificacionObtenida.show = false;
+    this.notificationSwipeRight = false;
   }
 
   public onUndo() {
-    console.log('UNDO');
     if (this.notificationSwipeRight) {
       this.undoSwipeRight();
     } else {
@@ -147,7 +140,6 @@ export class AppComponent {
   }
 
   public undoTimeOut(): void {
-    console.log('App component  - undo timeout terminó - aca llamo al backend y completo la acción');
     if (this.notificationSwipeRight) {
         this.finishActionSwipeRight();
     } else {
@@ -157,19 +149,19 @@ export class AppComponent {
 
   // Estos métodos harían las llamadas al backend correspondientes
   public finishActionSwipeRight() {
-    console.log ('El sistema informa que se terminó la accion del swipe right.');
+   // console.log ('Finish action swipe right.');
   }
   public finishActionSwipeLeft() {
-    console.log ('El sistema informa que se terminó la accion del swipe left.');
+  //  console.log ('Finish action swipe left.');
   }
 
   public undoSwipeRight() {
-    console.log('Deshago el swipe right');
     this.notificacionObtenida.show = true;
+  //  this.notificacionObtenida = undefined;
   }
   public undoSwipeLeft() {
-    console.log('Deshago el swipe left');
     this.notificacionObtenida.show = true;
+  //  this.notificacionObtenida = undefined;
   }
 
   @HostListener('swiperight', ['$event'])
@@ -182,7 +174,6 @@ export class AppComponent {
   }
 
   getPeople(criteria: PersonSearchCriteria): Person[] {
-    console.log(criteria);
     return this.personList.sort((a, b) => {
       if (criteria.sortDirection === 'desc') {
         if (a[criteria.sortColumn] < b[criteria.sortColumn]) {

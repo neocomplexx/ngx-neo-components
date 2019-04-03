@@ -1,6 +1,6 @@
 <div #slider class="neo-slider position-relative" [ngClass]="(x > 0)? this.leftBackground : this.rightBackground" >
   <div class="leyenda-slider-izq" *ngIf="this.visibility!= 'left' && x > 0">
-    <button class="btn btn-sm"><i [ngClass]="iconoizq"></i>{{textoizq}}</button>
+    <button class="btn btn-sm"><i [ngClass]="leftIcon"></i>{{leftText}}</button>
   </div>
   <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
        (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
@@ -9,6 +9,6 @@
       </div>   
   </div>
   <div class="leyenda-slider-der" *ngIf="this.visibility!= 'right'  && x < 0" >
-    <button class="btn btn-sm"><i [ngClass]="iconoder"></i>{{textoder}}</button>
+    <button class="btn btn-sm"><i [ngClass]="rightIcon"></i>{{rightText}}</button>
   </div>
 </div>
