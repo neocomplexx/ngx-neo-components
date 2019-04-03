@@ -60,7 +60,7 @@ import { UndoService } from '../undo-component/undo.service';
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
 
-        if (this.x < - (clientWidth * 0.5)) {
+        if (this.x < - (clientWidth * 0.4)) {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -78,7 +78,7 @@ import { UndoService } from '../undo-component/undo.service';
 
       } else if (this.xPrev <= this.x && event.type === 'panend') {
 
-        if (this.x > (clientWidth * 0.5)) {
+        if (this.x > (clientWidth * 0.4)) {
           this.visibility = 'right';
           setTimeout(async () =>  {
               this.visibility = 'normal';
