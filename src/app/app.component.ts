@@ -59,7 +59,7 @@ export class AppComponent {
 
     setTimeout(() => {// Emulate async init
       const aux = Array.from(
-        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);

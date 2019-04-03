@@ -56,8 +56,8 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
-        event.preventDefault();
-        event.stopPropagation();
+       /*  event.preventDefault();
+        event.stopPropagation(); */
         this.listService.keyListenerFunc(event);
       });
     } else {

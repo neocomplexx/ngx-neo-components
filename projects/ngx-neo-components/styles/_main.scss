@@ -45,6 +45,10 @@ neo-list-item {
   cursor: pointer!important;
 }
 
+neo-list-item:focus {
+ color: red!important;
+}
+
 neo-list-item:hover {
   z-index: 1;
   color: #495057;
