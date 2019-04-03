@@ -55,6 +55,48 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "cordova": {
+              "fileReplacements": [
+                {
+                  "replace": "src/index.html",
+                  "with": "./cordova/index.html"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "./cordova/www",
+              "baseHref": ".",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "cordovaDebug": {
+              "fileReplacements": [
+                {
+                  "replace": "src/index.html",
+                  "with": "./cordova/index.html"
+                }
+              ],
+              "outputPath": "./cordova/www",
+              "baseHref": ".",
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false
             }
           }
         },

@@ -45,6 +45,13 @@ neo-list-item {
   cursor: pointer!important;
 }
 
+neo-list-item:hover {
+  z-index: 1;
+  color: #495057;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
 neo-undo{
   z-index: 500;
 }
@@ -132,7 +139,7 @@ neo-undo{
 
 .neo-slider {
   background: #e6e4e4;
-  border-radius: 0.4rem;
+  border-radius: .4rem;
   overflow: hidden;
 }
 

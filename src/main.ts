@@ -10,5 +10,19 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+const bootstrap = () => {
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.log(err));
+};
+
+const isCordovaApp = () => {
+  return document.URL.indexOf('http://') === -1
+    && document.URL.indexOf('https://') === -1;
+};
+
+
+if (isCordovaApp()) {
+  document.addEventListener('deviceready', () => { bootstrap(); }, false);
+} else {
+  bootstrap();
+}

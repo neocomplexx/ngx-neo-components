@@ -17,8 +17,9 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
     return this._isActive;
   }
 
-  @HostListener('click', ['item'])
-  onClick(item: this) {
+  @HostListener('click', ['item', '$event'])
+  onClick(item: this, $event: MouseEvent) {
+    this.listService.skipInactive = true;
     this.listService.clickedObservable.next(item);
   }
 

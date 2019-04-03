@@ -1,27 +1,58 @@
 # NeoComponents
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+Usefull Angular components.
+
+
+## Installation
+
+To install this library, run:
+
+```bash
+$ npm i @neocomplexx/ngx-neo-components
+```
+
+## Components
+
+### NeoList
+Use it for keyboard navigation and command execution inside a list of elements. 
+
+It has three parts, *neo-list*, *neo-list-item*, and *neoListKeydown* directive
+
+```html
+<input class="form-control" placeholder="Search..." #input>
+<neo-list 
+    (leaveItem)="onDeactive($event)"
+    (focusItem)="onActive($event)"
+    [(activeIndex)]="lastIndexSelected"
+    [neoListKeydown]="input" 
+    [icommand]="testItemCmd"  
+    [commandOnClick]="true" 
+    [commandOnEnter]="false">
+    <neo-list-item *ngFor="let listItem of items" [item]="listItem">
+            {{item.property }}
+    </neo-list-item>
+</neo-list>
+```
+
+#### Outputs
+- **leaveItem:** Emit the item that lost focus
+- **focusItem:** Emit the focused item
+- **activeIndex:** Emit the index number of the focused item
+
+#### Inputs
+- **activeIndex:** *(optional)* If it is set, the item with 'index' is focused on init
+- **icommand:** *(optional)* An ICommand from [NeoDirectives](https://www.npmjs.com/package/@neocomplexx/ngx-neo-directives)
+- **commandOnClick:** *(optional)* If true, command will execute on clicked element (default: true)
+- **commandOnEnter:** *(optional)* If true, command will execute on focues element on enter (default: true)
+
+- **item:** *neo-list-item* Receives the item from list
+
+- **neoListKeydown:** Directive receives a html element to attach keydown events
 
 ## Development server
-
+You can run the example project to check the components
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## License
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+MIT © [Neocomplexx](mailto:info@neocomplexx.com)
