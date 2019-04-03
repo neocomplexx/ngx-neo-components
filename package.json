@@ -22,7 +22,8 @@
     "cordova:ios": "cd ./cordova && cordova build ios",
     "build:run:android": "npm run build:cordova && npm run cordova:android",
     "build:run:android:debug": "npm run build:cordova:debug && npm run cordova:android",
-    "build:run:ios": "npm run build:cordova && npm run cordova:ios"
+    "build:run:ios": "npm run build:cordova && npm run cordova:ios",
+    "build:run:ios:debug": "npm run build:cordova:debug && npm run cordova:ios"
   },
   "private": true,
   "dependencies": {
@@ -37,7 +38,7 @@
     "@angular/router": "~7.1.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@neocomplexx/ngx-neo-directives": "^7.0.9",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "bootstrap": "^4.3.1",
     "com.neocomplexx.neocomponents": "file:cordova",
     "core-js": "^2.5.4",

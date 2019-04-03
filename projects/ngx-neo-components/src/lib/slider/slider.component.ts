@@ -20,10 +20,10 @@ import { UndoService } from '../undo-component/undo.service';
 
     @Output() notifySwipeLeft: EventEmitter<string> = new EventEmitter<string>();
     @Output() notifySwipeRight: EventEmitter<string> = new EventEmitter<string>();
-    @Input() iconoizq: string;
-    @Input() iconoder: string;
-    @Input() textoizq: string;
-    @Input() textoder: string;
+    @Input() leftIcon: string;
+    @Input() rightIcon: string;
+    @Input() leftText: string;
+    @Input() rightText: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
   //  @Input() neoUndo: UndoComponent;
@@ -66,10 +66,12 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1200);
-         // this.neoUndo.showUndoComponent(); 
-          this.undoService.showUndo.next(true);
-          this.notifySwipeLeft.emit('PanLeft');
+          }, 900);
+         // this.neoUndo.showUndoComponent();
+         setTimeout(() =>  {
+            this.undoService.showUndo.next(true);
+            this.notifySwipeLeft.emit();
+          }, 800);
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -84,10 +86,12 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1200);
+          }, 900);
          // this.neoUndo.showUndoComponent();
-         this.undoService.showUndo.next(true);
-          this.notifySwipeRight.emit('PanRight');
+         setTimeout(() =>  {
+              this.undoService.showUndo.next(true);
+              this.notifySwipeRight.emit();
+          }, 800);
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -101,6 +105,7 @@ import { UndoService } from '../undo-component/undo.service';
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'left';
+    //  this.undoService.showUndo.next(true);
    //   this.notifySwipeLeft.emit('SwipeLeft');
     }
 
@@ -108,6 +113,7 @@ import { UndoService } from '../undo-component/undo.service';
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'right';
+    //  this.undoService.showUndo.next(true);
      // this.notifySwipeRight.emit('SwipeRight');
     }
 
