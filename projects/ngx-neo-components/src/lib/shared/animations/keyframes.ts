@@ -20,7 +20,7 @@ export const fadeInLight = [
 ];
 
 export const fadeOut = [
-    style({ opacity: 0.5 }),
+    style({ opacity: 1 }),
     style({ opacity: 0 }),
     style({transform: 'none'})
 ];
@@ -42,7 +42,7 @@ export const pulse = [
     style({transform: 'none', offset: 1})
 ];
 
-export const sladeInLeft = [
+export const slideInLeft = [
     style({transform: 'translate3d(-100%, 0, 0)', visibility: 'visible'}),
     style({transform: 'translate3d(0, 0, 0)'}),
     style({transform: 'none'})
