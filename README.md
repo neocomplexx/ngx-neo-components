@@ -35,19 +35,19 @@ It has three parts, *<neo-list>* *<neo-list-item>* and *neoListKeydown* directiv
 ```
 
 #### Outputs
-**leaveItem:** Emit the item that lost focus
-**focusItem:** Emit the focused item
-**activeIndex:** Emit the index number of the focused item
+- **leaveItem:** Emit the item that lost focus
+- **focusItem:** Emit the focused item
+- **activeIndex:** Emit the index number of the focused item
 
 #### Inputs
-**activeInde:x** *(optional)* If it is set, the item with 'index' is focused on init
-**icommand:** *(optional)* An ICommand from [NeoDirectives](https://www.npmjs.com/package/@neocomplexx/ngx-neo-directives)
-**commandOnClick:** *(optional)* If true, command will execute on clicked element (default: true)
-**commandOnEnter:** *(optional)* If true, command will execute on focues element on enter (default: true)
+- **activeIndex:** *(optional)* If it is set, the item with 'index' is focused on init
+- **icommand:** *(optional)* An ICommand from [NeoDirectives](https://www.npmjs.com/package/@neocomplexx/ngx-neo-directives)
+- **commandOnClick:** *(optional)* If true, command will execute on clicked element (default: true)
+- **commandOnEnter:** *(optional)* If true, command will execute on focues element on enter (default: true)
 
-**item:** *<neo-list-item>* Receives the item from list
+- **item:** *<neo-list-item>* Receives the item from list
 
-**neoListKeydown:** Directive receives a html element to attach keydown events
+- **neoListKeydown:** Directive receives a html element to attach keydown events
 
 ## Development server
 You can run the example project to check the components
