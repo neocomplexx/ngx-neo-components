@@ -37,7 +37,7 @@
 
       <section class="list-group">
         <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
-          [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group" [commandOnClick]="false" [commandOnEnter]="false">
+          [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group" [commandOnClick]="true" [commandOnEnter]="false">
           <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
             {{user.name }}
           </neo-list-item>

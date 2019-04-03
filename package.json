@@ -15,7 +15,14 @@
     "copy-license": "copy .\\LICENSE .\\dist\\ngx-neo-components",
     "copy-readme": "copy .\\README.md .\\dist\\ngx-neo-components",
     "copy-files": "npm run copy-license && npm run copy-readme",
-    "postbuild_lib": "scss-bundle -c scss-bundle.config.json"
+    "postbuild_lib": "scss-bundle -c scss-bundle.config.json",
+    "build:cordova": "ng build --configuration=cordova",
+    "build:cordova:debug": "npm run build_lib & ng build  --configuration=cordovaDebug",
+    "cordova:android": "cd ./cordova && cordova run android --device",
+    "cordova:ios": "cd ./cordova && cordova build ios",
+    "build:run:android": "npm run build:cordova && npm run cordova:android",
+    "build:run:android:debug": "npm run build:cordova:debug && npm run cordova:android",
+    "build:run:ios": "npm run build:cordova && npm run cordova:ios"
   },
   "private": true,
   "dependencies": {
@@ -29,9 +36,10 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
     "@neocomplexx/ngx-neo-directives": "^7.0.9",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
     "bootstrap": "^4.3.1",
+    "com.neocomplexx.neocomponents": "file:cordova",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.3.3",
