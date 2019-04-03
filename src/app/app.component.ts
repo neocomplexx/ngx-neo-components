@@ -14,6 +14,8 @@ export class AppComponent {
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
+  public model;
+
   // Keyboard list section
   users = new Array<User>();
   public lastIndexSelected = 2;
