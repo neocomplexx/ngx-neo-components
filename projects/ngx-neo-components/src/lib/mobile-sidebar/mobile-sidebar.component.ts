@@ -20,12 +20,13 @@ enum State {
   styleUrls: ['./mobile-sidebar.component.scss'],
   animations: [
     trigger('sideShow', [
-      transition(':enter', animate(500, keyframes(kf.sladeInLeft))),
-      transition(':leave', animate(500, keyframes(kf.slideOutLeft))),
+      transition('* => OPEN', animate(500, keyframes(kf.slideInLeft))),
+      transition('* => CLOSED', animate(500, keyframes(kf.slideOutLeft))),
     ]),
     trigger('fadeShadow', [
+      transition('* => OPEN', animate(500, keyframes(kf.fadeIn))),
+      transition('* => CLOSED', animate(500, keyframes(kf.fadeOut))),
       transition(':leave', animate(500, keyframes(kf.fadeOut))),
-      transition(':enter', animate(500, keyframes(kf.fadeIn))),
     ]),
   ]
 })
@@ -45,8 +46,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sidebarShowSubscription.add(
       this.mobileSidebarService.showSidebar.subscribe((value) => {
-        console.log(this.showSidebar, value);
-        this.showSidebar = value;
+        if (value) {
+          this.startX = this.getWidthFromPercent(85);
+          this.x = this.getWidthFromPercent(85);
+          this.xPrev = this.getWidthFromPercent(85);
+          this.state = State.OPEN;
+        }
       }
       ));
   }
@@ -56,7 +61,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public closeSidebar() {
-    this.mobileSidebarService.showSidebar.next(false);
+    this.state = State.CLOSED;
+    setTimeout(() => {
+      this.startX = 0;
+      this.x = 0;
+      this.xPrev = 0;
+    }, 500);
   }
 
   private getPercentFromWidth(currentWidth: number) {
@@ -70,11 +80,11 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public getTranslation() {
-    return `translate3d( ${this.x - this.getWidthFromPercent(85)}px, 0 , 0)`;
+    return this.x - this.getWidthFromPercent(85);
   }
 
   public getOpacity() {
-    const value =  this.getPercentFromWidth(this.x) / 85;
+    const value = this.getPercentFromWidth(this.x) / 85;
     return +value.toFixed(1);
   }
 
@@ -84,7 +94,11 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   @HostListener('document:panstart', ['$event'])
   public onPanStart(event) {
-    if (this.state === State.CLOSED && event.center.x < 30) {
+    if (this.state === State.CLOSED // only execute when the sidebar is closed
+      && event.center.x < 30 // If pressed on the border
+      && event.velocityY < event.velocityX // Swiped in the X axis more than the Y
+      && event.center.x !== 0 && event.center.y !== 0 // Avoid bug of hammerJS
+    ) {
       this.state = State.OPENING;
       this.startX = this.x;
     } else {
@@ -111,14 +125,16 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public onPanEnd(event) {
     if (this.getPercentFromWidth(this.x) < 40) {
       this.state = State.CLOSED;
-      this.startX = 0;
-      this.x = 0;
-      this.xPrev = 0;
+      setTimeout(() => {
+        this.startX = 0;
+        this.x = 0;
+        this.xPrev = 0;
+      }, 500);
     } else {
-      this.state = State.OPEN;
       this.startX = this.getWidthFromPercent(85);
       this.x = this.getWidthFromPercent(85);
       this.xPrev = this.getWidthFromPercent(85);
+      this.state = State.OPEN;
     }
   }
 

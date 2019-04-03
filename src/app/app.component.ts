@@ -49,9 +49,10 @@ export class AppComponent {
   ];
 
   // Undo atributes
-  public showUndo: boolean;
+//  public showUndo: boolean;
   public actionText: string;
   public undoMessage: string;
+  public undoTimeOutLapse: number;
   public notificacionObtenida: Notification;
   public notificationSwipeRight: boolean;
 
@@ -87,9 +88,10 @@ export class AppComponent {
     this.getPeople({ sortColumn: 'age', sortDirection: 'desc' });
 
     // Undo atributes
-    this.showUndo = false;
+    // this.showUndo = false;
     this.actionText = 'Deshacer';
     this.undoMessage = '1 archivada';
+    this.undoTimeOutLapse = 5000;
 
     // Notificaciones
     this.notifications = new Array<Notification>();
@@ -117,45 +119,26 @@ export class AppComponent {
 
   public onNotifySwipeRight(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
-
-    setTimeout(() => {
-      this.showUndo = true;
+     setTimeout(() =>  {
       this.undoMessage = '1 archivada';
       notif.show = false;
       this.notificacionObtenida = notif;
       this.notificationSwipeRight = true;
-    }, 500);
-
-    // setTimeout(() => {
-    //   console.log('Timeout para el mensaje undo');
-    //   this.showUndo = false;
-    //   this.finishActionSwipeRight();
-    // }, 5000);
+     }, 800);
   }
 
   public onNotifySwipeLeft(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
-
-    setTimeout(() => {
-      this.showUndo = true;
-      this.undoMessage = '1 eliminada';
-      notif.show = false;
-      this.notificacionObtenida = notif;
-      this.notificationSwipeRight = false;
-      console.log('Time out show undo');
-    }, 500);
-
-    // setTimeout(() => {
-    //   console.log('Timeout para el mensaje undo');
-    //   this.showUndo = false;
-    //   this.finishActionSwipeLeft();
-    // }, 5000);
+     setTimeout(() =>  { 
+       this.undoMessage = '1 eliminada';
+       notif.show = false;
+       this.notificacionObtenida = notif;
+       this.notificationSwipeRight = false;
+     }, 800);
   }
 
-  public onUndo(event) {
-    console.log(event, 'UNDO');
-
-    //  this.showUndo = false;
+  public onUndo() {
+    console.log('UNDO');
     if (this.notificationSwipeRight) {
       this.undoSwipeRight();
     } else {
@@ -163,23 +146,30 @@ export class AppComponent {
     }
   }
 
+  public undoTimeOut(): void {
+    console.log('App component  - undo timeout terminó - aca llamo al backend y completo la acción');
+    if (this.notificationSwipeRight) {
+        this.finishActionSwipeRight();
+    } else {
+        this.finishActionSwipeLeft();
+    }
+  }
+
   // Estos métodos harían las llamadas al backend correspondientes
   public finishActionSwipeRight() {
-    window.alert('El sistema informa que se terminó la accion del swipe right.');
+    console.log ('El sistema informa que se terminó la accion del swipe right.');
   }
   public finishActionSwipeLeft() {
-    window.alert('El sistema informa que se terminó la accion del swipe left.');
+    console.log ('El sistema informa que se terminó la accion del swipe left.');
   }
 
   public undoSwipeRight() {
-    // window.alert('Deshago swipe right');
+    console.log('Deshago el swipe right');
     this.notificacionObtenida.show = true;
-    this.showUndo = false;
   }
   public undoSwipeLeft() {
-    // window.alert('Deshago swipe left');
+    console.log('Deshago el swipe left');
     this.notificacionObtenida.show = true;
-    this.showUndo = false;
   }
 
   @HostListener('swipeleft', ['$event'])

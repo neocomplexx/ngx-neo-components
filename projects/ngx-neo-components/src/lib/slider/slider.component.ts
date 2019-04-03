@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
+import { Observable, timer } from 'rxjs';
+import { UndoComponent } from '../undo-component/undo.component';
+import { UndoService } from '../undo-component/undo.service';
 
 @Component({
     selector: 'neo-slider',
@@ -23,6 +26,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
     @Input() textoder: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
+  //  @Input() neoUndo: UndoComponent;
 
     public visibility: string;
     public x = 0;
@@ -32,7 +36,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
     public xPrev = 0;
     public yPrev = 0;
 
-    constructor() {
+    constructor(private undoService: UndoService) {
       this.visibility = 'normal';
     }
 
@@ -46,8 +50,9 @@ import * as kf from '../../lib/shared/animations/keyframes';
      * Cada vez que hago un panmove le sumo a la posición x el delta x del evento
      * @param event evento pan
      */
-    onPan(event: any): void {
+    onPan(event): void {
       event.preventDefault();
+      const clientWidth = event.target.clientWidth;
 
       if (event.type !== 'panend') {
           this.xPrev = this.x;
@@ -55,13 +60,15 @@ import * as kf from '../../lib/shared/animations/keyframes';
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
 
-        if (this.x < -25) {
+        if (this.x < - (clientWidth * 0.4)) {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
+         // this.neoUndo.showUndoComponent(); 
+          this.undoService.showUndo.next(true);
           this.notifySwipeLeft.emit('PanLeft');
         } else {
               this.visibility = 'normal';
@@ -71,13 +78,15 @@ import * as kf from '../../lib/shared/animations/keyframes';
 
       } else if (this.xPrev <= this.x && event.type === 'panend') {
 
-        if (this.x > 25) {
+        if (this.x > (clientWidth * 0.4)) {
           this.visibility = 'right';
           setTimeout(async () =>  {
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
+         // this.neoUndo.showUndoComponent();
+         this.undoService.showUndo.next(true);
           this.notifySwipeRight.emit('PanRight');
         } else {
               this.visibility = 'normal';
