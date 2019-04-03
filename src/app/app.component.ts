@@ -166,11 +166,6 @@ export class AppComponent {
   //  this.notificacionObtenida = undefined;
   }
 
-  @HostListener('swipeleft', ['$event'])
-  public hideSidebar($event) {
-    this.mobileSidebarService.showSidebar.next(false);
-  }
-
   @HostListener('swiperight', ['$event'])
   public showSidebar($event) {
     this.mobileSidebarService.showSidebar.next(true);
