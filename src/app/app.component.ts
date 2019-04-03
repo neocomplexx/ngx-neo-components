@@ -132,7 +132,6 @@ export class AppComponent {
   }
 
   public onUndo() {
-    console.log('Undo');
     if (this.notificationSwipeRight) {
       this.undoSwipeRight();
     } else {
@@ -141,7 +140,6 @@ export class AppComponent {
   }
 
   public undoTimeOut(): void {
-    console.log('Finish timeout undo');
     if (this.notificationSwipeRight) {
         this.finishActionSwipeRight();
     } else {
@@ -151,19 +149,17 @@ export class AppComponent {
 
   // Estos métodos harían las llamadas al backend correspondientes
   public finishActionSwipeRight() {
-    console.log ('Finish action swipe right.');
+   // console.log ('Finish action swipe right.');
   }
   public finishActionSwipeLeft() {
-    console.log ('Finish action swipe left.');
+  //  console.log ('Finish action swipe left.');
   }
 
   public undoSwipeRight() {
-    console.log('Undo swipe right');
     this.notificacionObtenida.show = true;
   //  this.notificacionObtenida = undefined;
   }
   public undoSwipeLeft() {
-    console.log('Undo swipe left');
     this.notificacionObtenida.show = true;
   //  this.notificacionObtenida = undefined;
   }

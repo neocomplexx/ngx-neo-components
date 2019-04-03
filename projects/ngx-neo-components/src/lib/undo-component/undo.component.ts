@@ -57,7 +57,5 @@ import { UndoService } from './undo.service';
             this.undoTimeOut.emit();
         });
        // this.showUndo = true;
-
-        console.log('MUESTRO EL UNDO', this.showUndo);
     }
   }
