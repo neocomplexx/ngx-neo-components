@@ -38,7 +38,7 @@
     "@angular/router": "~7.1.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@neocomplexx/ngx-neo-directives": "^7.0.9",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "bootstrap": "^4.3.1",
     "com.neocomplexx.neocomponents": "file:cordova",
     "core-js": "^2.5.4",
