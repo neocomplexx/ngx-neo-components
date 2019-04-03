@@ -119,25 +119,22 @@ export class AppComponent {
 
   public onNotifySwipeRight(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
-     setTimeout(() =>  { 
-    //   // this.showUndo = true;
+     setTimeout(() =>  {
       this.undoMessage = '1 archivada';
       notif.show = false;
       this.notificacionObtenida = notif;
       this.notificationSwipeRight = true;
-     }, 500);
+     }, 800);
   }
 
   public onNotifySwipeLeft(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
      setTimeout(() =>  { 
-    //   // this.showUndo = true;
        this.undoMessage = '1 eliminada';
        notif.show = false;
        this.notificacionObtenida = notif;
        this.notificationSwipeRight = false;
-    //   console.log('Time out show undo');
-     }, 500);
+     }, 800);
   }
 
   public onUndo() {
@@ -150,28 +147,29 @@ export class AppComponent {
   }
 
   public undoTimeOut(): void {
-    console.log('App component  - undo timeout terminó');
+    console.log('App component  - undo timeout terminó - aca llamo al backend y completo la acción');
+    if (this.notificationSwipeRight) {
+        this.finishActionSwipeRight();
+    } else {
+        this.finishActionSwipeLeft();
+    }
   }
 
   // Estos métodos harían las llamadas al backend correspondientes
   public finishActionSwipeRight() {
-    window.alert('El sistema informa que se terminó la accion del swipe right.');
+    console.log ('El sistema informa que se terminó la accion del swipe right.');
   }
   public finishActionSwipeLeft() {
-    window.alert('El sistema informa que se terminó la accion del swipe left.');
+    console.log ('El sistema informa que se terminó la accion del swipe left.');
   }
 
   public undoSwipeRight() {
-    // window.alert('Deshago swipe right');
     console.log('Deshago el swipe right');
     this.notificacionObtenida.show = true;
-   // this.showUndo = false;
   }
   public undoSwipeLeft() {
-    // window.alert('Deshago swipe left');
     console.log('Deshago el swipe left');
     this.notificacionObtenida.show = true;
-    // this.showUndo = false;
   }
 
   @HostListener('swipeleft', ['$event'])
