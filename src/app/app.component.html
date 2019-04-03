@@ -101,9 +101,9 @@
     </div>
   </div>
 </div>
-<div class="mb-2">
-  <neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse"
-    [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()">
-  </neo-undo>
-</div>
+
+
+<neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse"
+  [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()">
+</neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>

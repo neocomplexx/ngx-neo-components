@@ -33,7 +33,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public startX = 0;
   public xPrev = 0;
 
-  public isTouching = true;
+  public isTouching = false;
 
   public state: State = State.CLOSED;
 
