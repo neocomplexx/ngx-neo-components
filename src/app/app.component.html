@@ -14,9 +14,6 @@
     <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
   </div>
 </neo-mobile-sidebar>
-<!-- <section (swipeRight)="onSwipeRight($event)" class="main-container">
-  <neo-pull-to-refresh></neo-pull-to-refresh>
-</section> -->
 <div class="d-flex flex-row align-items-stretch h-100">
   <div class="d-none d-lg-flex overflow-auto">
     <neo-sidebar>
@@ -72,7 +69,7 @@
         <div class="mt-1" *ngFor="let noti of this.notifications">
           <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
           [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
-          (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)" 
+          (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)"
           *ngIf="noti.show">
               <div class="card">
                 <div class="card-body">

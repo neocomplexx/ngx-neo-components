@@ -23,6 +23,8 @@ export class AppComponent {
 
   public lastIndexSelected = 2;
 
+
+
   title = 'neo-components';
   buttons = [
     {
@@ -51,6 +53,8 @@ export class AppComponent {
   public showUndo: boolean;
   public actionText: string;
   public undoMessage: string;
+  public notificacionObtenida: Notification;
+  public notificationSwipeRight: boolean;
 
   constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
 
@@ -96,7 +100,7 @@ export class AppComponent {
     this.actionText = 'Deshacer';
     this.undoMessage = '1 archivada';
 
-    // Notificaciones 
+    // Notificaciones
     this.notifications = new Array<Notification>();
     const notification = new Notification();
     notification.show = true;
@@ -124,33 +128,70 @@ export class AppComponent {
 
   public onNotifySwipeRight(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
+
     setTimeout(() => {
       this.showUndo = true;
       this.undoMessage = '1 archivada';
       notif.show = false;
+      this.notificacionObtenida = notif;
+      this.notificationSwipeRight = true;
     }, 500);
+
+    // setTimeout(() => {
+    //   console.log('Timeout para el mensaje undo');
+    //   this.showUndo = false;
+    //   this.finishActionSwipeRight();
+    // }, 5000);
   }
 
   public onNotifySwipeLeft(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
+
     setTimeout(() => {
       this.showUndo = true;
       this.undoMessage = '1 eliminada';
       notif.show = false;
+      this.notificacionObtenida = notif;
+      this.notificationSwipeRight = false;
+      console.log('Time out show undo');
     }, 500);
+
+    // setTimeout(() => {
+    //   console.log('Timeout para el mensaje undo');
+    //   this.showUndo = false;
+    //   this.finishActionSwipeLeft();
+    // }, 5000);
   }
 
   public onUndo(event) {
     console.log(event, 'UNDO');
+
     //  this.showUndo = false;
+    if (this.notificationSwipeRight) {
+      this.undoSwipeRight();
+    } else {
+      this.undoSwipeLeft();
+    }
   }
 
   // Estos métodos harían las llamadas al backend correspondientes
-  public finishActionSwipeRight() { }
-  public finishActionSwipeLeft() { }
+  public finishActionSwipeRight() {
+    window.alert('El sistema informa que se terminó la accion del swipe right.');
+  }
+  public finishActionSwipeLeft() {
+    window.alert('El sistema informa que se terminó la accion del swipe left.');
+  }
 
-  public undoSwipeRight() { }
-  public undoSwipeLeft() { }
+  public undoSwipeRight() {
+    // window.alert('Deshago swipe right');
+    this.notificacionObtenida.show = true;
+    this.showUndo = false;
+  }
+  public undoSwipeLeft() {
+    // window.alert('Deshago swipe left');
+    this.notificacionObtenida.show = true;
+    this.showUndo = false;
+  }
 
   @HostListener('swipeleft', ['$event'])
   public hideSidebar($event) {

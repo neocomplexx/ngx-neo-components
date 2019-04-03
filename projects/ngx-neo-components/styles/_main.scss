@@ -7,7 +7,7 @@ app-root {
   flex-direction: column;
   position: absolute;
   top: 56px;
-  bottom: 56px;
+  bottom: 40px;
   left: 0;
   right: 0;
 }
@@ -21,8 +21,12 @@ neo-header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 500;
   box-shadow: 3px 3px 10px 1px #ccc;
+}
+
+neo-sidebar {
+  z-index: 501;
 }
 
 neo-footer {
@@ -30,7 +34,7 @@ neo-footer {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 500;
 }
 
 neo-layout {
@@ -91,10 +95,11 @@ neo-undo{
   position: fixed;
   top: 0;
   left: 0;
-  width: 70%;
-  z-index: 101;
+  width: 85%;
+  z-index: 1001;
   bottom: 0;
   background: #f5f5f5;
+  transform: translate3d(-1000px,0px,0px);
 }
 
 .mobile-sidebar-backdrop {
@@ -103,7 +108,7 @@ neo-undo{
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
   background-color: rgba(0,0,0,.6);
 }
