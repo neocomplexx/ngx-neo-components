@@ -16,7 +16,7 @@ $ npm i @neocomplexx/ngx-neo-components
 ### NeoList
 Use it for keyboard navigation and command execution inside a list of elements. 
 
-It has three parts, *<neo-list>* *<neo-list-item>* and *neoListKeydown* directive
+It has three parts, *neo-list* *neo-list-item* and *neoListKeydown* directive
 
 ```html
 <input class="form-control" placeholder="Search..." #input>
