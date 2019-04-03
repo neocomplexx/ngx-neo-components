@@ -119,24 +119,16 @@ export class AppComponent {
 
   public onNotifySwipeRight(notif: Notification) {
     this.notificacionObtenida = notif;
-    console.log(notif);
-   //  setTimeout(() =>  {
-      this.undoMessage = '1 archivada';
-      this.notificacionObtenida.show = false;
-      this.notificationSwipeRight = true;
-   //  }, 1200);
-     console.log('SHOW', this.notificacionObtenida.show);
+    this.undoMessage = '1 archivada';
+    this.notificacionObtenida.show = false;
+    this.notificationSwipeRight = true;
   }
 
   public onNotifySwipeLeft(notif: Notification) {
     this.notificacionObtenida = notif;
-    console.log(notif);
-    // setTimeout(() =>  { 
-       this.undoMessage = '1 eliminada';
-       this.notificacionObtenida.show = false;
-       this.notificationSwipeRight = false;
-   //  }, 1200);
-     console.log('SHOW', this.notificacionObtenida.show);
+    this.undoMessage = '1 eliminada';
+    this.notificacionObtenida.show = false;
+    this.notificationSwipeRight = false;
   }
 
   public onUndo() {
@@ -166,16 +158,14 @@ export class AppComponent {
   }
 
   public undoSwipeRight() {
-    console.log('Undo swipe right', this.notificacionObtenida);
+    console.log('Undo swipe right');
     this.notificacionObtenida.show = true;
   //  this.notificacionObtenida = undefined;
-  console.log('SHOW', this.notificacionObtenida.show);
   }
   public undoSwipeLeft() {
-    console.log('Undo swipe left', this.notificacionObtenida);
+    console.log('Undo swipe left');
     this.notificacionObtenida.show = true;
   //  this.notificacionObtenida = undefined;
-  console.log('SHOW', this.notificacionObtenida.show);
   }
 
   @HostListener('swipeleft', ['$event'])

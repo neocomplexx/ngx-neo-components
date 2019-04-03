@@ -66,12 +66,12 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1200);
+          }, 900);
          // this.neoUndo.showUndoComponent();
          setTimeout(() =>  {
             this.undoService.showUndo.next(true);
             this.notifySwipeLeft.emit();
-          }, 1200);
+          }, 800);
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -86,12 +86,12 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 1200);
+          }, 900);
          // this.neoUndo.showUndoComponent();
          setTimeout(() =>  {
               this.undoService.showUndo.next(true);
               this.notifySwipeRight.emit();
-          }, 1200);
+          }, 800);
         } else {
               this.visibility = 'normal';
               this.x = 0;
