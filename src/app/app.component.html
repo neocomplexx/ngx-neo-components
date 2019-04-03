@@ -62,7 +62,7 @@
         </neo-slider> -->
         <div class="mt-1" *ngFor="let noti of this.notifications">
           <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
-          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'" [neoUndo]="neoUndo"
           (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)" 
           *ngIf="noti.show">
               <div class="card">
@@ -102,5 +102,6 @@
   </div>
 </div>
 
-<neo-undo *ngIf="this.showUndo" [message]="this.undoMessage" [actionText]="this.actionText" (undo)="onUndo($event)"></neo-undo>
+<neo-undo #neoUndo *ngIf="this.showUndo" [message]="this.undoMessage" 
+  [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()"></neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>

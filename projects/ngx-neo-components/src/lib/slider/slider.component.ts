@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
+import { Observable, timer } from 'rxjs';
+import { UndoComponent } from '../undo-component/undo.component';
 
 @Component({
     selector: 'neo-slider',
@@ -23,6 +25,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
     @Input() textoder: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
+    @Input() neoUndo: UndoComponent;
 
     public visibility: string;
     public x = 0;
@@ -62,6 +65,7 @@ import * as kf from '../../lib/shared/animations/keyframes';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
+          this.neoUndo.showUndoComponent();
           this.notifySwipeLeft.emit('PanLeft');
         } else {
               this.visibility = 'normal';

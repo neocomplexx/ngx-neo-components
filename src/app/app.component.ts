@@ -84,7 +84,7 @@ export class AppComponent {
     this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
 
     // Undo atributes
-    this.showUndo = false;
+    // this.showUndo = false;
     this.actionText = 'Deshacer';
     this.undoMessage = '1 archivada';
 
@@ -114,7 +114,7 @@ export class AppComponent {
   public onNotifySwipeRight(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
     setTimeout(() =>  { 
-      this.showUndo = true;
+      // this.showUndo = true;
       this.undoMessage = '1 archivada';
       notif.show = false;
       this.notificacionObtenida = notif;
@@ -131,7 +131,7 @@ export class AppComponent {
   public onNotifySwipeLeft(event, notif: Notification) {
     console.log(event, 'ON NOTIFY');
     setTimeout(() =>  { 
-      this.showUndo = true;
+      // this.showUndo = true;
       this.undoMessage = '1 eliminada';
       notif.show = false;
       this.notificacionObtenida = notif;
@@ -167,12 +167,12 @@ export class AppComponent {
   public undoSwipeRight() {
    // window.alert('Deshago swipe right');
     this.notificacionObtenida.show = true;
-    this.showUndo = false;
+   // this.showUndo = false;
   }
   public undoSwipeLeft() {
    // window.alert('Deshago swipe left');
     this.notificacionObtenida.show = true;
-    this.showUndo = false;
+    // this.showUndo = false;
   }
 
   @HostListener('swipeleft', ['$event'])
