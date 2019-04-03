@@ -50,9 +50,9 @@ import { UndoService } from '../undo-component/undo.service';
      * Cada vez que hago un panmove le sumo a la posición x el delta x del evento
      * @param event evento pan
      */
-    onPan(event): void { // console.log('DENTRO DEL SLIDER, el neo undo: ', this.neoUndo);
-      event.preventDefault(); 
-      const clientWidth = event.target.clientWidth; console.log(clientWidth, clientWidth * 0.5);
+    onPan(event): void {
+      event.preventDefault();
+      const clientWidth = event.target.clientWidth;
 
       if (event.type !== 'panend') {
           this.xPrev = this.x;
