@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListService } from './list.service';
 import { Labeled } from './list-item.component';
@@ -8,7 +8,8 @@ import { Labeled } from './list-item.component';
   template: `
     <input *ngIf="searchBox" class="form-control" [placeholder]="searchPlaceholder" #neolistinput>
     <ng-content select="neo-list-item"></ng-content>
-  `
+  `,
+  providers: [ListService]
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
@@ -25,6 +26,7 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
 
   constructor(private listService: ListService) { }
+
 
   ngOnInit() {
     this.subs.add(this.listService.activeObservable.subscribe((index) => {

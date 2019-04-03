@@ -10,16 +10,19 @@ import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components
 })
 export class AppComponent {
 
-  users = new Array<User>();
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
+  // Keyboard list section
+  users = new Array<User>();
+  public lastIndexSelected = 2;
+  public selected: User;
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
-  public selected: User;
 
-  public lastIndexSelected = 2;
+
+
 
   title = 'neo-components';
   buttons = [
@@ -81,14 +84,14 @@ export class AppComponent {
     person3.age = 26;
     this.personList.push(person3);
 
-    this.getPeople({sortColumn: 'age', sortDirection: 'desc'});
+    this.getPeople({ sortColumn: 'age', sortDirection: 'desc' });
 
     // Undo atributes
     // this.showUndo = false;
     this.actionText = 'Deshacer';
     this.undoMessage = '1 archivada';
 
-    // Notificaciones 
+    // Notificaciones
     this.notifications = new Array<Notification>();
     const notification = new Notification();
     notification.show = true;
@@ -103,6 +106,7 @@ export class AppComponent {
   private testCommand(user: User) {
     console.log('Command execution:', user);
   }
+
   public onActive(user: User) {
     console.log('over:', user);
   }
@@ -119,13 +123,13 @@ export class AppComponent {
       notif.show = false;
       this.notificacionObtenida = notif;
       this.notificationSwipeRight = true;
-      }, 500);
+    }, 500);
 
-      // setTimeout(() => {
-      //   console.log('Timeout para el mensaje undo');
-      //   this.showUndo = false;
-      //   this.finishActionSwipeRight();
-      // }, 5000);
+    // setTimeout(() => {
+    //   console.log('Timeout para el mensaje undo');
+    //   this.showUndo = false;
+    //   this.finishActionSwipeRight();
+    // }, 5000);
   }
 
   public onNotifySwipeLeft(event, notif: Notification) {
@@ -137,7 +141,7 @@ export class AppComponent {
       this.notificacionObtenida = notif;
       this.notificationSwipeRight = false;
       console.log('Time out show undo');
-      }, 500);
+    }, 500);
 
     // setTimeout(() => {
     //   console.log('Timeout para el mensaje undo');
@@ -148,12 +152,13 @@ export class AppComponent {
 
   public onUndo(event) {
     console.log(event, 'UNDO');
-  //  this.showUndo = false;
-   if (this.notificationSwipeRight) {
-     this.undoSwipeRight ();
-   } else {
-     this.undoSwipeLeft();
-   }
+
+    //  this.showUndo = false;
+    if (this.notificationSwipeRight) {
+      this.undoSwipeRight();
+    } else {
+      this.undoSwipeLeft();
+    }
   }
 
   // Estos métodos harían las llamadas al backend correspondientes
@@ -165,12 +170,12 @@ export class AppComponent {
   }
 
   public undoSwipeRight() {
-   // window.alert('Deshago swipe right');
+    // window.alert('Deshago swipe right');
     this.notificacionObtenida.show = true;
    // this.showUndo = false;
   }
   public undoSwipeLeft() {
-   // window.alert('Deshago swipe left');
+    // window.alert('Deshago swipe left');
     this.notificacionObtenida.show = true;
     // this.showUndo = false;
   }
@@ -185,19 +190,19 @@ export class AppComponent {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
-  onSorted($event){
+  onSorted($event) {
     this.getPeople($event);
   }
 
   getPeople(criteria: PersonSearchCriteria): Person[] {
     console.log(criteria);
-    return this.personList.sort ((a, b) => {
+    return this.personList.sort((a, b) => {
       if (criteria.sortDirection === 'desc') {
         if (a[criteria.sortColumn] < b[criteria.sortColumn]) {
-            return 1;
+          return 1;
         } else if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
-            return -1;
-        } else {return 0; }
+          return -1;
+        } else { return 0; }
       } else { // asc
         if (a[criteria.sortColumn] > b[criteria.sortColumn]) {
           return 1;
@@ -208,7 +213,7 @@ export class AppComponent {
         }
       }
     });
-}
+  }
 
 
 }

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ListItemComponent, Labeled } from './list-item.component';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { ICommand } from '@neocomplexx/ngx-neo-directives';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ListService {
+@Injectable()
+export class ListService implements OnDestroy {
 
   /**
    * This service is used to mantain a state and comunication between list directive and components
@@ -20,6 +20,20 @@ export class ListService {
    */
   private _preSelectIndex: number = null;
 
+  private _itemsLength = 0;
+
+  private _keyManager: ActiveDescendantKeyManager<ListItemComponent<Labeled>>;
+
+  private _command: ICommand;
+
+  private _isTableActive: boolean;
+
+  private _commandOnClick: boolean;
+
+  private _commandOnEnter: boolean;
+
+  private _skipInactive = false;
+
   public activeObservable = new Subject<number>();
 
   public clickedObservable = new Subject<ListItemComponent<Labeled>>();
@@ -31,5 +45,83 @@ export class ListService {
   get preSelectIndex(): number { return this._preSelectIndex; }
   set preSelectIndex(value: number) { this._preSelectIndex = value; }
 
+  get itemsLength(): number { return this._itemsLength; }
+  set itemsLength(value: number) { this._itemsLength = value; }
+
+  get isTableActive(): boolean { return this._isTableActive; }
+  set isTableActive(value: boolean) { this._isTableActive = value; }
+
+  get commandOnClick(): boolean { return this._commandOnClick; }
+  set commandOnClick(value: boolean) { this._commandOnClick = value; }
+
+  get commandOnEnter(): boolean { return this._commandOnEnter; }
+  set commandOnEnter(value: boolean) { this._commandOnEnter = value; }
+
+  get skipInactive(): boolean { return this._skipInactive; }
+  set skipInactive(value: boolean) { this._skipInactive = value; }
+
+  get keyManager(): ActiveDescendantKeyManager<ListItemComponent<Labeled>> { return this._keyManager; }
+  set keyManager(value: ActiveDescendantKeyManager<ListItemComponent<Labeled>>) { this._keyManager = value; }
+
+  get icommand(): ICommand { return this._command; }
+  set icommand(value: ICommand) { this._command = value; }
+
   constructor() { }
+
+  public keyListenerFunc(event: KeyboardEvent) {
+    if (this._keyManager) {
+      const active = this._keyManager.activeItemIndex;
+      switch (event.keyCode) {
+        case 13:
+          if (this._commandOnEnter) {
+            this.executeCommand();
+          }
+          break;
+        case 33:
+          event.preventDefault();
+          if (this._keyManager.activeItemIndex - 10 >= 0) {
+            this._keyManager.setActiveItem(active - 10);
+          } else {
+            this._keyManager.setFirstItemActive();
+          }
+          break;
+        case 34:
+          event.preventDefault();
+          if (this._keyManager.activeItemIndex + 10 < this._itemsLength) {
+            this._keyManager.setActiveItem(active + 10);
+          } else {
+            this._keyManager.setLastItemActive();
+          }
+          break;
+        case 35:
+          this._keyManager.setLastItemActive();
+          break;
+        case 36:
+          this._keyManager.setFirstItemActive();
+          break;
+        default:
+          this._keyManager.onKeydown(event);
+      }
+      this.activeObservable.next(this._keyManager.activeItemIndex);
+    } else {
+      throw Error('keyManager was not setted in neoListKeydown');
+    }
+  }
+
+  public executeCommand() {
+    if (this.icommand) {
+      if (this._keyManager.activeItem) {
+        this.icommand.execute(this._keyManager.activeItem.item);
+      } else {
+        console.warn('Not selected item');
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    this._command = null;
+    this._keyManager = null;
+    this._preSelectIndex = null;
+    this.itemsLength = 0;
+  }
 }
