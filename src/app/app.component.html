@@ -54,18 +54,18 @@
             </div>
           </div>
         </neo-slider> -->
-        <div class="mt-1" *ngFor="let noti of this.notifications">
-          <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
-          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'" 
-          (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)" 
-          *ngIf="noti.show"> <!--[neoUndo]="neoUndo"-->
-              <div class="card">
-                <div class="card-body">
-                  <p>{{noti.text}}</p>
-                </div>
-              </div>
-          </neo-slider>
-        </div>
+          <div class="mt-1" *ngFor="let noti of this.notifications">
+                <neo-slider [iconoizq]="'fas fa-archive'" [textoizq]="''" [iconoder]="'fas fa-trash'" [textoder]="''"
+                [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'" 
+                (notifySwipeLeft)="onNotifySwipeLeft($event, noti)"  (notifySwipeRight)="onNotifySwipeRight($event, noti)" 
+                *ngIf="noti.show"> <!--[neoUndo]="neoUndo"-->
+                    <div class="card">
+                      <div class="card-body">
+                        <p>{{noti.text}}</p>
+                      </div>
+                    </div>
+                </neo-slider>
+          </div>
       </section>
       <section>
         <div class="mt-3">
@@ -95,8 +95,9 @@
     </div>
   </div>
 </div>
-
-<neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse" 
-          [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()">
+<div class="mb-2">
+    <neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse" 
+    [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()">
 </neo-undo>
+</div>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>

@@ -50,8 +50,9 @@ import { UndoService } from '../undo-component/undo.service';
      * Cada vez que hago un panmove le sumo a la posición x el delta x del evento
      * @param event evento pan
      */
-    onPan(event: any): void { // console.log('DENTRO DEL SLIDER, el neo undo: ', this.neoUndo);
-      event.preventDefault();
+    onPan(event): void { // console.log('DENTRO DEL SLIDER, el neo undo: ', this.neoUndo);
+      event.preventDefault(); 
+      const clientWidth = event.target.clientWidth; console.log(clientWidth, clientWidth * 0.5);
 
       if (event.type !== 'panend') {
           this.xPrev = this.x;
@@ -59,7 +60,7 @@ import { UndoService } from '../undo-component/undo.service';
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
 
-        if (this.x < -25) {
+        if (this.x < - (clientWidth * 0.5)) {
           this.visibility = 'left';
           setTimeout(async () =>  {
               this.visibility = 'normal';
@@ -77,7 +78,7 @@ import { UndoService } from '../undo-component/undo.service';
 
       } else if (this.xPrev <= this.x && event.type === 'panend') {
 
-        if (this.x > 25) {
+        if (this.x > (clientWidth * 0.5)) {
           this.visibility = 'right';
           setTimeout(async () =>  {
               this.visibility = 'normal';
