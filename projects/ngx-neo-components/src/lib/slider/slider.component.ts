@@ -3,6 +3,7 @@ import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
 import { Observable, timer } from 'rxjs';
 import { UndoComponent } from '../undo-component/undo.component';
+import { UndoService } from '../undo-component/undo.service';
 
 @Component({
     selector: 'neo-slider',
@@ -25,7 +26,7 @@ import { UndoComponent } from '../undo-component/undo.component';
     @Input() textoder: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
-    @Input() neoUndo: UndoComponent;
+  //  @Input() neoUndo: UndoComponent;
 
     public visibility: string;
     public x = 0;
@@ -35,7 +36,7 @@ import { UndoComponent } from '../undo-component/undo.component';
     public xPrev = 0;
     public yPrev = 0;
 
-    constructor() {
+    constructor(private undoService: UndoService) {
       this.visibility = 'normal';
     }
 
@@ -49,7 +50,7 @@ import { UndoComponent } from '../undo-component/undo.component';
      * Cada vez que hago un panmove le sumo a la posición x el delta x del evento
      * @param event evento pan
      */
-    onPan(event: any): void {
+    onPan(event: any): void { // console.log('DENTRO DEL SLIDER, el neo undo: ', this.neoUndo);
       event.preventDefault();
 
       if (event.type !== 'panend') {
@@ -65,7 +66,8 @@ import { UndoComponent } from '../undo-component/undo.component';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
-          this.neoUndo.showUndoComponent();
+         // this.neoUndo.showUndoComponent(); 
+          this.undoService.showUndo.next(true);
           this.notifySwipeLeft.emit('PanLeft');
         } else {
               this.visibility = 'normal';
@@ -82,6 +84,8 @@ import { UndoComponent } from '../undo-component/undo.component';
               this.x = 0;
               this.xPrev = 0;
           }, 1200);
+         // this.neoUndo.showUndoComponent();
+         this.undoService.showUndo.next(true);
           this.notifySwipeRight.emit('PanRight');
         } else {
               this.visibility = 'normal';

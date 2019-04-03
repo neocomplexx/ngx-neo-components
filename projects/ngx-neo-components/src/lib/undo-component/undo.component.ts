@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
+import { UndoService } from './undo.service';
 
 @Component({
     selector: 'neo-undo',
@@ -10,14 +11,28 @@ import { Subscription, timer } from 'rxjs';
 
     @Input('message') message: string;
     @Input('actionText') actionText: string;
-    @Input('showUndo') showUndo: boolean;
+   // @Input('showUndo') showUndo: boolean;
     @Input() undoTimeOutLapse: number;
 
     @Output() undo: EventEmitter<string> = new EventEmitter<string>();
     @Output() undoTimeOut: EventEmitter<void> = new EventEmitter<void>();
     
     private undoTimeOutSubscription: Subscription;
-    component() {}
+
+    public showUndo: boolean;
+    public _subscription: Subscription;
+
+    constructor(private undoService: UndoService) {
+        this.showUndo = false;
+
+        this._subscription = this.undoService.showingUndo.subscribe ((res) => 
+        {   this.showUndo = res;
+            console.log('Observo, valor undo ', res);
+            if (res) {
+                this.showUndoComponent();
+            }
+        });
+    }
 
     public undoAction(): void {
         this.undo.emit('Undo');
@@ -25,7 +40,8 @@ import { Subscription, timer } from 'rxjs';
             this.undoTimeOutSubscription.unsubscribe();
             this.undoTimeOutSubscription = undefined;
         }
-        this.showUndo = false;
+      //  this.showUndo = false;
+      this.undoService.showUndo.next(false);
     }
 
     public showUndoComponent(): void
@@ -40,6 +56,8 @@ import { Subscription, timer } from 'rxjs';
             this.showUndo = false;
             this.undoTimeOut.emit();
         });
-        this.showUndo = true;
+       // this.showUndo = true;
+
+        console.log('MUESTRO EL UNDO', this.showUndo);
     }
   }
