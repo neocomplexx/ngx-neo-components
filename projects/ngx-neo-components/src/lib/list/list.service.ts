@@ -28,6 +28,10 @@ export class ListService implements OnDestroy {
 
   private _isTableActive: boolean;
 
+  private _commandOnClick: boolean;
+
+  private _commandOnEnter: boolean;
+
   private _skipInactive = false;
 
   public activeObservable = new Subject<number>();
@@ -47,14 +51,20 @@ export class ListService implements OnDestroy {
   get isTableActive(): boolean { return this._isTableActive; }
   set isTableActive(value: boolean) { this._isTableActive = value; }
 
+  get commandOnClick(): boolean { return this._commandOnClick; }
+  set commandOnClick(value: boolean) { this._commandOnClick = value; }
+
+  get commandOnEnter(): boolean { return this._commandOnEnter; }
+  set commandOnEnter(value: boolean) { this._commandOnEnter = value; }
+
   get skipInactive(): boolean { return this._skipInactive; }
   set skipInactive(value: boolean) { this._skipInactive = value; }
 
   get keyManager(): ActiveDescendantKeyManager<ListItemComponent<Labeled>> { return this._keyManager; }
   set keyManager(value: ActiveDescendantKeyManager<ListItemComponent<Labeled>>) { this._keyManager = value; }
 
-  get command(): ICommand { return this._command; }
-  set command(value: ICommand) { this._command = value; }
+  get icommand(): ICommand { return this._command; }
+  set icommand(value: ICommand) { this._command = value; }
 
   constructor() { }
 
@@ -63,7 +73,9 @@ export class ListService implements OnDestroy {
       const active = this._keyManager.activeItemIndex;
       switch (event.keyCode) {
         case 13:
-          this.executeCommand();
+          if (this._commandOnEnter) {
+            this.executeCommand();
+          }
           break;
         case 33:
           event.preventDefault();
@@ -97,9 +109,9 @@ export class ListService implements OnDestroy {
   }
 
   public executeCommand() {
-    if (this.command) {
+    if (this.icommand) {
       if (this._keyManager.activeItem) {
-        this.command.execute(this._keyManager.activeItem.item);
+        this.icommand.execute(this._keyManager.activeItem.item);
       } else {
         console.warn('Not selected item');
       }

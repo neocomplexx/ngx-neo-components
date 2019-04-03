@@ -12,7 +12,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
   @ContentChildren(ListItemComponent) public items: QueryList<ListItemComponent<Labeled>>;
   @Input('neoListKeydown') htmlElement: ElementRef;
-  @Input() command: ICommand;
+  @Input() icommand: ICommand;
+  @Input() commandOnClick = true;
+  @Input() commandOnEnter = true;
 
   private listenerFunction: Function;
 
@@ -43,7 +45,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
     this.addClickManagerListener();
 
-    this.listService.command = this.command;
+    this.listService.icommand = this.icommand;
+    this.listService.commandOnClick = this.commandOnClick;
+    this.listService.commandOnEnter = this.commandOnEnter;
   }
 
 
@@ -85,7 +89,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
       this.listService.isTableActive = true;
-      this.listService.executeCommand();
+      if (this.listService.commandOnClick) {
+        this.listService.executeCommand();
+      }
     }));
   }
 
