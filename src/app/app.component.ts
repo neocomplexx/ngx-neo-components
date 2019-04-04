@@ -2,6 +2,9 @@ import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
 import { Component, HostListener } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
+import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +61,7 @@ export class AppComponent {
   public notificacionObtenida: Notification;
   public notificationSwipeRight: boolean;
 
-  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
+  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService, public modalService: NgbModal) {
 
     setTimeout(() => {// Emulate async init
       const aux = Array.from(
@@ -198,6 +201,14 @@ export class AppComponent {
     });
   }
 
+
+  public openModal(): void {
+      const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  }
+
+  public openModalLarge(): void {
+    const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  }
 
 }
 
