@@ -51,7 +51,7 @@ import { UndoService } from '../undo-component/undo.service';
      * @param event evento pan
      */
     onPan(event): void {
-      // event.preventDefault();
+      event.preventDefault();
 
       const clientWidth = event.target.clientWidth;
 
@@ -111,7 +111,7 @@ import { UndoService } from '../undo-component/undo.service';
   }
 
 
-    onSwipeLeft(event): void { console.log('Swipe left');
+    onSwipeLeft(event): void {
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'left';
@@ -119,7 +119,7 @@ import { UndoService } from '../undo-component/undo.service';
    //   this.notifySwipeLeft.emit('SwipeLeft');
     }
 
-    onSwipeRight(event): void { console.log('Swipe right');
+    onSwipeRight(event): void {
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'right';
