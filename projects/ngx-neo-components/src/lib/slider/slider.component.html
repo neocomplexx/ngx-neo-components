@@ -3,7 +3,7 @@
     <button class="btn btn-sm"><i [ngClass]="leftIcon"></i>{{leftText}}</button>
   </div>
   <div (swipeleft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)" 
-       (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)" >
+       (panstart)="onPanStart($event)" (panmove)="onPan($event)" (panend)="onPan($event)">
       <div [@sliderAnimator]="this.visibility" class="position-relative slideable" [style.left.px]="x" >
             <ng-content></ng-content>
       </div>   
