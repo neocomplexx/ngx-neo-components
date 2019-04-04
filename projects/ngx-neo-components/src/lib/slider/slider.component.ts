@@ -1,8 +1,6 @@
 import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
-import { Observable, timer } from 'rxjs';
-import { UndoComponent } from '../undo-component/undo.component';
 import { UndoService } from '../undo-component/undo.service';
 
 @Component({
@@ -11,8 +9,8 @@ import { UndoService } from '../undo-component/undo.service';
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('sliderAnimator', [
-            transition('* => right', animate(1300, keyframes(kf.slideOutRight))),
-            transition('* => left', animate(1300, keyframes(kf.slideOutLeft))),
+            transition('* => right', animate(1000, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1000, keyframes(kf.slideOutLeft)))
         ]),
     ]
   })
@@ -26,7 +24,6 @@ import { UndoService } from '../undo-component/undo.service';
     @Input() rightText: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
-  //  @Input() neoUndo: UndoComponent;
 
     public visibility: string;
     public x = 0;
@@ -68,7 +65,6 @@ import { UndoService } from '../undo-component/undo.service';
               this.x = 0;
               this.xPrev = 0;
           }, 500);
-         // this.neoUndo.showUndoComponent();
          setTimeout(() =>  {
             this.undoService.showUndo.next(true);
             this.notifySwipeLeft.emit();
@@ -88,7 +84,6 @@ import { UndoService } from '../undo-component/undo.service';
               this.x = 0;
               this.xPrev = 0;
           }, 500);
-         // this.neoUndo.showUndoComponent();
          setTimeout(() =>  {
               this.undoService.showUndo.next(true);
               this.notifySwipeRight.emit();
