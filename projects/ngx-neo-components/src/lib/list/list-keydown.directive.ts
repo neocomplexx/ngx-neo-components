@@ -15,28 +15,14 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() icommand: ICommand;
   @Input() commandOnClick = true;
   @Input() commandOnEnter = true;
+  @Input() typeAhead = true;
+  @Input() typeAheadDelay = 300;
 
   private listenerFunction: Function;
 
   private subs = new Subscription();
 
   constructor(private renderer: Renderer, private listService: ListService) { }
-
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (this.listService.isTableActive) {
-      this.listService.keyListenerFunc(event);
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  handleClickEvent(event: MouseEvent) {
-    if (!this.listService.skipInactive) {
-      this.listService.isTableActive = false;
-    }
-    this.listService.skipInactive = false;
-  }
 
   ngAfterViewInit() {
     this.addKeyManagerListener();
@@ -52,12 +38,19 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
 
   private addKeyManagerListener(): void {
-    this.listService.keyManager = new ActiveDescendantKeyManager(this.items).withWrap();
+    if (this.typeAhead) {
+      this.listService.keyManager = new ActiveDescendantKeyManager(this.items)
+        .withWrap()
+        .withTypeAhead(this.typeAheadDelay);
+    } else {
+      this.listService.keyManager = new ActiveDescendantKeyManager(this.items)
+        .withWrap();
+    }
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
-        event.preventDefault();
-        event.stopPropagation();
+        /*  event.preventDefault();
+         event.stopPropagation(); */
         this.listService.keyListenerFunc(event);
       });
     } else {
@@ -88,7 +81,6 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(this.listService.clickedObservable.subscribe((item) => {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
-      this.listService.isTableActive = true;
       if (this.listService.commandOnClick) {
         this.listService.executeCommand();
       }

@@ -7,11 +7,15 @@ import { CustomHammerConfig } from 'projects/ngx-neo-components/src/lib/shared/s
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
+import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilterPipe,
+    PopUpPruebaComponent,
+    PopUpPruebaLargoComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,10 @@ import { FormsModule } from '@angular/forms';
       provide: HAMMER_GESTURE_CONFIG,
       useClass: CustomHammerConfig
     },
+  ],
+  entryComponents: [
+    PopUpPruebaComponent,
+    PopUpPruebaLargoComponent
   ],
   bootstrap: [AppComponent]
 })

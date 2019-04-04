@@ -2,6 +2,9 @@ import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
 import { Component, HostListener } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
+import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
 
 @Component({
   selector: 'app-root',
@@ -51,23 +54,25 @@ export class AppComponent {
   ];
 
   // Undo atributes
-//  public showUndo: boolean;
+  //  public showUndo: boolean;
   public actionText: string;
   public undoMessage: string;
   public undoTimeOutLapse: number;
   public notificacionObtenida: Notification;
   public notificationSwipeRight: boolean;
 
-  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService) {
+  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService, public modalService: NgbModal) {
 
     setTimeout(() => {// Emulate async init
       const aux = Array.from(
-        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Hello name', 'Hola name'],
+        ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name'],
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);
       });
-    }, 3000);
+    }, 2000);
 
     this.personList = new Array<Person>();
 
@@ -119,6 +124,7 @@ export class AppComponent {
     console.log('leaver:', user);
   }
 
+
   public onNotifySwipeRight(notif: Notification) {
     this.notificacionObtenida = notif;
     this.undoMessage = '1 archivada';
@@ -143,27 +149,27 @@ export class AppComponent {
 
   public undoTimeOut(): void {
     if (this.notificationSwipeRight) {
-        this.finishActionSwipeRight();
+      this.finishActionSwipeRight();
     } else {
-        this.finishActionSwipeLeft();
+      this.finishActionSwipeLeft();
     }
   }
 
   // Estos métodos harían las llamadas al backend correspondientes
   public finishActionSwipeRight() {
-   // console.log ('Finish action swipe right.');
+
+    // console.log ('Finish action swipe right.');
   }
   public finishActionSwipeLeft() {
-  //  console.log ('Finish action swipe left.');
   }
 
   public undoSwipeRight() {
     this.notificacionObtenida.show = true;
-  //  this.notificacionObtenida = undefined;
+    //  this.notificacionObtenida = undefined;
   }
   public undoSwipeLeft() {
     this.notificacionObtenida.show = true;
-  //  this.notificacionObtenida = undefined;
+    //  this.notificacionObtenida = undefined;
   }
 
   @HostListener('swipeleft', ['$event'])
@@ -195,6 +201,14 @@ export class AppComponent {
     });
   }
 
+
+  public openModal(): void {
+      const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  }
+
+  public openModalLarge(): void {
+    const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  }
 
 }
 

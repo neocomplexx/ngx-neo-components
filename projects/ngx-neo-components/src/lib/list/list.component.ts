@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit, HostBinding, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ListService } from './list.service';
 import { Labeled } from './list-item.component';
@@ -6,17 +6,16 @@ import { Labeled } from './list-item.component';
 @Component({
   selector: 'neo-list',
   template: `
-    <input *ngIf="searchBox" class="form-control" [placeholder]="searchPlaceholder" #neolistinput>
+    <ng-content></ng-content>
     <ng-content select="neo-list-item"></ng-content>
   `,
   providers: [ListService]
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
-  private subs = new Subscription();
+  @HostBinding('attr.tabindex') tabindex = -1;
 
-  @Input() searchBox = false;
-  @Input() searchPlaceholder = 'Search...';
+  private subs = new Subscription();
 
   @Input() activeIndex: number = null;
   @Output() activeIndexChange: EventEmitter<number> = new EventEmitter();
@@ -24,6 +23,10 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
   @Output() focusItem: EventEmitter<Labeled> = new EventEmitter();
   @Output() leaveItem: EventEmitter<Labeled> = new EventEmitter();
 
+  @HostListener('keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.listService.keyListenerFunc(event);
+  }
 
   constructor(private listService: ListService) { }
 

@@ -1,8 +1,6 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
-import { Observable, timer } from 'rxjs';
-import { UndoComponent } from '../undo-component/undo.component';
 import { UndoService } from '../undo-component/undo.service';
 
 @Component({
@@ -11,8 +9,8 @@ import { UndoService } from '../undo-component/undo.service';
     styleUrls: ['./slider.component.scss'],
     animations: [
         trigger('sliderAnimator', [
-            transition('* => right', animate(1300, keyframes(kf.slideOutRight))),
-            transition('* => left', animate(1300, keyframes(kf.slideOutLeft))),
+            transition('* => right', animate(1000, keyframes(kf.slideOutRight))),
+            transition('* => left', animate(1000, keyframes(kf.slideOutLeft)))
         ]),
     ]
   })
@@ -26,7 +24,6 @@ import { UndoService } from '../undo-component/undo.service';
     @Input() rightText: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
-  //  @Input() neoUndo: UndoComponent;
 
     public visibility: string;
     public x = 0;
@@ -40,9 +37,9 @@ import { UndoService } from '../undo-component/undo.service';
       this.visibility = 'normal';
     }
 
-    onPanStart(event: any): void {
-      this.startX = this.x;
-      this.startY = this.y;
+    onPanStart(event: any): void { 
+        this.startX = this.x;
+     //   this.startY = this.y;
     }
 
     /**
@@ -52,6 +49,7 @@ import { UndoService } from '../undo-component/undo.service';
      */
     onPan(event): void {
       event.preventDefault();
+
       const clientWidth = event.target.clientWidth;
 
       if (event.type !== 'panend') {
@@ -66,12 +64,11 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 900);
-         // this.neoUndo.showUndoComponent();
+          }, 500);
          setTimeout(() =>  {
             this.undoService.showUndo.next(true);
             this.notifySwipeLeft.emit();
-          }, 800);
+          }, 500);
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -86,12 +83,11 @@ import { UndoService } from '../undo-component/undo.service';
               this.visibility = 'normal';
               this.x = 0;
               this.xPrev = 0;
-          }, 900);
-         // this.neoUndo.showUndoComponent();
+          }, 500);
          setTimeout(() =>  {
               this.undoService.showUndo.next(true);
               this.notifySwipeRight.emit();
-          }, 800);
+          }, 500);
         } else {
               this.visibility = 'normal';
               this.x = 0;
@@ -100,6 +96,15 @@ import { UndoService } from '../undo-component/undo.service';
 
       }
     }
+
+  @HostListener('document:pancancel', ['$event'])
+  public onCancel(event) {
+    this.visibility = 'normal';
+    this.x = 0;
+    this.xPrev = 0;
+    this.startX = 0;
+  }
+
 
     onSwipeLeft(event): void {
       event.srcEvent.preventDefault();
