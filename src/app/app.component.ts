@@ -1,17 +1,18 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
-import { BehaviorSubject } from 'rxjs';
-import { Component, HostListener } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
 import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
 
 
   public personList: Array<Person>;
@@ -61,7 +62,25 @@ export class AppComponent {
   public notificacionObtenida: Notification;
   public notificationSwipeRight: boolean;
 
-  constructor(private headerService: HeaderService, private mobileSidebarService: MobileSidebarService, public modalService: NgbModal) {
+  public isMobile = false;
+  public resizeSubscription: Subscription = new Subscription();
+
+  constructor(
+    private mobileSidebarService: MobileSidebarService,
+    public modalService: NgbModal,
+    private breakpointObserver: BreakpointObserver,
+  ) {
+
+    this.resizeSubscription.add(breakpointObserver.observe([
+      Breakpoints.Small,
+      Breakpoints.XSmall
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    }));
 
     setTimeout(() => {// Emulate async init
       const aux = Array.from(
@@ -110,6 +129,10 @@ export class AppComponent {
     notification2.show = true;
     notification2.text = 'Soy otra notificacion con swipe';
     this.notifications.push(notification2);
+  }
+
+  ngOnDestroy() {
+    this.resizeSubscription.unsubscribe();
   }
 
   private testCommand(user: User) {
@@ -203,7 +226,7 @@ export class AppComponent {
 
 
   public openModal(): void {
-      const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+    const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
 
   public openModalLarge(): void {

@@ -39,6 +39,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   private sidebarShowSubscription: Subscription = new Subscription();
 
+
   constructor(private mobileSidebarService: MobileSidebarService) { }
 
   ngOnInit() {
@@ -76,7 +77,11 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public getTranslation() {
-    return this.x - this.getWidthFromPercent(85);
+    if (this.state === State.CLOSED) {
+      return '-100%';
+    } else {
+      return (this.x - this.getWidthFromPercent(85)) + 'px' ;
+    }
   }
 
   public getOpacity() {
