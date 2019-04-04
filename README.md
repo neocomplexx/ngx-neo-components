@@ -44,6 +44,7 @@ It has three parts, *neo-list*, *neo-list-item*, and *neoListKeydown* directive
 - **icommand:** *(optional)* An ICommand from [NeoDirectives](https://www.npmjs.com/package/@neocomplexx/ngx-neo-directives)
 - **commandOnClick:** *(optional)* If true, command will execute on clicked element (default: true)
 - **commandOnEnter:** *(optional)* If true, command will execute on focues element on enter (default: true)
+- **typeAhead:** *(optional)* If true, items will be selected with typeAhead input (default: true)
 - **typeAheadDelay:** *(optional)* Delay for typeAhead keypress (default: 300)
 
 - **item:** *neo-list-item* Receives the item from list
