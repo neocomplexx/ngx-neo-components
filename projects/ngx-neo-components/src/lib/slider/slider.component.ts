@@ -40,9 +40,11 @@ import { UndoService } from '../undo-component/undo.service';
       this.visibility = 'normal';
     }
 
-    onPanStart(event: any): void {
-      this.startX = this.x;
-      this.startY = this.y;
+    onPanStart(event: any): void { console.log('X: ' + event.velocityX, 'Y: ' + event.velocityY);
+     // if (event.velocityY <= event.velocityX) {
+        this.startX = this.x;
+        this.startY = this.y;
+   //   }
     }
 
     /**
