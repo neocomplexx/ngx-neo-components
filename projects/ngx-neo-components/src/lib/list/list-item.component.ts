@@ -37,7 +37,7 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
   }
 
   public getLabel() {
-    return this.item.getLabel();
+    return this.item.getLabel ? this.item.getLabel() : this.item.toString();
   }
 }
 
