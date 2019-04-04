@@ -6,7 +6,7 @@ import { Labeled } from './list-item.component';
 @Component({
   selector: 'neo-list',
   template: `
-    <input *ngIf="searchBox" class="form-control" [placeholder]="searchPlaceholder" #neolistinput>
+    <ng-content></ng-content>
     <ng-content select="neo-list-item"></ng-content>
   `,
   providers: [ListService]
@@ -16,9 +16,6 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
   @HostBinding('attr.tabindex') tabindex = -1;
 
   private subs = new Subscription();
-
-  @Input() searchBox = false;
-  @Input() searchPlaceholder = 'Search...';
 
   @Input() activeIndex: number = null;
   @Output() activeIndexChange: EventEmitter<number> = new EventEmitter();
