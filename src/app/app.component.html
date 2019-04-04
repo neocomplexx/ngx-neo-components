@@ -31,11 +31,10 @@
   <div class="flex-grow-1 h-100 overflow-auto pt-5">
     <div class="container-fluid">
       <!--       <router-outlet></router-outlet> -->
-      <div class="form-group">
-        <input class="form-control" placeholder="Search..." #input>
-      </div>
-
       <section class="list-group">
+        <div class="form-group">
+          <input class="form-control" placeholder="Search..." #input>
+        </div>
         <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
           [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group" [commandOnClick]="true"
           [commandOnEnter]="true">

@@ -69,7 +69,7 @@ export class AppComponent {
       aux.forEach(x => {
         this.users.push(x);
       });
-    }, 3000);
+    }, 2000);
 
     this.personList = new Array<Person>();
 

@@ -84,9 +84,11 @@ export class ListService implements OnDestroy {
           }
           break;
         case 35:
+          event.preventDefault();
           this._keyManager.setLastItemActive();
           break;
         case 36:
+          event.preventDefault();
           this._keyManager.setFirstItemActive();
           break;
         default:
