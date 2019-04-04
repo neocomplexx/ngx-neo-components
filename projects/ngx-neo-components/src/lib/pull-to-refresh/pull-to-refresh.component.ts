@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { Observable, fromEvent, timer, defer } from 'rxjs';
 import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';
 import { HeaderService } from '../header/header.service';
@@ -18,6 +18,8 @@ import { HeaderService } from '../header/header.service';
 })
 export class PullToRefreshComponent {
 
+  @Input() scrolledElement: any = document.body;
+
   currentPos = 0;
 
   completeAnimation$ = this.headerService.loadComplete.pipe(
@@ -32,6 +34,9 @@ export class PullToRefreshComponent {
   returnPosition$ = timer(0, 10).pipe(take(20));
 
   drag$ = this.touchstart$.pipe(
+    takeWhile(move =>
+      this.scrolledElement.scrollTop === 0
+    ),
     switchMap(start => {
       let pos = 0;
       return this.touchmove$.pipe(
