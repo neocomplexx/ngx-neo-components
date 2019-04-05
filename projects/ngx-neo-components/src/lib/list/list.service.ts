@@ -30,7 +30,8 @@ export class ListService implements OnDestroy {
 
   private _commandOnEnter: boolean;
 
-  public activeObservable = new Subject<number>();
+  private _activeObservable = new Subject<number>();
+  public activeObservable = this._activeObservable.asObservable();
 
   public clickedObservable = new Subject<ListItemComponent<Labeled>>();
 
@@ -94,10 +95,13 @@ export class ListService implements OnDestroy {
         default:
           this._keyManager.onKeydown(event);
       }
-      this.activeObservable.next(this._keyManager.activeItemIndex);
     } else {
       throw Error('keyManager was not setted in neoListKeydown');
     }
+  }
+
+  public emitSelectedIndex(): void {
+    this._activeObservable.next(this._keyManager.activeItemIndex);
   }
 
   public executeCommand() {

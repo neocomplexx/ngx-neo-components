@@ -81,6 +81,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(this.listService.clickedObservable.subscribe((item) => {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
+      this.listService.emitSelectedIndex();
       if (this.listService.commandOnClick) {
         this.listService.executeCommand();
       }
@@ -91,7 +92,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.listService.keyManager.setActiveItem(this.listService.preSelectIndex);
       this.listService.preSelectIndex = null;
-    }, 1);
+    }, 0);
   }
 
   ngOnDestroy() {
