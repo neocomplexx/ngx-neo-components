@@ -54,9 +54,8 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
       });
 
       this.focusFunction = this.renderer.listen(this.htmlElement, 'focus', (event: FocusEvent) => {
-        console.log('focus', event);
+       this.listService.keyManager.setActiveItem(-1);
       });
-
 
     } else {
       throw Error('htmlInput listener was not setted in neoListKeydown');
