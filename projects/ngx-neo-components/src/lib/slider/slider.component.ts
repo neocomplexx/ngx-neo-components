@@ -110,16 +110,12 @@ import { UndoService } from '../undo-component/undo.service';
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'left';
-    //  this.undoService.showUndo.next(true);
-   //   this.notifySwipeLeft.emit('SwipeLeft');
     }
 
     onSwipeRight(event): void {
       event.srcEvent.preventDefault();
       event.srcEvent.stopPropagation();
       this.visibility = 'right';
-    //  this.undoService.showUndo.next(true);
-     // this.notifySwipeRight.emit('SwipeRight');
     }
 
 }
