@@ -9,10 +9,10 @@ import { UndoService } from './undo.service';
   })
   export class UndoComponent {
 
-    @Input('message') message: string;
-    @Input('actionText') actionText: string;
+    // @Input('undoMessage') message: string;
+    // @Input('undoActionText') actionText: string;
    // @Input('showUndo') showUndo: boolean;
-    @Input() undoTimeOutLapse: number;
+  //  @Input() undoTimeOutLapse: number;
 
     // @Output() undo: EventEmitter<string> = new EventEmitter<string>();
     // @Output() undoTimeOut: EventEmitter<void> = new EventEmitter<void>();
@@ -21,6 +21,10 @@ import { UndoService } from './undo.service';
 
     public showUndo: boolean;
     public _subscription: Subscription;
+
+    public message: string;
+    public actionText: string;
+    public undoTimeOutLapse: number;
 
     constructor(private undoService: UndoService) {
         this.showUndo = false;
@@ -31,6 +35,8 @@ import { UndoService } from './undo.service';
                 this.showUndoComponent();
             }
         });
+
+        
     }
 
     public undoAction(): void {
@@ -50,7 +56,9 @@ import { UndoService } from './undo.service';
     }
 
     public showUndoComponent(): void
-    {
+    {   this.message = this.undoService.undoMessaje;
+        this.actionText = this.undoService.undoActionText;
+        this.undoTimeOutLapse = this.undoService.undoTimeOutLapse;
         if (this.undoTimeOutSubscription) {
            // this.undoTimeOut.emit(); // 
            if (this.undoService.functionUndoTimeOut) {

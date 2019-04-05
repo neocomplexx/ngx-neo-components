@@ -25,8 +25,8 @@ import { UndoService } from '../undo-component/undo.service';
     @Input() leftBackground: string;
     @Input() rightBackground: string;
 
-    @Input() undo: () => void;
-    @Input() undoTimeOut: () => void;
+    // @Input() undo: () => void;
+    // @Input() undoTimeOut: () => void;
 
     public visibility: string;
     public x = 0;
@@ -40,10 +40,10 @@ import { UndoService } from '../undo-component/undo.service';
       this.visibility = 'normal';
     }
 
-    ngAfterContentInit() {
-      this.undoService.functionUndo = this.undo;
-      this.undoService.functionUndoTimeOut = this.undoTimeOut;
-    }
+     ngAfterContentInit() {
+    //   this.undoService.functionUndo = this.undo;
+    //   this.undoService.functionUndoTimeOut = this.undoTimeOut;
+     }
 
     onPanStart(event: any): void { 
         this.startX = this.x;

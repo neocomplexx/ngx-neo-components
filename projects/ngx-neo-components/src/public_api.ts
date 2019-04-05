@@ -21,3 +21,4 @@ export * from './lib/sortable-table/sortable-column.component';
 export * from './lib/datepicker/datepicker.component';
 export * from './lib/undo-component/undo.component';
 export * from './lib/shared/animations/keyframes';
+export * from './lib/undo-component/undo-elements.directive';

@@ -54,7 +54,9 @@
                         [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'" [rightText]="''"
                         [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
                         (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
-                        [undo]="onUndo" [undoTimeOut]="undoTimeOut">
+                        [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
+                        [undoTimeOutLapse]="undoTimeOutLapse" 
+                        [undoActionText]="actionText">
               <!--[neoUndo]="neoUndo"-->
               <div class="card">
                 <div class="card-body">
@@ -125,7 +127,6 @@
 </div>
 
 
-<neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse"
-  [actionText]="this.actionText" > <!--(undo)="onUndo()" (undoTimeOut)="undoTimeOut()"-->
+<neo-undo  > <!--(undo)="onUndo()" (undoTimeOut)="undoTimeOut()"-->
 </neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
