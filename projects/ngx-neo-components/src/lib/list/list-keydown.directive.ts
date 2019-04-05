@@ -19,6 +19,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() typeAheadDelay = 300;
 
   private listenerFunction: Function;
+  private focusFunction: Function;
 
   private subs = new Subscription();
 
@@ -49,10 +50,14 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
-        /*  event.preventDefault();
-         event.stopPropagation(); */
         this.listService.keyListenerFunc(event);
       });
+
+      this.focusFunction = this.renderer.listen(this.htmlElement, 'focus', (event: FocusEvent) => {
+        console.log('focus', event);
+      });
+
+
     } else {
       throw Error('htmlInput listener was not setted in neoListKeydown');
     }
@@ -97,6 +102,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.listenerFunction();
+    this.focusFunction();
     this.subs.unsubscribe();
   }
 }
