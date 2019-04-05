@@ -1,21 +1,8 @@
 .neo-undo {
-    // background: black;
-    // padding-right: 1rem;
-    // padding-left: 1rem;
-    // padding-top: 0.5rem;
-    // padding-bottom: 0.5rem;
-    // margin-bottom: 1rem;
-    // margin-left: 1rem;
-    // margin-right: 1rem;
-    // border-radius: .25rem;
-
-    background: #000;
     margin-bottom: 1rem;
-    border-radius: .25rem;
     padding: .5rem 1rem;
     position: absolute;
     bottom: 0px;
-    display: flex;
     width: 100%;
 
     a {
@@ -25,6 +12,12 @@
         color: white;
         margin-bottom: 0;
     }
+}
+
+.undo-content {
+    background: black;
+    border-radius: .25rem;
+    padding: .5rem 1rem;
 }
 
 neo-undo {
