@@ -19,6 +19,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() typeAheadDelay = 300;
 
   private listenerFunction: Function;
+  private focusFunction: Function;
 
   private subs = new Subscription();
 
@@ -49,10 +50,13 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     if (this.htmlElement) {
       // Renderer return function to destroy listener
       this.listenerFunction = this.renderer.listen(this.htmlElement, 'keydown', (event: KeyboardEvent) => {
-        /*  event.preventDefault();
-         event.stopPropagation(); */
         this.listService.keyListenerFunc(event);
       });
+
+      this.focusFunction = this.renderer.listen(this.htmlElement, 'focus', (event: FocusEvent) => {
+       this.listService.keyManager.setActiveItem(-1);
+      });
+
     } else {
       throw Error('htmlInput listener was not setted in neoListKeydown');
     }
@@ -81,6 +85,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(this.listService.clickedObservable.subscribe((item) => {
       const clickedItem = this.items.find(x => x.item === item);
       this.listService.keyManager.setActiveItem(clickedItem);
+      this.listService.emitSelectedIndex();
       if (this.listService.commandOnClick) {
         this.listService.executeCommand();
       }
@@ -91,11 +96,12 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.listService.keyManager.setActiveItem(this.listService.preSelectIndex);
       this.listService.preSelectIndex = null;
-    }, 1);
+    }, 0);
   }
 
   ngOnDestroy() {
     this.listenerFunction();
+    this.focusFunction();
     this.subs.unsubscribe();
   }
 }

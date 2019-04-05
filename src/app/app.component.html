@@ -1,113 +1,109 @@
 <div class="neo-layout">
   <neo-header></neo-header>
-  <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
-  <neo-mobile-sidebar *ngIf="isMobile">
-    <label class="image-item ">
-      <img src="assets/img/logo-lg.png" />
-    </label>
-    <div class="list-group border-top">
-      <a href="#" class="list-group-item list-group-item-action">Opción 1</a>
-      <a href="#" class="list-group-item list-group-item-action">Opción 2</a>
-      <a href="#" class="list-group-item list-group-item-action">Opción 3</a>
-    </div>
-    <div class="list-group border-top">
-      <a href="#" class="list-group-item list-group-item-action">Configuracion</a>
-      <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
-    </div>
-  </neo-mobile-sidebar>
-  <div class="d-flex flex-row align-items-stretch h-100">
-    <div class="d-none d-lg-flex overflow-auto" >
-      <neo-sidebar>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action active">
-            Cras justo odio
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-          <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-          <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+<neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
+<neo-mobile-sidebar *ngIf="isMobile">
+  <label class="image-item ">
+    <img src="assets/img/logo-lg.png" />
+  </label>
+  <div class="list-group border-top">
+    <a href="#" class="list-group-item list-group-item-action">Opción 1</a>
+    <a href="#" class="list-group-item list-group-item-action">Opción 2</a>
+    <a href="#" class="list-group-item list-group-item-action">Opción 3</a>
+  </div>
+  <div class="list-group border-top">
+    <a href="#" class="list-group-item list-group-item-action">Configuracion</a>
+    <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
+  </div>
+</neo-mobile-sidebar>
+<div class="d-flex flex-row align-items-stretch h-100">
+  <div class="d-none d-lg-flex overflow-auto">
+    <neo-sidebar>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+          Cras justo odio
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+      </div>
+    </neo-sidebar>
+  </div>
+  <div class="flex-grow-1 h-100 overflow-auto pt-5" #scrolledElement>
+    <div class="container-fluid">
+      <!--       <router-outlet></router-outlet> -->
+      <div class="form-group">
+        <input class="form-control" placeholder="Search..." #input>
+      </div>
+
+      <section class="list-group">
+        <neo-list (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
+          [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
+          [commandOnClick]="true" [commandOnEnter]="true">
+          <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
+            {{user.name }}
+          </neo-list-item>
+        </neo-list>
+      </section>
+
+      <section>
+        <div class="mt-3 form-group">
+          <h5>Notificaciones</h5>
         </div>
-      </neo-sidebar>
-    </div>
-    <div class="flex-grow-1 h-100 overflow-auto pt-5" #scrolledElement>
-      <div class="container-fluid">
-        <!--       <router-outlet></router-outlet> -->
-          <div class="form-group">
-            <input class="form-control" placeholder="Search..." #input>
-          </div>
-
-          <section class="list-group">
-            <neo-list (leaveItem)="onDeactive($event)" (focusItem)="onActive($event)" [(activeIndex)]="lastIndexSelected"
-              [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group" [commandOnClick]="true"
-              [commandOnEnter]="true">
-              <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
-                {{user.name }}
-              </neo-list-item>
-            </neo-list>
-
-          </section>
-          <section>
-            <div class="mt-3 form-group">
-              <h5>Notificaciones</h5>
+        <div class="mt-1" *ngFor="let noti of this.notifications">
+          <neo-slider *ngIf="noti.show" [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'"
+            [rightText]="''" [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+            (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
+            [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
+            [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText">
+            <!--[neoUndo]="neoUndo"-->
+            <div class="card">
+              <div class="card-body">
+                <p>{{noti.text}}</p>
+              </div>
             </div>
-            <div class="mt-1" *ngFor="let noti of this.notifications">
-              <neo-slider *ngIf="noti.show"
-                          [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'" [rightText]="''"
-                          [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
-                          (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
-                          [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
-                          [undoTimeOutLapse]="undoTimeOutLapse"
-                          [undoActionText]="actionText">
-                <!--[neoUndo]="neoUndo"-->
-                <div class="card">
-                  <div class="card-body">
-                    <p>{{noti.text}}</p>
-                  </div>
+          </neo-slider>
+        </div>
+      </section>
+      <section>
+        <div class="mt-3">
+          <table class="table" sortable-table (sorted)="onSorted($event)">
+            <thead>
+              <tr>
+                <th sortable-column="age">Age</th>
+                <th sortable-column="name">First Name</th>
+                <th sortable-column="lastname">Last Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of personList">
+                <td>{{c.age}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.lastname}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section>
+        <div class="mt-3">
+          <neo-datepicker></neo-datepicker>
+          <div class="row">
+            <div class="col-6">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="this.model" ngbDatepicker
+                  #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                 </div>
-              </neo-slider>
+              </div>
             </div>
-          </section>
-          <section>
-            <div class="mt-3">
-              <table class="table" sortable-table (sorted)="onSorted($event)">
-                <thead>
-                  <tr>
-                    <th sortable-column="age">Age</th>
-                    <th sortable-column="name">First Name</th>
-                    <th sortable-column="lastname">Last Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let c of personList">
-                    <td>{{c.age}}</td>
-                    <td>{{c.name}}</td>
-                    <td>{{c.lastname}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section>
-            <div class="mt-3">
-              <neo-datepicker></neo-datepicker>
-              <div class="row">
-                <div class="col-6">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="this.model" ngbDatepicker
-                      #d="ngbDatepicker">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="this.model" ngbDatepicker
-                      #d2="ngbDatepicker">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
-                    </div>
-                  </div>
+            <div class="col-6">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="this.model" ngbDatepicker
+                  #d2="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
                 </div>
               </div>
             </div>
@@ -122,12 +118,22 @@
               <button class="btn btn-primary btn-sm" (click)="openModalLarge()">Modal large</button>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+      <section>
+        <h5>OPEN MODAL</h5>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary btn-sm" (click)="openModal()">Modal</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary btn-sm" (click)="openModalLarge()">Modal large</button>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
-
-  <neo-undo></neo-undo>
-  <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
-
+</div>
+<neo-undo></neo-undo>
+<neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
 </div>
