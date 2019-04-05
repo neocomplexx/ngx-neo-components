@@ -95,6 +95,9 @@ export class ListService implements OnDestroy {
         default:
           this._keyManager.onKeydown(event);
       }
+      if (active !== this._keyManager.activeItemIndex) {
+        this.emitSelectedIndex();
+      }
     } else {
       throw Error('keyManager was not setted in neoListKeydown');
     }

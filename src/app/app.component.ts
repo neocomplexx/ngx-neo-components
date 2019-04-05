@@ -139,7 +139,7 @@ export class AppComponent implements OnDestroy {
     console.log('Command execution:', user);
   }
 
-  public onActive(user: User) {
+  public onActive(user) {
     console.log('over:', user);
   }
 
