@@ -2,7 +2,7 @@
 @import 'colors';
 @import 'notifications';
 
-app-root {
+.neo-layout {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -12,15 +12,15 @@ app-root {
   right: 0;
 }
 
-app-root.ios-root {
+.neo-layout.ios-root {
   top: 76px;
 }
 
-app-root.noConection {
+.neo-layout.noConection {
   top: 74px;
 }
 
-app-root.ios-root.noConection {
+.neo-layout.ios-root.noConection {
   top: 90px;
 }
 
