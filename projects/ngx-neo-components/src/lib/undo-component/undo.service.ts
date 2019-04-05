@@ -11,4 +11,7 @@ export class UndoService {
 
     public showingUndo = this.showUndo.asObservable();
 
+    public functionUndo: () => void;
+    public functionUndoTimeOut: () => void;
+
 }

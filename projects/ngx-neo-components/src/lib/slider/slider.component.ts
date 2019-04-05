@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, Input, HostListener, AfterContentInit } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../../lib/shared/animations/keyframes';
 import { UndoService } from '../undo-component/undo.service';
@@ -14,7 +14,7 @@ import { UndoService } from '../undo-component/undo.service';
         ]),
     ]
   })
-  export class SliderComponent {
+  export class SliderComponent implements AfterContentInit {
 
     @Output() notifySwipeLeft: EventEmitter<string> = new EventEmitter<string>();
     @Output() notifySwipeRight: EventEmitter<string> = new EventEmitter<string>();
@@ -24,6 +24,9 @@ import { UndoService } from '../undo-component/undo.service';
     @Input() rightText: string;
     @Input() leftBackground: string;
     @Input() rightBackground: string;
+
+    @Input() undo: () => void;
+    @Input() undoTimeOut: () => void;
 
     public visibility: string;
     public x = 0;
@@ -35,6 +38,11 @@ import { UndoService } from '../undo-component/undo.service';
 
     constructor(private undoService: UndoService) {
       this.visibility = 'normal';
+    }
+
+    ngAfterContentInit() {
+      this.undoService.functionUndo = this.undo;
+      this.undoService.functionUndoTimeOut = this.undoTimeOut;
     }
 
     onPanStart(event: any): void { 

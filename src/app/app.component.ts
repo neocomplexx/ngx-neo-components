@@ -162,7 +162,7 @@ export class AppComponent implements OnDestroy {
     this.notificationSwipeRight = false;
   }
 
-  public onUndo() {
+  public onUndo = () => {
     if (this.notificationSwipeRight) {
       this.undoSwipeRight();
     } else {
@@ -170,7 +170,7 @@ export class AppComponent implements OnDestroy {
     }
   }
 
-  public undoTimeOut(): void {
+  public undoTimeOut = () => {
     if (this.notificationSwipeRight) {
       this.finishActionSwipeRight();
     } else {

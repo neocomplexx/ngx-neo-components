@@ -50,10 +50,11 @@
             <h5>Notificaciones</h5>
           </div>
           <div class="mt-1" *ngFor="let noti of this.notifications">
-            <neo-slider [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'" [rightText]="''"
-              [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
-              (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
-              *ngIf="noti.show">
+            <neo-slider *ngIf="noti.show"
+                        [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'" [rightText]="''"
+                        [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+                        (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
+                        [undo]="onUndo" [undoTimeOut]="undoTimeOut">
               <!--[neoUndo]="neoUndo"-->
               <div class="card">
                 <div class="card-body">
@@ -125,6 +126,6 @@
 
 
 <neo-undo #neoUndo [message]="this.undoMessage" [undoTimeOutLapse]="this.undoTimeOutLapse"
-  [actionText]="this.actionText" (undo)="onUndo()" (undoTimeOut)="undoTimeOut()">
+  [actionText]="this.actionText" > <!--(undo)="onUndo()" (undoTimeOut)="undoTimeOut()"-->
 </neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
