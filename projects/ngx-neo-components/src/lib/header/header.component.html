@@ -18,8 +18,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="animated bell-container ripple"
-        [routerLink]="(esUsuarioAdministrador) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']"
-        [command]="clearBellCmd">
+        (click)="vaciarCampanita()">
         <i class="fas fa-bell neo-icon notification" [class.show-count]="notificationService.notificationsNotSeen !== 0"
           [class.notify]="notificationService.notificationsNotSeen !== 0"
           [class.notification-high]="notificationService.notificationMaxPriority == 2"

@@ -20,6 +20,7 @@ import { StepperComponent } from './stepper/stepper.component';
 import { StepComponent } from './stepper/step/step.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { StepHeaderComponent } from './stepper/step-header/step-header';
   imports: [
     CommonModule,
     NgbModule,
-    CdkStepperModule
+    CdkStepperModule,
+    RouterModule,
   ],
   exports: [
     NgxNeoComponentsComponent,

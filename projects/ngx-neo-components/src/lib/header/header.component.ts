@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 import { Router } from '@angular/router';
+import { NotificationService } from './notification/notification.service';
 
 @Component({
   selector: 'neo-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    private router: Router) { }
+    private router: Router, public notificationService: NotificationService) { }
 
   ngOnInit() {
   }
@@ -28,4 +29,7 @@ export class HeaderComponent implements OnInit {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
+  public vaciarCampanita() {
+
+  }
 }
