@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
-import * as kf from '../../lib/shared/animations/keyframes';
+import * as kf from '../shared/animations/keyframes';
 import { UndoService } from '../undo-component/undo.service';
 
 @Component({
