@@ -17,6 +17,8 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
 import { UndoComponent } from './undo-component/undo.component';
 import { UndoElementsDirective } from './undo-component/undo-elements.directive';
 import { StepperComponent } from './stepper/stepper.component';
+import { StepComponent } from './stepper/step/step.component';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [
@@ -35,11 +37,13 @@ import { StepperComponent } from './stepper/stepper.component';
     DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
-    StepperComponent
+    StepperComponent,
+    StepComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
+    CdkStepperModule
   ],
   exports: [
     NgxNeoComponentsComponent,
@@ -57,7 +61,8 @@ import { StepperComponent } from './stepper/stepper.component';
     DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
-    StepperComponent
+    StepperComponent,
+    StepComponent
   ]
 })
 export class NgxNeoComponentsModule { }

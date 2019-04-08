@@ -1,8 +1,32 @@
+<div>
+  <!-- <button cdkStepperPrevious>Previous</button> -->
+  <button *ngFor="let step of _steps; let i = index;" (click)="onClick(i)">Step {{i + 1}}</button>
+  <!-- <button cdkStepperNext>Next</button> -->
+</div>
 <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
 
-<!-- This is the navigation bar of the stepper -->
-<div>
-  <button class="btn btn-sm btn-primary" cdkStepperPrevious>Previous</button>
-  <button class="btn btn-sm btn-primary" *ngFor="let step of _steps; let i = index;" (click)="onClick(i)">Step {{i + 1}}</button>
-  <button class="btn btn-sm btn-primary" cdkStepperNext>Next</button>
-</div>
+
+<!-- <section class="container">
+  <header><h2>Step {{selectedIndex + 1}}/{{steps.length}}</h2></header>
+
+  <div [style.display]="selected ? 'block' : 'none'">
+    -- Content from the CdkStep is projected here --
+    <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+  </div>
+
+  <footer class="step-navigation-bar">
+    <button class="nav-button" cdkStepperPrevious>&larr;</button>
+    <button
+      class="step"
+      *ngFor="let step of steps; let i = index;"
+      [ngClass]="{'active': selectedIndex === i}"
+      (click)="onClick(i)"
+    >
+      Step {{i + 1}}
+    </button>
+    <button class="nav-button" cdkStepperNext>&rarr;</button>
+  </footer>
+</section> -->
+
+
+

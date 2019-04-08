@@ -125,12 +125,48 @@
         <div class="mt-1 mb-1">
           <h5>Stepper</h5>
           <neo-stepper>
-            <cdk-step>
-              <input type="text" name="a" value="a" />
-            </cdk-step>
-            <cdk-step>
-              <input type="text" name="b" value="b" />
-            </cdk-step>
+              <neo-step>
+                <p>Buenos días</p>
+              </neo-step>
+              <neo-step>
+                  <p>Buenas tardes</p>
+                </neo-step>
+                <neo-step>
+                    <p>Buenas noches</p>
+                  </neo-step>
+                  <neo-step>
+                      <p>Buenas madrugadas (?)</p>
+                    </neo-step>
+                  <!-- <form >
+                    <ng-template matStepLabel>Fill out your name</ng-template>
+               
+                      <input matInput placeholder="Last name, First name" required>
+               
+                    <div>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form> -->
+                <!-- </cdk-step>
+                <cdk-step> -->
+                  <!-- <form>
+                    <ng-template matStepLabel>Fill out your address</ng-template>
+                   
+                      <input matInput placeholder="Address" required>
+                   
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form> -->
+                <!-- </cdk-step>
+                <cdk-step> -->
+                  <!-- <ng-template matStepLabel>Done</ng-template>
+                  You are now done.
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                  </div> -->
+                <!-- </cdk-step> -->
           </neo-stepper>
         </div>
       </section>
