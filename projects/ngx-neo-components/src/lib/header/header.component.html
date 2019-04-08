@@ -10,22 +10,21 @@
   <!-- Toggler Sidebar -->
   <button class="navbar-toggler ripple" type="button" (click)="showSidebar()">
     <span class="navbar-toggler-icon">
-        <i class="fas fa-bars neo-icon"></i>
+      <i class="fas fa-bars neo-icon"></i>
     </span>
   </button>
 
   <!-- Opciones lado derecho -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="animated bell-container ripple" >
-          <i class="fas fa-bell neo-icon notification show-count notify notification-high" value="12"></i>
-      </a>
-      <!-- [class.show-count]="notificationService.notificationsNotSeen !==0"
-        [class.notify]="notificationService.notificationsNotSeen !==0"
-        [class.notification-high]="notificationService.notificationMaxPriority == 2"
-        [attr.value]="notificationService.notificationsNotSeen"
+      <a class="animated bell-container ripple"
         [routerLink]="(esUsuarioAdministrador) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']"
-        [command]="clearBellCmd" -->
+        [command]="clearBellCmd">
+        <i class="fas fa-bell neo-icon notification" [class.show-count]="notificationService.notificationsNotSeen !== 0"
+          [class.notify]="notificationService.notificationsNotSeen !== 0"
+          [class.notification-high]="notificationService.notificationMaxPriority == 2"
+          [attr.value]="notificationService.notificationsNotSeen"></i>
+      </a>
     </li>
   </ul>
   <ul class="navbar-nav d-none d-md-block ml-2">
