@@ -19,6 +19,7 @@ import { UndoElementsDirective } from './undo-component/undo-elements.directive'
 import { StepperComponent } from './stepper/stepper.component';
 import { StepComponent } from './stepper/step/step.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { StepHeaderComponent } from './stepper/step-header/step-header';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
-    StepComponent
+    StepComponent,
+    StepHeaderComponent
   ],
   imports: [
     CommonModule,
