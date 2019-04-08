@@ -4,6 +4,7 @@ import { MobileSidebarService } from './mobile-sidebar.service';
 import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
 import * as kf from '../shared/animations/keyframes';
+import { Router } from '@angular/router';
 
 
 enum State {
@@ -40,7 +41,8 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   private sidebarShowSubscription: Subscription = new Subscription();
 
 
-  constructor(private mobileSidebarService: MobileSidebarService) { }
+  constructor(private mobileSidebarService: MobileSidebarService,
+    public router: Router) { }
 
   ngOnInit() {
     this.sidebarShowSubscription.add(
