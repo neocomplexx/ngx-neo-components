@@ -37,9 +37,8 @@ import { UndoService } from '../undo-component/undo.service';
       this.visibility = 'normal';
     }
 
-    onPanStart(event: any): void { 
+    onPanStart(event: any): void {
         this.startX = this.x;
-     //   this.startY = this.y;
     }
 
     /**
@@ -49,15 +48,12 @@ import { UndoService } from '../undo-component/undo.service';
      */
     onPan(event): void {
       event.preventDefault();
-
       const clientWidth = event.target.clientWidth;
-
       if (event.type !== 'panend') {
           this.xPrev = this.x;
       }
       this.x = this.startX + event.deltaX;
       if ((this.xPrev > this.x) && event.type === 'panend') {
-
         if (this.x < - (clientWidth * 0.4)) {
           this.visibility = 'left';
           setTimeout(async () =>  {
@@ -74,9 +70,7 @@ import { UndoService } from '../undo-component/undo.service';
               this.x = 0;
               this.xPrev = 0;
         }
-
       } else if (this.xPrev <= this.x && event.type === 'panend') {
-
         if (this.x > (clientWidth * 0.4)) {
           this.visibility = 'right';
           setTimeout(async () =>  {
@@ -93,7 +87,6 @@ import { UndoService } from '../undo-component/undo.service';
               this.x = 0;
               this.xPrev = 0;
         }
-
       }
     }
 

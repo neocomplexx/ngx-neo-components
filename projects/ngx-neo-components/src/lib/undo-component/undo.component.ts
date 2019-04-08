@@ -42,8 +42,8 @@ import { UndoService } from './undo.service';
       }
     }
 
-    public showUndoComponent(): void
-    {   this.message = this.undoService.undoMessaje;
+    public showUndoComponent(): void {
+        this.message = this.undoService.undoMessaje;
         this.actionText = this.undoService.undoActionText;
         this.undoTimeOutLapse = this.undoService.undoTimeOutLapse;
         if (this.undoTimeOutSubscription) {
@@ -54,8 +54,7 @@ import { UndoService } from './undo.service';
            } else {
             console.warn('Function undoTimeOut is not defined');
            }
-        } 
-
+        }
         this.undoTimeOutSubscription = timer(this.undoTimeOutLapse).subscribe((e) => {
            if ( this.undoService.functionUndoTimeOut) {
             this.undoService.showUndo.next(false);

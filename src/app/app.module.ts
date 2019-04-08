@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
 import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-l
   ],
   imports: [
     BrowserModule,
+    CdkStepperModule,
     BrowserAnimationsModule,
     NgxNeoComponentsModule,
     NgbModule,

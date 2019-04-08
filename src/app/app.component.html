@@ -111,20 +111,31 @@
             </div>
           </div>
       </section>
-      <section>
+      <section class="mt-1">
         <h5>OPEN MODAL</h5>
         <div class="row">
-          <div class="col">
+          <div class="col form-group">
             <button class="btn btn-primary btn-sm" (click)="openModal()" >Modal</button>
           </div>
-          <div class="col">
+          <div class="col form-group">
             <button class="btn btn-primary btn-sm" (click)="openModalLarge()">Modal large</button>
           </div>
+        </div>
+      </section>
+      <section>
+        <div class="mt-1 mb-1">
+          <neo-stepper>
+            <cdk-step>
+              <input type="text" name="a" value="a" />
+            </cdk-step>
+            <cdk-step>
+              <input type="text" name="b" value="b" />
+            </cdk-step>
+          </neo-stepper>
         </div>
       </section>
     </div>
   </div>
 </div>
-
 <neo-undo></neo-undo>
 <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>

@@ -1,0 +1,8 @@
+<ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+
+<!-- This is the navigation bar of the stepper -->
+<div>
+  <button class="btn btn-sm btn-primary" cdkStepperPrevious>Previous</button>
+  <button class="btn btn-sm btn-primary" *ngFor="let step of _steps; let i = index;" (click)="onClick(i)">Step {{i + 1}}</button>
+  <button class="btn btn-sm btn-primary" cdkStepperNext>Next</button>
+</div>

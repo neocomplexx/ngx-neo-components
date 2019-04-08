@@ -16,6 +16,7 @@ import { SortableColumnComponent } from './sortable-table/sortable-column.compon
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { UndoComponent } from './undo-component/undo.component';
 import { UndoElementsDirective } from './undo-component/undo-elements.directive';
+import { StepperComponent } from './stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UndoElementsDirective } from './undo-component/undo-elements.directive'
     SortableColumnComponent,
     DatepickerComponent,
     UndoComponent,
-    UndoElementsDirective
+    UndoElementsDirective,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { UndoElementsDirective } from './undo-component/undo-elements.directive'
     SortableColumnComponent,
     DatepickerComponent,
     UndoComponent,
-    UndoElementsDirective
+    UndoElementsDirective,
+    StepperComponent
   ]
 })
 export class NgxNeoComponentsModule { }
