@@ -4,6 +4,7 @@ export interface IFooterConfigItem {
   callFunction: any;
   icon: string;
   text: string;
+  href: string;
 }
 
 @Component({
@@ -18,6 +19,8 @@ export class FooterComponent implements OnInit {
   @Input() smButtons: IFooterConfigItem [];
 
   @Input() border = false;
+
+  @Input() transparent = false;
 
   constructor() { }
 
