@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'neo-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   @HostBinding('class.ios-header') setIosHeader = false;
 
 
-  constructor(private mobileSidebarService: MobileSidebarService) { }
+  constructor(private mobileSidebarService: MobileSidebarService,
+    private router: Router) { }
 
   ngOnInit() {
   }
