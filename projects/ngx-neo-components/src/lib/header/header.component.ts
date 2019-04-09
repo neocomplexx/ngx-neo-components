@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification/notification.service';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'neo-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    private router: Router, public notificationService: NotificationService) { }
+    private router: Router, public notificationService: NotificationService, public headerService: HeaderService) { }
 
   ngOnInit() {
   }
@@ -31,5 +32,13 @@ export class HeaderComponent implements OnInit {
 
   public vaciarCampanita() {
 
+  }
+
+  public getName() {
+    return this.headerService.getUserName();
+  }
+
+  public logout() {
+    this.headerService.logout();
   }
 }

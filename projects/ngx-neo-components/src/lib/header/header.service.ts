@@ -25,4 +25,12 @@ export class HeaderService {
   //  this._sideShow.next(true);
     this.mobileSidebarService.showSidebar.next(true);
   }
+
+  public getUserName() {
+    return 'Name';
+  }
+
+  public logout() {
+
+  }
 }
