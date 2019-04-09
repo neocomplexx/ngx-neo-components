@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public vaciarCampanita() {
-
+    this.notificationService.ClearBell();
   }
 
   public getName() {
@@ -40,5 +40,9 @@ export class HeaderComponent implements OnInit {
 
   public logout() {
     this.headerService.logout();
+  }
+
+  public viewProfile() {
+    this.headerService.viewProfile();
   }
 }

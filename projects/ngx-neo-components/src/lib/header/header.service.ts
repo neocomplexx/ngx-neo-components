@@ -33,4 +33,8 @@ export class HeaderService {
   public logout() {
 
   }
+
+  public viewProfile() {
+
+  }
 }
