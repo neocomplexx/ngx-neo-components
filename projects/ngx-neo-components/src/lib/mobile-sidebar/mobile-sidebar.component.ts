@@ -82,7 +82,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     if (this.state === State.CLOSED) {
       return '-100%';
     } else {
-      return (this.x - this.getWidthFromPercent(85)) + 'px' ;
+      return (this.x - this.getWidthFromPercent(85)) + 'px';
     }
   }
 
@@ -99,14 +99,16 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public onPanStart(event) {
     if (this.state === State.CLOSED // only execute when the sidebar is closed
       && event.center.x < 30 // If pressed on the border
-      && event.velocityY < event.velocityX // Swiped in the X axis more than the Y
+      && Math.abs(event.velocityY) < Math.abs(event.velocityX) // Swiped in the X axis more than the Y
       && event.center.x !== 0 && event.center.y !== 0 // Avoid bug of hammerJS
     ) {
       this.isTouching = true;
       this.state = State.OPENING;
       this.startX = this.x;
     } else {
-      if (this.state === State.OPEN) {
+      if (
+        this.state === State.OPEN && Math.abs(event.velocityY) < Math.abs(event.velocityX) // Swiped in the X axis more than the Y
+      ) {
         this.isTouching = true;
         this.state = State.CLOSING;
         this.startX = this.x;

@@ -1,7 +1,8 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { Observable, fromEvent, timer, defer } from 'rxjs';
+import { Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Observable, fromEvent, timer, defer, Subscription } from 'rxjs';
 import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';
 import { HeaderService } from '../header/header.service';
+import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 
 
 @Component({
@@ -16,11 +17,14 @@ import { HeaderService } from '../header/header.service';
     </div>
   `
 })
-export class PullToRefreshComponent {
+export class PullToRefreshComponent implements OnDestroy {
 
   @Input() scrolledElement: any = document.body;
 
   currentPos = 0;
+
+  sidebarNotOpen = true;
+  subscription: Subscription = new Subscription();
 
   completeAnimation$ = this.headerService.loadComplete.pipe(
     map(() => this.currentPos),
@@ -35,7 +39,7 @@ export class PullToRefreshComponent {
 
   drag$ = this.touchstart$.pipe(
     takeWhile(move =>
-      this.scrolledElement.scrollTop === 0
+      this.scrolledElement.scrollTop === 0 && this.sidebarNotOpen
     ),
     switchMap(start => {
       let pos = 0;
@@ -79,7 +83,15 @@ export class PullToRefreshComponent {
   rotateTransform$: Observable<string> = this.rotate$.pipe(map(r => `rotate(${r}deg)`));
 
   // tslint:disable-next-line:no-shadowed-variable
-  constructor(public headerService: HeaderService) { }
+  constructor(public headerService: HeaderService, public mobileSidebarService: MobileSidebarService) {
+    this.subscription.add(this.mobileSidebarService.showSidebar.subscribe((value) => {
+      this.sidebarNotOpen = !value;
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   private tweenObservable(start, end, time) {
     const emissions = time / 10;
