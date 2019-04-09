@@ -1,14 +1,22 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { UndoService } from './undo.service';
+import { trigger, transition, animate, keyframes } from '@angular/animations';
+import * as kf from '../shared/animations/keyframes';
 
 @Component({
     selector: 'neo-undo',
     templateUrl: './undo.component.html',
     styleUrls: ['./undo.component.scss'],
+    animations: [
+      trigger('fade', [
+        transition(':enter', animate(500, keyframes(kf.fadeIn))),
+        transition(':leave', animate(500, keyframes(kf.fadeOut))),
+      ]),
+    ]
   })
   export class UndoComponent {
-    
+
     private undoTimeOutSubscription: Subscription;
 
     public showUndo: boolean;
@@ -21,7 +29,7 @@ import { UndoService } from './undo.service';
     constructor(private undoService: UndoService) {
         this.showUndo = false;
 
-        this._subscription = this.undoService.showingUndo.subscribe ((res) => 
+        this._subscription = this.undoService.showingUndo.subscribe ((res) =>
         {   this.showUndo = res;
             if (res) {
                 this.showUndoComponent();
