@@ -21,6 +21,7 @@ import { StepComponent } from './stepper/step/step.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
+import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RouterModule } from '@angular/router';
     UndoElementsDirective,
     StepperComponent,
     StepComponent,
-    StepHeaderComponent
+    StepHeaderComponent,
+    ConnectionCheckerComponent
   ],
   imports: [
     CommonModule,
