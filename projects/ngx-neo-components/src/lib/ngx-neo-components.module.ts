@@ -68,7 +68,8 @@ import { ConnectionCheckerComponent } from './connection-checker/connection-chec
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
-    StepComponent
+    StepComponent,
+    ConnectionCheckerComponent
   ]
 })
 export class NgxNeoComponentsModule { }
