@@ -35,6 +35,6 @@
     </li>
   </ul>
 </nav>
-<div class="connection-lost text-center">
+<div *ngIf="headerService.sinConexion$ | async" class="connection-lost text-center">
   No hay conexión
 </div>
