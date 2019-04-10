@@ -49,6 +49,8 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
       this.mobileSidebarService.showSidebar.subscribe((value) => {
         if (value) {
           this.openSidebar();
+        } else {
+          this.closeSidebar();
         }
       }
       ));
@@ -63,7 +65,6 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     this.startX = 0;
     this.x = 0;
     this.xPrev = 0;
-    this.mobileSidebarService.showSidebar.next(false);
   }
 
   public openSidebar() {
@@ -137,9 +138,9 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public onPanEnd(event) {
     this.isTouching = false;
     if (this.getPercentFromWidth(this.x) < 40) {
-      this.closeSidebar();
+      this.mobileSidebarService.showSidebar.next(false);
     } else {
-      this.openSidebar();
+      this.mobileSidebarService.showSidebar.next(true);
     }
   }
 

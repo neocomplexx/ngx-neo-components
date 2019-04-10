@@ -14,8 +14,6 @@ export interface IFooterConfigItem {
 })
 export class FooterComponent implements OnInit {
 
-  @Input() message: string;
-
   @Input() smButtons: IFooterConfigItem [];
 
   @Input() border = false;
