@@ -139,9 +139,9 @@
                     </neo-step>
                   <!-- <form >
                     <ng-template matStepLabel>Fill out your name</ng-template>
-               
+
                       <input matInput placeholder="Last name, First name" required>
-               
+
                     <div>
                       <button mat-button matStepperNext>Next</button>
                     </div>
@@ -150,9 +150,9 @@
                 <cdk-step> -->
                   <!-- <form>
                     <ng-template matStepLabel>Fill out your address</ng-template>
-                   
+
                       <input matInput placeholder="Address" required>
-                   
+
                     <div>
                       <button mat-button matStepperPrevious>Back</button>
                       <button mat-button matStepperNext>Next</button>
@@ -173,5 +173,12 @@
     </div>
   </div>
   <neo-undo></neo-undo>
-  <neo-footer [message]="'Place sticky footer content here.'" [smButtons]="buttons"></neo-footer>
+  <neo-footer [smButtons]="buttons">
+    <div class="d-flex justify-content-center align-items-center">
+      <label>Mail &nbsp;</label>
+      <label> Phone &nbsp;</label>
+      <label>Other Info</label>
+      <label> &nbsp; Version:</label>
+  </div>
+  </neo-footer>
 </div>
