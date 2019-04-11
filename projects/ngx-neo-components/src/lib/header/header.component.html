@@ -13,11 +13,15 @@
       <i class="fas fa-bars neo-icon"></i>
     </span>
   </button>
+  <button class="volver-style" *ngIf="!ocultarVolver" (click)="volver()">
+    <i class="fa fa-arrow-left"></i>
+  </button>
 
   <!-- Opciones lado derecho -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="animated bell-container ripple" (click)="vaciarCampanita()">
+      <a class="animated bell-container ripple" (click)="clearBell()"
+        [routerLink]="(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']">
         <i class="fas fa-bell neo-icon notification" [class.show-count]="notificationService.notificationsNotSeen !== 0"
           [class.notify]="notificationService.notificationsNotSeen !== 0"
           [class.notification-high]="notificationService.notificationMaxPriority == 2"
@@ -29,8 +33,7 @@
     <li class="nav-item dropdown" ngbDropdown class="d-inline-block my-2 my-lg-0" placement="bottom-right">
       <a id="dropdownBasic1" class="header-dropdown" ngbDropdownToggle tabindex="1">{{getName()}}</a>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <a class="dropdown-item" (click)="viewProfile()">Perfil</a>
-        <a class="dropdown-item" (click)="logout()">Cerrar Sesi&oacute;n</a>
+        <ng-content></ng-content>
       </div>
     </li>
   </ul>

@@ -30,11 +30,15 @@ export class HeaderService {
     return 'Name';
   }
 
-  public logout() {
+  public viewProfile() {
 
   }
 
-  public viewProfile() {
+  public back() {
+
+  }
+
+  public isAdmin() {
 
   }
 }

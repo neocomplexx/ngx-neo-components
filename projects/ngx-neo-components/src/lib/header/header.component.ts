@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.mobileSidebarService.showSidebar.next(true);
   }
 
-  public vaciarCampanita() {
+  public clearBell() {
     this.notificationService.ClearBell();
   }
 
@@ -38,11 +38,11 @@ export class HeaderComponent implements OnInit {
     return this.headerService.getUserName();
   }
 
-  public logout() {
-    this.headerService.logout();
+  public back() {
+    this.headerService.back();
   }
 
-  public viewProfile() {
-    this.headerService.viewProfile();
+  public isAdmin() {
+    return this.headerService.isAdmin();
   }
 }
