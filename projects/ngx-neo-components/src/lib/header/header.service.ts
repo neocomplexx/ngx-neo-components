@@ -14,7 +14,7 @@ export class HeaderService {
   private _sideShow = new BehaviorSubject(false);
   public sideShow = this._sideShow.asObservable();
 
-  constructor(private mobileSidebarService: MobileSidebarService ) { }
+  constructor(protected mobileSidebarService: MobileSidebarService ) { }
 
   public sideNavHide() {
    // this._sideShow.next(false);
