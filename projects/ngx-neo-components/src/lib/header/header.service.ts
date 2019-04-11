@@ -38,7 +38,7 @@ export class HeaderService {
 
   }
 
-  public isAdmin() {
-
+  public isAdmin(): boolean {
+    return false;
   }
 }

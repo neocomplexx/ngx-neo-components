@@ -13,9 +13,12 @@
       <i class="fas fa-bars neo-icon"></i>
     </span>
   </button>
-  <button class="volver-style" *ngIf="!ocultarVolver" (click)="volver()">
-    <i class="fa fa-arrow-left"></i>
-  </button>
+  <div class="d-lg-none">
+    <button class="return-arrow" *ngIf="!hideReturn" (click)="back()">
+      <i class="fa fa-arrow-left neo-icon"></i>
+    </button>
+  </div>
+
 
   <!-- Opciones lado derecho -->
   <ul class="navbar-nav ml-auto">

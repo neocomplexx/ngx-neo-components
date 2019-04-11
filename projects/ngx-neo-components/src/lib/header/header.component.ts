@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   @HostBinding('class.ios-header') setIosHeader = false;
 
+  public hideReturn;
 
   constructor(private mobileSidebarService: MobileSidebarService,
     private router: Router, public notificationService: NotificationService, public headerService: HeaderService) { }
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit {
     this.headerService.back();
   }
 
-  public isAdmin() {
+  public isAdmin(): boolean {
     return this.headerService.isAdmin();
   }
 }

@@ -73,3 +73,10 @@
   transition: background 0s;
 }
 
+.return-arrow {
+  border: none;
+  .fa-arrow-left {
+    font-size: 1.5rem;
+  }
+}
+
