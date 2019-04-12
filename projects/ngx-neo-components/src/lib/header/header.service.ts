@@ -11,30 +11,13 @@ export class HeaderService {
   requestLoad = new Subject<any>();
   loadComplete = new Subject<any>();
 
-  private _sideShow = new BehaviorSubject(false);
-  public sideShow = this._sideShow.asObservable();
-
   constructor(protected mobileSidebarService: MobileSidebarService ) { }
 
-  public sideNavHide() {
-   // this._sideShow.next(false);
-    this.mobileSidebarService.showSidebar.next(false);
-  }
-
-  public sideNavShow() {
-  //  this._sideShow.next(true);
-    this.mobileSidebarService.showSidebar.next(true);
-  }
-
-  public getUserName() {
+  public getUserName(): string {
     return 'Name';
   }
 
-  public viewProfile() {
-
-  }
-
-  public back() {
+  public back(): void {
 
   }
 
