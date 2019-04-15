@@ -14,7 +14,7 @@
     </span>
   </button>
   <div class="d-lg-none">
-    <button class="return-arrow ripple" *ngIf="!hideReturn" (click)="back()">
+    <button class="return-arrow ripple" *ngIf="!(headerService.hideReturn$ | async)" (click)="back()">
       <i class="fas fa-arrow-left neo-icon"></i>
     </button>
   </div>

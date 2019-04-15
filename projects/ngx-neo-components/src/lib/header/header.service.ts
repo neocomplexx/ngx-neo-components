@@ -11,7 +11,10 @@ export class HeaderService {
   requestLoad = new Subject<any>();
   loadComplete = new Subject<any>();
 
-  constructor(protected mobileSidebarService: MobileSidebarService ) { }
+  public hideReturn$ = new Subject<boolean>();
+
+  constructor(protected mobileSidebarService: MobileSidebarService ) {
+  }
 
   public getUserName(): string {
     return 'Name';

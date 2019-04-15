@@ -3,6 +3,7 @@ import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification/notification.service';
 import { HeaderService } from './header.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'neo-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
   public hideReturn;
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    private router: Router, public notificationService: NotificationService, public headerService: HeaderService) { }
+    private router: Router, public notificationService: NotificationService, public headerService: HeaderService) {
+  }
 
   ngOnInit() {
   }
