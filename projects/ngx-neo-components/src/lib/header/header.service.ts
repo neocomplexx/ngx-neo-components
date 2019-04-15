@@ -24,4 +24,8 @@ export class HeaderService {
   public isAdmin(): boolean {
     return false;
   }
+
+  public HandleErrorMessage(): void {
+
+  }
 }
