@@ -14,6 +14,8 @@ enum State {
   CLOSED = 'CLOSED',
 }
 
+const SIDEBAR_WIDTH = 300;
+
 
 @Component({
   selector: 'neo-mobile-sidebar',
@@ -68,33 +70,23 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public openSidebar() {
-    this.startX = this.getWidthFromPercent(85);
-    this.x = this.getWidthFromPercent(85);
-    this.xPrev = this.getWidthFromPercent(85);
+    this.startX = SIDEBAR_WIDTH;
+    this.x = SIDEBAR_WIDTH;
+    this.xPrev = SIDEBAR_WIDTH;
     this.state = State.OPEN;
-  }
-
-  private getPercentFromWidth(currentWidth: number) {
-    const windowWidth = window.innerWidth;
-    return (currentWidth * 100 / windowWidth);
-  }
-
-  private getWidthFromPercent(percent: number) {
-    const windowWidth = window.innerWidth;
-    return (windowWidth * percent / 100);
   }
 
   public getTranslation() {
     if (this.state === State.CLOSED) {
       return '-100%';
     } else {
-      return (this.x - this.getWidthFromPercent(85)) + 'px';
+      return (this.x - SIDEBAR_WIDTH) + 'px';
     }
   }
 
   public getOpacity() {
-    const value = this.getPercentFromWidth(this.x) / 85;
-    return +value.toFixed(1);
+    const value = this.x / SIDEBAR_WIDTH;
+    return value;
   }
 
   public showBackdrop() {
@@ -127,7 +119,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     if (this.state === State.OPENING || this.state === State.CLOSING) {
       const deltaX = event.deltaX;
       const position = this.startX + deltaX;
-      if (this.getPercentFromWidth(position) < 85) {
+      if (position < SIDEBAR_WIDTH) {
         this.xPrev = this.x;
         this.x = this.startX + deltaX;
       }
@@ -137,7 +129,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   @HostListener('document:panend', ['$event'])
   public onPanEnd(event) {
     this.isTouching = false;
-    if (this.getPercentFromWidth(this.x) < 40) {
+    if (this.x < (SIDEBAR_WIDTH / 2)) {
       this.mobileSidebarService.showSidebar.next(false);
     } else {
       this.mobileSidebarService.showSidebar.next(true);
