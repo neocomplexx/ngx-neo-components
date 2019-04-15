@@ -7,7 +7,7 @@ import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 })
 export class HeaderService {
 
-  public sinConexion$ = new Subject<boolean>();
+  public withoutConnection$ = new Subject<boolean>();
   requestLoad = new Subject<any>();
   loadComplete = new Subject<any>();
 
