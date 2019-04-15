@@ -28,7 +28,7 @@ export class HeaderService {
     return false;
   }
 
-  public HandleErrorMessage(): void {
+  public HandleErrorMessage(error: any, frendlyErrorMessage?: string | null): void {
 
   }
 }
