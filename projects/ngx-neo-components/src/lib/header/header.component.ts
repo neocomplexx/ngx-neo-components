@@ -14,16 +14,14 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
 
-  @Input() set iosHeader(value: boolean) {
-    this.setIosHeader = value;
-  }
+/*   @Input() iosHeader = false;
 
-  @HostBinding('class.ios-header') setIosHeader = false;
-
-  public hideReturn;
+  @HostBinding('class.ios-header') setIosHeader() {
+    return this.iosHeader;
+  } */
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    private router: Router, public notificationService: NotificationService, public headerService: HeaderService) {
+    public router: Router, public notificationService: NotificationService, public headerService: HeaderService) {
   }
 
   ngOnInit() {
