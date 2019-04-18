@@ -15,6 +15,7 @@ enum State {
 }
 
 const SIDEBAR_WIDTH = 300;
+const SIDEBAR_OPEN_BORDER = 35;
 
 
 @Component({
@@ -96,7 +97,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   @HostListener('document:panstart', ['$event'])
   public onPanStart(event) {
     if (this.state === State.CLOSED // only execute when the sidebar is closed
-      && event.center.x < 30 // If pressed on the border
+      && event.center.x < SIDEBAR_OPEN_BORDER // If pressed on the border
       && Math.abs(event.velocityY) < Math.abs(event.velocityX) // Swiped in the X axis more than the Y
       && event.center.x !== 0 && event.center.y !== 0 // Avoid bug of hammerJS
     ) {
