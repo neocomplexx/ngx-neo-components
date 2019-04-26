@@ -11,7 +11,7 @@ export class HeaderService {
   requestLoad = new Subject<any>();
   loadComplete = new Subject<any>();
 
-  public hideReturn$ = new Subject<boolean>();
+  public hideReturn$ = new BehaviorSubject<boolean>(true);
 
   constructor(protected mobileSidebarService: MobileSidebarService ) {
   }
