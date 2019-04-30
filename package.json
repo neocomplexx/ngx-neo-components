@@ -1,6 +1,6 @@
 {
   "name": "neo-components",
-  "version": "7.0.17",
+  "version": "7.0.18",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
