@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class MobileSidebarService {
 
   public showSidebar: Subject<boolean> = new Subject<boolean>();
+  public isOpen: boolean;
 
   constructor() { }
 }
