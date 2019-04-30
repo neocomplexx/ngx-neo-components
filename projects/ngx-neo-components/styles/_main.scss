@@ -139,6 +139,10 @@ neo-undo {
   background-color: rgba(0,0,0,.6);
 }
 
+.mobile-sidebar-backdrop.opacity-transition {
+  transition: opacity 500ms ease-out;
+}
+
 .overflow-auto {
   touch-action: pan-y;
 }

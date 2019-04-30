@@ -37,6 +37,15 @@ import { UndoService } from '../undo-component/undo.service';
       this.visibility = 'normal';
     }
 
+    public getBackground() {
+      if (this.x > 0) {
+        return this.leftBackground;
+      } else if (this.x < 0) {
+        return this.rightBackground;
+      }
+      return '';
+    }
+
     onPanStart(event: any): void {
         this.startX = this.x;
     }

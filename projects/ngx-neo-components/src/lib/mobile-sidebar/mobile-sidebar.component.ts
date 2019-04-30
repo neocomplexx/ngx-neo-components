@@ -26,7 +26,6 @@ const SIDEBAR_OPEN_BORDER = 35;
     trigger('fadeShadow', [
       transition('CLOSED => OPEN', animate(500, keyframes(kf.fadeIn))),
       transition('OPEN => CLOSED', animate(500, keyframes(kf.fadeOut))),
-      transition(':leave', animate(500, keyframes(kf.fadeOut))),
     ]),
   ]
 })
@@ -40,6 +39,8 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public isTouching = false;
 
   public state: State = State.CLOSED;
+
+  public showTransition = false;
 
   private sidebarShowSubscription: Subscription = new Subscription();
 
@@ -64,17 +65,25 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public closeSidebar() {
-    this.state = State.CLOSED;
+    this.showTransition = true;
     this.startX = 0;
     this.x = 0;
     this.xPrev = 0;
+    setTimeout(() => {
+      this.state = State.CLOSED;
+      this.mobileSidebarService.isOpen = false;
+    }, 500);
   }
 
   public openSidebar() {
-    this.startX = SIDEBAR_WIDTH;
-    this.x = SIDEBAR_WIDTH;
-    this.xPrev = SIDEBAR_WIDTH;
+    this.showTransition = true;
     this.state = State.OPEN;
+    this.mobileSidebarService.isOpen = true;
+    setTimeout(() => {
+      this.startX = SIDEBAR_WIDTH;
+      this.x = SIDEBAR_WIDTH;
+      this.xPrev = SIDEBAR_WIDTH;
+    });
   }
 
   public getTranslation() {
@@ -96,6 +105,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   @HostListener('document:panstart', ['$event'])
   public onPanStart(event) {
+    this.showTransition = false;
     if (this.state === State.CLOSED // only execute when the sidebar is closed
       && event.center.x < SIDEBAR_OPEN_BORDER // If pressed on the border
       && Math.abs(event.velocityY) < Math.abs(event.velocityX) // Swiped in the X axis more than the Y
