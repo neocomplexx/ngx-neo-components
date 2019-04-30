@@ -26,7 +26,7 @@ import * as kf from '../shared/animations/keyframes';
     public actionText: string;
     public undoTimeOutLapse: number;
 
-    constructor(private undoService: UndoService) {
+    constructor(public undoService: UndoService) {
         this.showUndo = false;
 
         this._subscription = this.undoService.showingUndo.subscribe ((res) =>
