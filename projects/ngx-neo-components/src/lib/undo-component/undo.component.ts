@@ -64,6 +64,8 @@ import * as kf from '../shared/animations/keyframes';
            }
         }
         this.undoTimeOutSubscription = timer(this.undoTimeOutLapse).subscribe((e) => {
+          this.undoTimeOutSubscription.unsubscribe();
+          this.undoTimeOutSubscription = undefined;
            if ( this.undoService.functionUndoTimeOut) {
             this.undoService.showUndo.next(false);
              this.undoService.functionUndoTimeOut();
