@@ -10,7 +10,7 @@ export class UndoElementsDirective implements AfterContentInit, OnChanges {
   @Input() undoActionText: string;
   @Input() undoTimeOutLapse: number;
   @Input() undo: () => void;
-  @Input() undoTimeOut: () => void;
+  @Input() undoTimeOut: (boolean) => void;
 
   constructor(private undoService: UndoService) { }
 

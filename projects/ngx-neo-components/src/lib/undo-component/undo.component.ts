@@ -29,10 +29,10 @@ import * as kf from '../shared/animations/keyframes';
     constructor(public undoService: UndoService) {
         this.showUndo = false;
 
-        this._subscription = this.undoService.showingUndo.subscribe ((res) =>
-        {   this.showUndo = res;
+        this._subscription = this.undoService.showingUndo.subscribe (async (res) => {
+            this.showUndo = res;
             if (res) {
-                this.showUndoComponent();
+                await this.showUndoComponent();
             }
         });
     }
@@ -50,25 +50,27 @@ import * as kf from '../shared/animations/keyframes';
       }
     }
 
-    public showUndoComponent(): void {
+    public async showUndoComponent(): Promise<void> {
         this.message = this.undoService.undoMessaje;
         this.actionText = this.undoService.undoActionText;
         this.undoTimeOutLapse = this.undoService.undoTimeOutLapse;
         if (this.undoTimeOutSubscription) {
            if (this.undoService.functionUndoTimeOut) {
-            this.undoService.functionUndoTimeOut();
-            this.undoTimeOutSubscription.unsubscribe();
-            this.undoTimeOutSubscription = undefined;
+            await this.undoService.functionUndoTimeOut(true); // true porque cancelo el timeout otra accion de slide
+            if (this.undoTimeOutSubscription) {
+              this.undoTimeOutSubscription.unsubscribe();
+              this.undoTimeOutSubscription = undefined;
+            }
            } else {
             console.warn('Function undoTimeOut is not defined');
            }
         }
-        this.undoTimeOutSubscription = timer(this.undoTimeOutLapse).subscribe((e) => {
+        this.undoTimeOutSubscription = timer(this.undoTimeOutLapse).subscribe(async (e) => {
           this.undoTimeOutSubscription.unsubscribe();
           this.undoTimeOutSubscription = undefined;
            if ( this.undoService.functionUndoTimeOut) {
             this.undoService.showUndo.next(false);
-             this.undoService.functionUndoTimeOut();
+            await this.undoService.functionUndoTimeOut(false);
            } else {
                console.warn('Function undoTimeOut is not defined');
            }
