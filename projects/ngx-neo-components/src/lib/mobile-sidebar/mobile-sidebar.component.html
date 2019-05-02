@@ -5,4 +5,4 @@
     </neo-sidebar>
   </div>
 
-  <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}" [@fadeShadow]="state" (tap)="closeSidebar()" [style.opacity]="getOpacity()"></div>
+  <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}" [@fadeShadow]="state" (tap)="onTapBackdrop" [style.opacity]="getOpacity()"></div>

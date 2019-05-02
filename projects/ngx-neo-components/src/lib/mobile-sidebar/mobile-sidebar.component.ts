@@ -86,6 +86,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     });
   }
 
+  public onTapBackdrop() {
+    if (this.state = State.OPEN) {
+      this.closeSidebar();
+    }
+  }
+
   public getTranslation() {
     if (this.state === State.CLOSED) {
       return '-100%';
