@@ -5,7 +5,7 @@
   <div class="d-flex d-lg-none justify-content-around align-items-center flex-fill">
     <button  class="footer-button ripple" *ngFor="let smButton of smButtons" (click)="smButton.callFunction()">
         <i *ngIf="!smButton.href" class="fas neo-icon" [ngClass]="smButton.icon"></i>
-        <a *ngIf="smButton.href" [href]="smButton.href"><i class="fas neo-icon" [ngClass]="smButton.icon"></i></a>
+        <a class="footer-link" *ngIf="smButton.href" [href]="smButton.href"><i class="fas neo-icon" [ngClass]="smButton.icon"></i></a>
     </button>
   </div>
 </footer>
