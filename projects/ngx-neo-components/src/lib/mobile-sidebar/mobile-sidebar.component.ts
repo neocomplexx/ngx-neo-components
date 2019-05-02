@@ -72,7 +72,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.state = State.CLOSED;
       this.mobileSidebarService.isOpen = false;
-    }, 500);
+    }, 250);
   }
 
   public openSidebar() {
@@ -142,8 +142,10 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     this.isTouching = false;
     if (this.x < (SIDEBAR_WIDTH / 2)) {
       this.mobileSidebarService.showSidebar.next(false);
+      this.mobileSidebarService.isOpen = false;
     } else {
       this.mobileSidebarService.showSidebar.next(true);
+      this.mobileSidebarService.isOpen = true;
     }
   }
 
