@@ -1,5 +1,9 @@
-<div class="card">
-    <div class="card-body">
-        <p>Datepicker coming soon!</p>
+<div class="input-group" *ngIf="!isMobile">
+    <input class="form-control form-control-sm" placeholder="dd-mm-yyyy" readonly name="datepicker"
+        [(ngModel)]="ngbModel" ngbDatepicker #de="ngbDatepicker">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary btn-sm calendar" (click)="de.toggle()" type="button"><i
+                class="fa fa-calendar"></i></button>
     </div>
 </div>
+<input *ngIf="isMobile" class="form-control form-control-sm" type="date" [(ngModel)]="dateModel">
