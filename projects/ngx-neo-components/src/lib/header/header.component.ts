@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() iosHeader = false;
 
-  @HostBinding('class.ios-header') setIosHeader() {
+  @HostBinding('class.ios-header') setIosHeader():boolean {
     return this.iosHeader;
   }
 
