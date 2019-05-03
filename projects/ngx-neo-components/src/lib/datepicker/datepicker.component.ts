@@ -16,25 +16,22 @@ export class DatepickerComponent {
 
     public isMobile = false;
 
-    private _ngbModel: NgbDate;
     public get ngbModel(): NgbDate {
-        return this._ngbModel;
+        return this.ngbdate;
     }
     public set ngbModel(value: NgbDate) {
-        this._ngbModel = value;
-        this._dateModel = new Date(value.year, value.month - 1, value.day);
-        this.ngbdateChange.emit(this._ngbModel);
-        this.dateChange.emit(this._dateModel);
+        const dateModel = new Date(value.year, value.month - 1, value.day);
+        this.ngbdateChange.emit(value);
+        this.dateChange.emit(dateModel);
     }
-    private _dateModel: Date;
+
     public get dateModel(): Date {
-        return this._dateModel;
+        return this.date;
     }
     public set dateModel(value: Date) {
-        this._dateModel = value;
-        this._ngbModel = new NgbDate(value.getFullYear(), value.getMonth() + 1, value.getDate());
-        this.dateChange.emit(this._dateModel);
-        this.ngbdateChange.emit(this._ngbModel);
+        const ngbModel = new NgbDate(value.getFullYear(), value.getMonth() + 1, value.getDate());
+        this.dateChange.emit(value);
+        this.ngbdateChange.emit(ngbModel);
     }
 
     constructor(private platform: Platform) {

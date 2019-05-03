@@ -3,7 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
 import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -64,6 +64,9 @@ export class AppComponent implements OnDestroy {
 
   public isMobile = false;
   public resizeSubscription: Subscription = new Subscription();
+
+  public date = new Date();
+  public ngbDate = new NgbDate(2019, 5, 1);
 
   constructor(
     private mobileSidebarService: MobileSidebarService,

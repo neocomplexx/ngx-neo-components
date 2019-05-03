@@ -22,6 +22,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,13 +44,14 @@ import { ConnectionCheckerComponent } from './connection-checker/connection-chec
     StepperComponent,
     StepComponent,
     StepHeaderComponent,
-    ConnectionCheckerComponent
+    ConnectionCheckerComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
     CdkStepperModule,
     RouterModule,
+    FormsModule
   ],
   exports: [
     NgxNeoComponentsComponent,
