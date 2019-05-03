@@ -60,6 +60,21 @@ export const equalDate = (fecha1: Date, fecha2: Date): boolean => {
         fecha1.getFullYear() === fecha2.getFullYear();
 };
 
+// tslint:disable:no-bitwise
+export const stringHash = (value: string) => {
+    let hash = 0;
+    if (value.length === 0) {
+        return hash;
+    }
+    for (let i = 0; i < value.length; i++) {
+        const char = value.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+};
+
+
 
 export interface EnumModel {
     name: string;

@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-components",
-  "version": "7.0.21",
+  "version": "7.0.24",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
