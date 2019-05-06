@@ -14,12 +14,6 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
 
-  @Input() iosHeader = false;
-
-  @HostBinding('class.ios-header') setIosHeader():boolean {
-    return this.iosHeader;
-  }
-
   constructor(private mobileSidebarService: MobileSidebarService,
     public router: Router, public notificationService: NotificationService, public headerService: HeaderService) {
   }
