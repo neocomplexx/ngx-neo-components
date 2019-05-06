@@ -28,6 +28,12 @@ export class DatepickerComponent {
     }
     @Output() ngbdateChange: EventEmitter<NgbDate> = new EventEmitter<NgbDate>();
 
+    @Input() minDateNgb: NgbDate;
+    @Input() maxDateNgb: NgbDate;
+
+    @Input() minDateString: string;
+    @Input() maxDateString: string;
+
     public isMobile = false;
 
     public get ngbModel(): NgbDate {
@@ -58,6 +64,48 @@ export class DatepickerComponent {
         if (this.platform.ANDROID || this.platform.IOS) {
             this.isMobile = true;
         }
+    }
+
+    public getMinDateString(): string {
+        if (this.minDateString) {
+            return this.minDateString;
+        }
+        if (this.minDateNgb) {
+            return this.minDateNgb.year+'-'+this.minDateNgb.month+'-'+this.minDateNgb.day;
+        }
+        return null;
+    }
+
+    public getMaxDateString(): string {
+        if (this.maxDateString) {
+            return this.maxDateString;
+        }
+        if (this.maxDateNgb) {
+            return this.maxDateNgb.year+'-'+this.maxDateNgb.month+'-'+this.maxDateNgb.day;
+        }
+        return null;
+    }
+
+    public getMinDateNgb() {
+        if (this.minDateNgb) {
+            return this.minDateNgb;
+        }
+        if (this.minDateString) {
+            const dateParts = this.minDateString.split('-');
+            return new NgbDate(+dateParts[0], +dateParts[1], +dateParts[2]);
+        }
+        return null;
+    }
+
+    public getMaxDateNgb() {
+        if (this.maxDateNgb) {
+            return this.maxDateNgb;
+        }
+        if (this.maxDateString) {
+            const dateParts = this.maxDateString.split('-');
+            return new NgbDate(+dateParts[0], +dateParts[1], +dateParts[2]);
+        }
+        return null;
     }
 
 
