@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Subject, Subscription, fromEvent, defer, timer, Observable } from 'rxjs';
-import { MobileSidebarService } from './mobile-sidebar.service';
-import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, transition, animate, keyframes } from '@angular/animations';
-import * as kf from '../shared/animations/keyframes';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MobileNotificationBarService } from './mobile-notification-bar.service';
+import * as kf from '../shared/animations/keyframes';
 
 
 enum State {
@@ -17,11 +16,10 @@ enum State {
 const SIDEBAR_WIDTH = 300;
 const SIDEBAR_OPEN_BORDER = 35;
 
-
 @Component({
-  selector: 'neo-mobile-sidebar',
-  templateUrl: './mobile-sidebar.component.html',
-  styleUrls: ['./mobile-sidebar.component.scss'],
+  selector: 'neo-mobile-notification-bar',
+  templateUrl: './mobile-notification-bar.component.html',
+  styleUrls: ['./mobile-notification-bar.component.css'],
   animations: [
     trigger('fadeShadow', [
       transition('CLOSED => OPEN', animate(500, keyframes(kf.fadeIn))),
@@ -29,12 +27,13 @@ const SIDEBAR_OPEN_BORDER = 35;
     ]),
   ]
 })
-export class MobileSidebarComponent implements OnInit, OnDestroy {
+export class MobileNotificationBarComponent implements OnInit {
 
   public showSidebar = false;
-  public x = 0;
-  public startX = 0;
-  public xPrev = 0;
+  public currentWidth = window.screen.availWidth;
+  public x = this.currentWidth;
+  public startX = this.currentWidth;
+  public xPrev = this.currentWidth;
 
   public isTouching = false;
 
@@ -45,7 +44,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   private sidebarShowSubscription: Subscription = new Subscription();
 
 
-  constructor(private mobileSidebarService: MobileSidebarService,
+  constructor(private mobileSidebarService: MobileNotificationBarService,
     public router: Router) { }
 
   ngOnInit() {
@@ -66,9 +65,9 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
 
   public closeSidebar() {
     this.showTransition = true;
-    this.startX = 0;
-    this.x = 0;
-    this.xPrev = 0;
+    this.startX = this.currentWidth;
+    this.x = this.currentWidth;
+    this.xPrev = this.currentWidth;
     setTimeout(() => {
       this.state = State.CLOSED;
       this.mobileSidebarService.isOpen = false;
@@ -80,14 +79,13 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     this.state = State.OPEN;
     this.mobileSidebarService.isOpen = true;
     setTimeout(() => {
-      this.startX = SIDEBAR_WIDTH;
-      this.x = SIDEBAR_WIDTH;
-      this.xPrev = SIDEBAR_WIDTH;
+      this.startX = this.currentWidth - SIDEBAR_WIDTH;
+      this.x = this.currentWidth - SIDEBAR_WIDTH;
+      this.xPrev = this.currentWidth - SIDEBAR_WIDTH;
     });
   }
 
   public onTapBackdrop() {
-    console.log('tap', this.state);
     if (this.state = State.OPEN) {
       this.closeSidebar();
     }
@@ -97,12 +95,12 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     if (this.state === State.CLOSED) {
       return '-100%';
     } else {
-      return (this.x - SIDEBAR_WIDTH) + 'px';
+      return ((this.currentWidth - this.x) - SIDEBAR_WIDTH) + 'px';
     }
   }
 
   public getOpacity() {
-    const value = this.x / SIDEBAR_WIDTH;
+    const value = (this.currentWidth - this.x) / SIDEBAR_WIDTH;
     return value;
   }
 
@@ -114,7 +112,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   public onPanStart(event) {
     this.showTransition = false;
     if (this.state === State.CLOSED // only execute when the sidebar is closed
-      && event.center.x < SIDEBAR_OPEN_BORDER // If pressed on the border
+      && (this.currentWidth - event.center.x) < SIDEBAR_OPEN_BORDER // If pressed on the border
       && Math.abs(event.velocityY) < Math.abs(event.velocityX) // Swiped in the X axis more than the Y
       && event.center.x !== 0 && event.center.y !== 0 // Avoid bug of hammerJS
     ) {
@@ -137,7 +135,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     if (this.state === State.OPENING || this.state === State.CLOSING) {
       const deltaX = event.deltaX;
       const position = this.startX + deltaX;
-      if (position < SIDEBAR_WIDTH) {
+      if ((this.currentWidth - position) < SIDEBAR_WIDTH) {
         this.xPrev = this.x;
         this.x = this.startX + deltaX;
       }
@@ -147,13 +145,19 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   @HostListener('document:panend', ['$event'])
   public onPanEnd(event) {
     this.isTouching = false;
-    if (this.x < (SIDEBAR_WIDTH / 2)) {
+    if ((this.currentWidth - this.x) < (SIDEBAR_WIDTH / 2)) {
       this.mobileSidebarService.showSidebar.next(false);
       this.mobileSidebarService.isOpen = false;
     } else {
       this.mobileSidebarService.showSidebar.next(true);
       this.mobileSidebarService.isOpen = true;
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.currentWidth = window.screen.availWidth;
+    this.closeSidebar();
   }
 
 }

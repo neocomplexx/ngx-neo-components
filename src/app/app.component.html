@@ -1,7 +1,7 @@
 <div class="neo-layout">
   <neo-header></neo-header>
   <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
-  <neo-mobile-sidebar *ngIf="isMobile">
+<!--   <neo-mobile-sidebar *ngIf="isMobile">
     <label class="image-item ">
       <img src="assets/img/logo-lg.png" />
     </label>
@@ -14,7 +14,21 @@
       <a href="#" class="list-group-item list-group-item-action">Configuracion</a>
       <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
     </div>
-  </neo-mobile-sidebar>
+  </neo-mobile-sidebar> -->
+  <neo-mobile-notification-bar *ngIf="isMobile">
+    <label class="image-item ">
+      <img src="assets/img/logo-lg.png" />
+    </label>
+    <div class="list-group border-top">
+      <a href="#" class="list-group-item list-group-item-action">Opción 1</a>
+      <a href="#" class="list-group-item list-group-item-action">Opción 2</a>
+      <a href="#" class="list-group-item list-group-item-action">Opción 3</a>
+    </div>
+    <div class="list-group border-top">
+      <a href="#" class="list-group-item list-group-item-action">Configuracion</a>
+      <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
+    </div>
+  </neo-mobile-notification-bar>
   <div class="d-flex flex-row align-items-stretch h-100">
     <div class="d-none d-lg-flex overflow-auto">
       <neo-sidebar>
