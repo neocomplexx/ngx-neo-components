@@ -69,6 +69,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     this.startX = 0;
     this.x = 0;
     this.xPrev = 0;
+    // The timeout is used to make the trasitions work as intended, first it moves the bar and then it removes the backdrop
     setTimeout(() => {
       this.state = State.CLOSED;
       this.mobileSidebarService.isOpen = false;
@@ -79,6 +80,7 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     this.showTransition = true;
     this.state = State.OPEN;
     this.mobileSidebarService.isOpen = true;
+    // The timeout is used to generate a refresh in the view so the backdrop will appear and then the bar will transition
     setTimeout(() => {
       this.startX = SIDEBAR_WIDTH;
       this.x = SIDEBAR_WIDTH;
@@ -87,25 +89,34 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
   }
 
   public onTapBackdrop() {
-    console.log('tap', this.state);
     if (this.state = State.OPEN) {
-      this.closeSidebar();
+      this.mobileSidebarService.showSidebar.next(false);
     }
   }
 
+  /**
+   * Returns how much the sidebar must be moved to the left while its closed or opening/closing
+   */
   public getTranslation() {
+    // If it's closed it must be moved completely to the left
     if (this.state === State.CLOSED) {
       return '-100%';
-    } else {
+    } else { // Else it will be moved between it's width and 0.
       return (this.x - SIDEBAR_WIDTH) + 'px';
     }
   }
 
+  /**
+   * Returns the opacity the backdrop should have
+   */
   public getOpacity() {
     const value = this.x / SIDEBAR_WIDTH;
     return value;
   }
 
+  /**
+   * Used to verify if the backdrop should appear or not
+   */
   public showBackdrop() {
     return this.state !== State.CLOSED;
   }
@@ -132,6 +143,9 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Called when the bar is being dragged
+   */
   @HostListener('document:pan', ['$event'])
   public onPan(event) {
     if (this.state === State.OPENING || this.state === State.CLOSING) {
@@ -144,6 +158,9 @@ export class MobileSidebarComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Called when the bar is released
+   */
   @HostListener('document:panend', ['$event'])
   public onPanEnd(event) {
     this.isTouching = false;
