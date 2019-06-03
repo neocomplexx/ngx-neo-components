@@ -17,7 +17,7 @@
     "copy-files": "npm run copy-license && npm run copy-readme",
     "postbuild_lib": "scss-bundle -c scss-bundle.config.json",
     "build:cordova": "ng build --configuration=cordova",
-    "build:cordova:debug": "npm run build_lib & ng build  --configuration=cordovaDebug",
+    "build:cordova:debug": "npm run build_lib && ng build  --configuration=cordovaDebug",
     "cordova:android": "cd ./cordova && cordova run android --device",
     "cordova:ios": "cd ./cordova && cordova build ios",
     "build:run:android": "npm run build:cordova && npm run cordova:android",

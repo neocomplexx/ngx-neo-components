@@ -23,6 +23,7 @@ import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
 import { FormsModule } from '@angular/forms';
+import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FormsModule } from '@angular/forms';
     StepComponent,
     StepHeaderComponent,
     ConnectionCheckerComponent,
+    MobileNotificationBarComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { FormsModule } from '@angular/forms';
     UndoElementsDirective,
     StepperComponent,
     StepComponent,
-    ConnectionCheckerComponent
+    ConnectionCheckerComponent,
+    MobileNotificationBarComponent,
   ]
 })
 export class NgxNeoComponentsModule { }

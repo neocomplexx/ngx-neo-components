@@ -2,12 +2,19 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
+/**
+ * This component uses the native datepicker in mobile devices and the ngbootstrap
+ * datepicker in desktop.
+ * The component can receive either a javascript date or a NgbDate.
+ */
 @Component({
     selector: 'neo-datepicker',
     templateUrl: './datepicker.component.html'
 })
 export class DatepickerComponent {
 
+    // we use a private property so when the other has to modify it it wont cause an 
+    // infinite loop
     private _date: Date;
     @Input() set date(value: Date) {
         this._date = value;
@@ -18,24 +25,26 @@ export class DatepickerComponent {
     }
     @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 
+    // we use a private property so when the other has to modify it it wont cause an 
+    // infinite loop
     private _ngbdate: NgbDate;
     @Input() set ngbdate(value: NgbDate) {
         this._ngbdate = value;
         this._date = new Date(value.year, value.month - 1, value.day);
     };
-    get ngbdate(): NgbDate {
+    get ngbdate(): NgbDate {
         return this._ngbdate;
     }
     @Output() ngbdateChange: EventEmitter<NgbDate> = new EventEmitter<NgbDate>();
 
     @Input() minDateNgb: NgbDate;
     @Input() maxDateNgb: NgbDate;
-
     @Input() minDateString: string;
     @Input() maxDateString: string;
 
     public isMobile = false;
 
+    // Get and set used by the NgBootstrap datepicker
     public get ngbModel(): NgbDate {
         return this.ngbdate;
     }
@@ -45,6 +54,7 @@ export class DatepickerComponent {
         this.dateChange.emit(dateModel);
     }
 
+     // Get and set used by the native datepicker
     public get dateModel(): string {
         if (this.date) {
             return this.date.toISOString().substring(0, 10);
@@ -71,7 +81,7 @@ export class DatepickerComponent {
             return this.minDateString;
         }
         if (this.minDateNgb) {
-            return this.minDateNgb.year+'-'+this.minDateNgb.month+'-'+this.minDateNgb.day;
+            return this.minDateNgb.year + '-' + this.minDateNgb.month + '-' + this.minDateNgb.day;
         }
         return null;
     }
@@ -81,7 +91,7 @@ export class DatepickerComponent {
             return this.maxDateString;
         }
         if (this.maxDateNgb) {
-            return this.maxDateNgb.year+'-'+this.maxDateNgb.month+'-'+this.maxDateNgb.day;
+            return this.maxDateNgb.year + '-' + this.maxDateNgb.month + '-' + this.maxDateNgb.day;
         }
         return null;
     }

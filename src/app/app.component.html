@@ -15,6 +15,22 @@
       <a href="#" class="list-group-item list-group-item-action">Cerrar Sesión</a>
     </div>
   </neo-mobile-sidebar>
+  <neo-mobile-notification-bar *ngIf="isMobile">
+    <div class="mt-1" *ngFor="let noti of this.notifications">
+      <neo-slider *ngIf="noti.show" [leftIcon]="'fas fa-archive'" [leftText]="''" [rightIcon]="'fas fa-trash'"
+        [rightText]="''" [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
+        (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
+        [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
+        [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText">
+        <!--[neoUndo]="neoUndo"-->
+        <div class="card">
+          <div class="card-body">
+            <p>{{noti.text}}</p>
+          </div>
+        </div>
+      </neo-slider>
+    </div>
+  </neo-mobile-notification-bar>
   <div class="d-flex flex-row align-items-stretch h-100">
     <div class="d-none d-lg-flex overflow-auto">
       <neo-sidebar>
@@ -91,35 +107,35 @@
             {{date}}
             {{ngbDate | json}}
           </div>
-      </section>
-      <section class="mt-1">
-        <h5>OPEN MODAL</h5>
-        <div class="row">
-          <div class="col form-group">
-            <button class="btn btn-primary btn-sm" (click)="openModal()" >Modal</button>
+        </section>
+        <section class="mt-1">
+          <h5>OPEN MODAL</h5>
+          <div class="row">
+            <div class="col form-group">
+              <button class="btn btn-primary btn-sm" (click)="openModal()">Modal</button>
+            </div>
+            <div class="col form-group">
+              <button class="btn btn-primary btn-sm" (click)="openModalLarge()">Modal large</button>
+            </div>
           </div>
-          <div class="col form-group">
-            <button class="btn btn-primary btn-sm" (click)="openModalLarge()">Modal large</button>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="mt-1 mb-1">
-          <h5>Stepper</h5>
-          <neo-stepper>
+        </section>
+        <section>
+          <div class="mt-1 mb-1">
+            <h5>Stepper</h5>
+            <neo-stepper>
               <neo-step>
                 <p>Good morning</p>
               </neo-step>
               <neo-step>
-                  <p>Good afternoon</p>
-                </neo-step>
-                <neo-step>
-                    <p>Good evening</p>
-                  </neo-step>
-                  <neo-step>
-                      <p>Good night</p>
-                    </neo-step>
-                  <!-- <form >
+                <p>Good afternoon</p>
+              </neo-step>
+              <neo-step>
+                <p>Good evening</p>
+              </neo-step>
+              <neo-step>
+                <p>Good night</p>
+              </neo-step>
+              <!-- <form >
                     <ng-template matStepLabel>Fill out your name</ng-template>
 
                       <input matInput placeholder="Last name, First name" required>
@@ -128,9 +144,9 @@
                       <button mat-button matStepperNext>Next</button>
                     </div>
                   </form> -->
-                <!-- </cdk-step>
+              <!-- </cdk-step>
                 <cdk-step> -->
-                  <!-- <form>
+              <!-- <form>
                     <ng-template matStepLabel>Fill out your address</ng-template>
 
                       <input matInput placeholder="Address" required>
@@ -140,27 +156,27 @@
                       <button mat-button matStepperNext>Next</button>
                     </div>
                   </form> -->
-                <!-- </cdk-step>
+              <!-- </cdk-step>
                 <cdk-step> -->
-                  <!-- <ng-template matStepLabel>Done</ng-template>
+              <!-- <ng-template matStepLabel>Done</ng-template>
                   You are now done.
                   <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button (click)="stepper.reset()">Reset</button>
                   </div> -->
-                <!-- </cdk-step> -->
-          </neo-stepper>
-        </div>
-      </section>
+              <!-- </cdk-step> -->
+            </neo-stepper>
+          </div>
+        </section>
+      </div>
     </div>
+    <neo-undo></neo-undo>
+    <neo-footer [smButtons]="buttons">
+      <div class="d-flex justify-content-center align-items-center">
+        <label>Mail &nbsp;</label>
+        <label> Phone &nbsp;</label>
+        <label>Other Info</label>
+        <label> &nbsp; Version:</label>
+      </div>
+    </neo-footer>
   </div>
-  <neo-undo></neo-undo>
-  <neo-footer [smButtons]="buttons">
-    <div class="d-flex justify-content-center align-items-center">
-      <label>Mail &nbsp;</label>
-      <label> Phone &nbsp;</label>
-      <label>Other Info</label>
-      <label> &nbsp; Version:</label>
-  </div>
-  </neo-footer>
-</div>
