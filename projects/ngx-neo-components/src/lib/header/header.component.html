@@ -24,7 +24,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="animated bell-container ripple" (click)="clearBell()"
-        [routerLink]="(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']">
+        [routerLink]="['/notifications']"> <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
         <i class="fas fa-bell neo-icon notification animated" [class.show-count]="notificationService.notificationsNotSeen !== 0"
           [class.notify]="notificationService.notificationsNotSeen !== 0"
           [class.notification-high]="notificationService.notificationMaxPriority == 2"
