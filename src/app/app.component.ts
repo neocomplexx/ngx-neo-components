@@ -1,7 +1,7 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Component, HostListener, OnDestroy } from '@angular/core';
-import { HeaderService, MobileSidebarService, Labeled } from 'ngx-neo-components';
+import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';
 import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
 import { NgbModal, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
@@ -15,6 +15,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent implements OnDestroy {
 
 
+  @ViewChild('listC') listC: ListComponent;
+
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
@@ -22,7 +24,7 @@ export class AppComponent implements OnDestroy {
 
   // Keyboard list section
   users = new Array<User>();
-  public lastIndexSelected = 2;
+  public lastIndexSelected = 1232;
   public selected: User;
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
@@ -192,6 +194,7 @@ export class AppComponent implements OnDestroy {
   public undoSwipeRight() {
     this.notificacionObtenida.show = true;
     //  this.notificacionObtenida = undefined;
+    this.listC.index = 222;
   }
   public undoSwipeLeft() {
     this.notificacionObtenida.show = true;

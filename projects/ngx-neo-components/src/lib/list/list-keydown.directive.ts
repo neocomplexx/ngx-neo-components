@@ -54,7 +54,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
       });
 
       this.focusFunction = this.renderer.listen(this.htmlElement, 'focus', (event: FocusEvent) => {
-       this.listService.keyManager.setActiveItem(-1);
+        this.listService.keyManager.setActiveItem(-1);
       });
 
     } else {
@@ -65,7 +65,7 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   private initPreselectedIndex(): void {
     this.listService.itemsLength = this.items.length;
     // If the list is loaded on init, we select the elment and set preSelect to null so it's not used again on change event.
-    if (this.listService.preSelectIndex && this.listService.preSelectIndex < this.items.length) {
+    if (this.listService.preSelectIndex != null && this.listService.preSelectIndex < this.items.length) {
       this.selectItem();
     }
 
@@ -73,10 +73,8 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.subs.add(
       this.items.changes.subscribe(() => {
         this.listService.itemsLength = this.items.length;
-        if (this.listService.preSelectIndex) {
-          if (this.listService.preSelectIndex < this.items.length) {
-            this.selectItem();
-          }
+        if (this.listService.preSelectIndex != null && this.listService.preSelectIndex < this.items.length) {
+          this.selectItem();
         }
       }));
   }

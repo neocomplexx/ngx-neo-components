@@ -13,6 +13,14 @@ import { Labeled } from './list-item.component';
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
+
+  public set index(i: number) {
+    this.listService.keyManager.setActiveItem(i);
+    this.listService.emitSelectedIndex();
+    this.listService.executeCommand();
+  }
+
+
   @HostBinding('attr.tabindex') tabindex = -1;
 
   private subs = new Subscription();
