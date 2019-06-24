@@ -194,7 +194,7 @@ export class AppComponent implements OnDestroy {
   public undoSwipeRight() {
     this.notificacionObtenida.show = true;
     //  this.notificacionObtenida = undefined;
-    this.listC.index = 222;
+    this.listC.index = 1;
   }
   public undoSwipeLeft() {
     this.notificacionObtenida.show = true;

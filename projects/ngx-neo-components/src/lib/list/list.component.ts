@@ -15,9 +15,11 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
 
   public set index(i: number) {
-    this.listService.keyManager.setActiveItem(i);
-    this.listService.emitSelectedIndex();
-    this.listService.executeCommand();
+    setTimeout(() => {
+      this.listService.keyManager.setActiveItem(i);
+      this.listService.emitSelectedIndex();
+      this.listService.executeCommand();
+    }, 5);
   }
 
 
