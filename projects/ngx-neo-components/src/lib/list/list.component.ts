@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit, HostBinding, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { ListService } from './list.service';
 import { Labeled } from './list-item.component';
 
@@ -13,13 +13,13 @@ import { Labeled } from './list-item.component';
 })
 export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
-
   public set index(i: number) {
-    setTimeout(() => {
+    const timerObj = timer(5);
+    this.subs.add(timerObj.subscribe(() => {
       this.listService.keyManager.setActiveItem(i);
       this.listService.emitSelectedIndex();
       this.listService.executeCommand();
-    }, 5);
+    }));
   }
 
 
