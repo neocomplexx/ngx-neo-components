@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationService } from './notification/notification.service';
 import { HeaderService } from './header.service';
 import { Subscription } from 'rxjs';
+import { SidebarService } from '../sidebar/sidebar.service';
 
 @Component({
   selector: 'neo-header',
@@ -13,9 +14,10 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
+  @Input() public colapsableSidebar = false;
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    public router: Router, public notificationService: NotificationService, public headerService: HeaderService) {
+    public router: Router, public notificationService: NotificationService, private sidebarSerive:SidebarService, public headerService: HeaderService) {
   }
 
   ngOnInit() {
@@ -23,6 +25,11 @@ export class HeaderComponent implements OnInit {
 
   public showSidebar() {
     this.mobileSidebarService.showSidebar.next(true);
+
+  }
+
+  public toggleSidebar() {
+    this.sidebarSerive.toggleSidebar.next();
   }
 
   public clearBell() {

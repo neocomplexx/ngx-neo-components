@@ -1,7 +1,8 @@
 <div class="neo-layout">
-  <neo-header></neo-header>
+  <neo-header [colapsableSidebar]="false"></neo-header>
   <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
   <neo-mobile-sidebar *ngIf="isMobile">
+    
     <label class="image-item ">
       <img src="assets/img/logo-lg.png" />
     </label>
@@ -34,15 +35,28 @@
   <div class="d-flex flex-row align-items-stretch h-100">
     <div class="d-none d-lg-flex overflow-auto">
       <neo-sidebar>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action active">
-            Cras justo odio
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-          <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-          <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-        </div>
+        <ng-container ngProjectAs="full-sidebar">
+          <div class="list-group list-open-toggle">
+            <a href="#" class="list-group-item list-group-item-action active">
+              Cras justo odio
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+          </div>
+        </ng-container>
+        <ng-container ngProjectAs="small-sidebar">
+          <div class="list-group list-close-toggle">
+            <a href="#" class="list-group-item list-group-item-action active">
+              Cr
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">D</a>
+            <a href="#" class="list-group-item list-group-item-action">M</a>
+            <a href="#" class="list-group-item list-group-item-action">P</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">V</a>
+          </div>
+        </ng-container>
       </neo-sidebar>
     </div>
     <div class="flex-grow-1 h-100 overflow-auto pt-5" #scrolledElement>

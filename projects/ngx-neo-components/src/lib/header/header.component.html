@@ -1,4 +1,10 @@
 <nav class="navbar navbar-expand-lg neo-navbar">
+  <!-- Colapse sidebar -->
+  <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
+    <span class="navbar-toggler-icon">
+      <i class="fas fa-bars neo-icon"></i>
+    </span>
+  </button>
   <!-- Brand Desktop -->
   <a class="navbar-brand d-none d-lg-block" href="#">
     <img class="lg-logo" src="assets/img/logo-lg.png" alt="">

@@ -210,6 +210,23 @@ neo-undo {
   color: #1d84bf;
 }
 
+.sidebar-toggle {
+  border-color: transparent;
+  outline: none !important;
+  margin-right: 10px;
+  cursor: pointer;
+}
+@media (max-width: 991px) {
+  .sidebar-toggler {
+    display: none!important;
+  }
+}
+@media (min-width: 992px) {
+  .sidebar-toggler {
+    display: block!important;
+  }
+}
+
 .bell-container {
   margin: -10px -10px -10px -5px;
   padding: 10px;

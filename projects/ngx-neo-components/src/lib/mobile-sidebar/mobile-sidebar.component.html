@@ -1,8 +1,11 @@
-
-  <div class="mobile-sidebar neo-mobile-sidebar overflow-auto" [ngClass]="{'mobile-sidebar-transition': !isTouching}" [style.left]="getTranslation()">
-    <neo-sidebar>
+<div class="mobile-sidebar neo-mobile-sidebar overflow-auto" [ngClass]="{'mobile-sidebar-transition': !isTouching}"
+  [style.left]="getTranslation()">
+  <neo-sidebar>
+    <ng-container ngProjectAs="full-sidebar">
       <ng-content></ng-content>
-    </neo-sidebar>
-  </div>
+    </ng-container>
+  </neo-sidebar>
+</div>
 
-  <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}" [@fadeShadow]="state" (tap)="onTapBackdrop()" [style.opacity]="getOpacity()"></div>
+<div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}"
+  [@fadeShadow]="state" (tap)="onTapBackdrop()" [style.opacity]="getOpacity()"></div>
