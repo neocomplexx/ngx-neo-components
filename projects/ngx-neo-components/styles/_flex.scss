@@ -7,3 +7,34 @@
     display: -ms-inline-flexbox!important;
     display: inline-flex!important;
 }
+
+.flex-fill {
+    -ms-flex: 1 1 auto!important;
+    flex: 1 1 auto!important;
+}
+
+@media (min-width: 576px) {
+.d-sm-flex {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+
+.d-sm-inline-flex {
+    display: -ms-inline-flexbox!important;
+    display: inline-flex!important;
+}
+
+}
+
+@media (min-width: 768px) {
+.d-md-flex {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+
+.d-md-inline-flex {
+    display: -ms-inline-flexbox!important;
+    display: inline-flex!important;
+}
+
+}
