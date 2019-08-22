@@ -12,7 +12,7 @@ import { SliderComponent } from './slider/slider.component';
 import { ListKeydownDirective } from './list/list-keydown.directive';
 import { SortableTableDirective } from './sortable-table/sortable-table.directive';
 import { SortableColumnComponent } from './sortable-table/sortable-column.component';
-import { DatepickerComponent } from './datepicker/datepicker.component';
+//import { DatepickerComponent } from './datepicker/datepicker.component';
 import { UndoComponent } from './undo-component/undo.component';
 import { UndoElementsDirective } from './undo-component/undo-elements.directive';
 import { StepperComponent } from './stepper/stepper.component';
@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
 import { FormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
+import { NgxSharedModule } from './ngx-shared.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-    DatepickerComponent,
+  //  DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
@@ -51,7 +52,8 @@ import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile
     CommonModule,
     CdkStepperModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxSharedModule
   ],
   exports: [
     NgxNeoComponentsComponent,
@@ -66,7 +68,7 @@ import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-    DatepickerComponent,
+   // DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
