@@ -6,9 +6,9 @@
     "@angular/core": "^7.1.0",
     "@angular/router": "^7.1.0",
     "hammerjs": "^2.0.8",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@angular/cdk": "^7.3.6",
     "@angular/animations": "~7.1.0",
+    "@angular/material": "~8.1.3",
     "@neocomplexx/ngx-neo-directives": "^7.0.9"
   }
 }
