@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+/* import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-
+ */
 /**
  * This component uses the native datepicker in mobile devices and the ngbootstrap
  * datepicker in desktop.
  * The component can receive either a javascript date or a NgbDate.
- */
+
 @Component({
     selector: 'neo-datepicker',
     templateUrl: './datepicker.component.html'
@@ -121,3 +121,4 @@ export class DatepickerComponent {
 
 
 }
+*/
