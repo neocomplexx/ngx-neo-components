@@ -2,7 +2,7 @@ import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Labeled, ListItemComponent } from './list-item.component';
 import { ListService } from './list.service';
-import { ICommand } from '@neocomplexx/ngx-neo-directives';
+import { ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 import { Subscription } from 'rxjs';
 
 @Directive({

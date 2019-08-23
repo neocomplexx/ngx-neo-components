@@ -1,4 +1,4 @@
-import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';

@@ -24,6 +24,12 @@
       ],
       "ngx-neo-components/*": [
         "dist/ngx-neo-components/*"
+      ],
+      "ngx-neo-components-mat": [
+        "dist/ngx-neo-components-mat"
+      ],
+      "ngx-neo-components-mat/*": [
+        "dist/ngx-neo-components-mat/*"
       ]
     }
   }
