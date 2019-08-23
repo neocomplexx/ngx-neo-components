@@ -36,7 +36,7 @@
     a.list-group-item {
       background: #f5f5f5;
       border: 0;
-      color: $stl-color-primary;
+     // color: $stl-color-primary;
     }
 
     a:hover {
@@ -44,7 +44,7 @@
     }
 
     a.router-link-active {
-      background: $stl-color-background;
+   //   background: $stl-color-background;
       border-bottom: 3px solid grey !important;
     }
 
