@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import 'dist/ngx-neo-components/styles/main.scss';
-/*
+
 .lg-logo{
   width: 150px;
   height: 24px;
@@ -57,10 +57,10 @@
 
 .footer-button.ripple {
   background-color: #ffffff;
-}*/
+}
 
 /* Ripple effect */
-/*.ripple {
+.ripple {
   background-position: center;
   transition: background 0.8s;
 }
@@ -82,4 +82,3 @@
     font-size: 1.3rem;
   }
 }
-*/
