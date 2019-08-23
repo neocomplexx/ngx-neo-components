@@ -2,9 +2,6 @@ import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';
-import { PopUpPruebaComponent } from './pop-up-prueba/pop-up-prueba.component';
-import { NgbModal, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { PopUpPruebaLargoComponent } from './pop-up-prueba-largo/pop-up-prueba-largo.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -15,12 +12,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent implements OnDestroy {
 
 
-  @ViewChild('listC') listC: ListComponent;
+ /* @ViewChild('listC') listC: ListComponent;
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
-  public model;
+  public model;*/
 
   // Keyboard list section
   users = new Array<User>();
@@ -68,12 +65,11 @@ export class AppComponent implements OnDestroy {
   public resizeSubscription: Subscription = new Subscription();
 
   public date = new Date();
-  public ngbDate = new NgbDate(2019, 5, 1);
+//  public ngbDate = new NgbDate(2019, 5, 1);
 
   constructor(
-    private mobileSidebarService: MobileSidebarService,
-    public modalService: NgbModal,
-    private breakpointObserver: BreakpointObserver,
+ /*   private mobileSidebarService: MobileSidebarService,*/
+    private breakpointObserver: BreakpointObserver
   ) {
 
     this.resizeSubscription.add(breakpointObserver.observe([
@@ -87,7 +83,7 @@ export class AppComponent implements OnDestroy {
       }
     }));
 
-    setTimeout(() => {// Emulate async init
+ /*   setTimeout(() => {// Emulate async init
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
@@ -133,7 +129,7 @@ export class AppComponent implements OnDestroy {
     const notification2 = new Notification();
     notification2.show = true;
     notification2.text = 'Soy otra notificacion con swipe';
-    this.notifications.push(notification2);
+    this.notifications.push(notification2);*/
   }
 
   ngOnDestroy() {
@@ -152,7 +148,7 @@ export class AppComponent implements OnDestroy {
     console.log('leaver:', user);
   }
 
-
+/*
   public onNotifySwipeRight(notif: Notification) {
     this.notificacionObtenida = notif;
     this.undoMessage = '1 archivada';
@@ -232,13 +228,13 @@ export class AppComponent implements OnDestroy {
 
 
   public openModal(): void {
-    const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+   // const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
 
   public openModalLarge(): void {
-    const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  //  const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
-
+*/
 }
 
 class User implements Labeled {

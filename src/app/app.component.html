@@ -1,5 +1,5 @@
 <div class="neo-layout">
-  <neo-header [colapsableSidebar]="false"></neo-header>
+  <!-- <neo-header [colapsableSidebar]="false"></neo-header>
   <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
   <neo-mobile-sidebar *ngIf="isMobile">
     
@@ -22,9 +22,9 @@
         [rightText]="''" [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
         (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
         [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
-        [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText">
+        [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText"> -->
         <!--[neoUndo]="neoUndo"-->
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body">
             <p>{{noti.text}}</p>
           </div>
@@ -61,7 +61,7 @@
     </div>
     <div class="flex-grow-1 h-100 overflow-auto pt-5" #scrolledElement>
       <div class="container-fluid">
-        <!--       <router-outlet></router-outlet> -->
+
         <div class="form-group">
           <input class="form-control" placeholder="Search..." #input>
         </div>
@@ -85,9 +85,9 @@
               [rightText]="''" [leftBackground]="'neo-slider-primary'" [rightBackground]="'neo-slider-secondary'"
               (notifySwipeLeft)="onNotifySwipeLeft(noti)" (notifySwipeRight)="onNotifySwipeRight(noti)"
               [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut"
-              [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText">
+              [undoTimeOutLapse]="undoTimeOutLapse" [undoActionText]="actionText"> -->
               <!--[neoUndo]="neoUndo"-->
-              <div class="card">
+              <!-- <div class="card">
                 <div class="card-body">
                   <p>{{noti.text}}</p>
                 </div>
@@ -117,9 +117,7 @@
         </section>
         <section>
           <div class="mt-3">
-            <neo-datepicker [(ngbdate)]="ngbDate" [minDateNgb]="ngbDate"></neo-datepicker>
-            {{date}}
-            {{ngbDate | json}}
+ 
           </div>
         </section>
         <section class="mt-1">
@@ -149,36 +147,7 @@
               <neo-step>
                 <p>Good night</p>
               </neo-step>
-              <!-- <form >
-                    <ng-template matStepLabel>Fill out your name</ng-template>
-
-                      <input matInput placeholder="Last name, First name" required>
-
-                    <div>
-                      <button mat-button matStepperNext>Next</button>
-                    </div>
-                  </form> -->
-              <!-- </cdk-step>
-                <cdk-step> -->
-              <!-- <form>
-                    <ng-template matStepLabel>Fill out your address</ng-template>
-
-                      <input matInput placeholder="Address" required>
-
-                    <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
-                    </div>
-                  </form> -->
-              <!-- </cdk-step>
-                <cdk-step> -->
-              <!-- <ng-template matStepLabel>Done</ng-template>
-                  You are now done.
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                  </div> -->
-              <!-- </cdk-step> -->
+ 
             </neo-stepper>
           </div>
         </section>
@@ -192,5 +161,5 @@
         <label>Other Info</label>
         <label> &nbsp; Version:</label>
       </div>
-    </neo-footer>
+    </neo-footer> -->
   </div>

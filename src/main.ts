@@ -11,8 +11,8 @@ if (environment.production) {
 }
 
 const bootstrap = () => {
-  platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.log(err));
+  // platformBrowserDynamic().bootstrapModule(AppModule)
+  //   .catch(err => console.log(err)); -> CAMBIAR POR MATERIAL
 };
 
 const isCordovaApp = () => {
