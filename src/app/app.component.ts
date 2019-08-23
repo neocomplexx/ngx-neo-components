@@ -12,12 +12,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent implements OnDestroy {
 
 
- /* @ViewChild('listC') listC: ListComponent;
+ @ViewChild('listC') listC: ListComponent;
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
-  public model;*/
+  public model;
 
   // Keyboard list section
   users = new Array<User>();
@@ -68,7 +68,7 @@ export class AppComponent implements OnDestroy {
 //  public ngbDate = new NgbDate(2019, 5, 1);
 
   constructor(
- /*   private mobileSidebarService: MobileSidebarService,*/
+    private mobileSidebarService: MobileSidebarService,
     private breakpointObserver: BreakpointObserver
   ) {
 
@@ -83,7 +83,7 @@ export class AppComponent implements OnDestroy {
       }
     }));
 
- /*   setTimeout(() => {// Emulate async init
+   setTimeout(() => {// Emulate async init
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
@@ -129,7 +129,7 @@ export class AppComponent implements OnDestroy {
     const notification2 = new Notification();
     notification2.show = true;
     notification2.text = 'Soy otra notificacion con swipe';
-    this.notifications.push(notification2);*/
+    this.notifications.push(notification2);
   }
 
   ngOnDestroy() {
@@ -148,7 +148,7 @@ export class AppComponent implements OnDestroy {
     console.log('leaver:', user);
   }
 
-/*
+
   public onNotifySwipeRight(notif: Notification) {
     this.notificacionObtenida = notif;
     this.undoMessage = '1 archivada';
@@ -234,7 +234,7 @@ export class AppComponent implements OnDestroy {
   public openModalLarge(): void {
   //  const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
-*/
+
 }
 
 class User implements Labeled {
