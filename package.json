@@ -12,8 +12,8 @@
     "npm_pack": "cd dist/ngx-neo-components && npm pack",
     "package": "npm run build_lib && npm run copy-files && npm run npm_pack",
     "debug": "npm run build_lib && ng serve --vendorSourceMap",
-    "copy-license": "cp LICENSE ./dist/ngx-neo-components",
-    "copy-readme": "cp README.md ./dist/ngx-neo-components",
+    "copy-license": "copy .\\LICENSE .\\dist\\ngx-neo-components",
+    "copy-readme": "copy .\\README.md .\\dist\\ngx-neo-components",
     "copy-files": "npm run copy-license && npm run copy-readme",
     "postbuild_lib": "scss-bundle -c scss-bundle.config.json",
 
@@ -22,10 +22,10 @@
     "npm_pack_mat": "cd dist/ngx-neo-components-mat && npm pack",
     "package_mat": "npm run build_lib_mat && npm run copy-files_mat && npm run npm_pack_mat",
     "debug_mat": "npm run build_lib_mat && ng serve --vendorSourceMap",
-    "copy-license_mat": "cp LICENSE ./dist/ngx-neo-components-mat",
-    "copy-readme_mat": "cp README.md ./dist/ngx-neo-components-mat",
+    "copy-license_mat": "copy .\\dist\\ngx-neo-components-mat",
+    "copy-readme_mat": "copy README.md .\\dist\\ngx-neo-components-mat",
     "copy-files_mat": "npm run copy-license && npm run copy-readme",
-    "postbuild_lib_mat": "scss-bundle -c scss-bundle.config.json",
+    "postbuild_lib_mat": "scss-bundle -c scss-bundle-mat.config.json",
 
 
     "build:cordova": "ng build --configuration=cordova",

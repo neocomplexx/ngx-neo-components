@@ -1,0 +1,4 @@
+{
+    "entry": "./projects/ngx-neo-components-mat/styles/_main.scss",
+    "dest": "./dist/ngx-neo-components-mat/styles/_main.scss"
+}
