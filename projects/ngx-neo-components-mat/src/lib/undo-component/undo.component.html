@@ -1,0 +1,6 @@
+<div class="neo-undo" *ngIf="showUndo" @fade>
+    <div class="undo-content d-flex flex-fill nowrap flex-nowrap justify-content-between align-items-center">
+            <label>{{undoService.undoMessaje}}</label>
+            <a (click)="undoAction()" >{{undoService.undoActionText}}</a>
+    </div>
+</div>

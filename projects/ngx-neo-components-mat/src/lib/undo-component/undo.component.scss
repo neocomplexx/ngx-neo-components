@@ -1,0 +1,27 @@
+.neo-undo {
+    margin-bottom: 0.3rem;
+    padding: .5rem 1rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+    a {
+        color: #74a5ea;
+    }
+    label {
+        color: white;
+        margin-bottom: 0;
+    }
+}
+
+.undo-content {
+    background: black;
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+}
+
+neo-undo {
+    z-index: 500;
+    width: 100%;
+}

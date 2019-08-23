@@ -87,17 +87,20 @@
       <div class="container-fluid">
 
         <div class="form-group">
-          <input class="form-control" placeholder="Search..." #input>
+          <!-- <input class="form-control" placeholder="Search..." #input> -->
+          <input matInput placeholder="Search ..." #input>
         </div>
 
         <section class="list-group">
+            <mat-list>
           <neo-list #listC (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
             [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
             [commandOnClick]="true" [commandOnEnter]="true">
             <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
-              {{user.name }}
+              <mat-list-item> {{user.name }}</mat-list-item>
             </neo-list-item>
           </neo-list>
+        </mat-list>
         </section>
 
         <section>

@@ -1,0 +1,8 @@
+
+  <div class="mobile-notification-bar neo-notification-bar  overflow-auto" [ngClass]="{'mobile-sidebar-transition': !isTouching}" [style.right]="getTranslation()">
+    <neo-sidebar>
+      <ng-content></ng-content>
+    </neo-sidebar>
+  </div>
+
+  <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}" [@fadeShadow]="state" (tap)="onTapBackdrop" [style.opacity]="getOpacity()"></div>

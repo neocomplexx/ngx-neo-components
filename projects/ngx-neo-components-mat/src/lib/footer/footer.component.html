@@ -1,0 +1,11 @@
+<footer class="footer neo-footer d-flex" [ngClass]="{'footer-border': border, 'footer-transparent': transparent}">
+  <div class="d-none d-lg-block w-100">
+    <ng-content></ng-content>
+  </div>
+  <div class="d-flex d-lg-none justify-content-around align-items-center flex-fill">
+    <button  class="footer-button ripple" *ngFor="let smButton of smButtons" (click)="smButton.callFunction()">
+        <i *ngIf="!smButton.href" class="fas neo-icon" [ngClass]="smButton.icon"></i>
+        <a class="footer-link" *ngIf="smButton.href" [href]="smButton.href"><i class="fas neo-icon" [ngClass]="smButton.icon"></i></a>
+    </button>
+  </div>
+</footer>

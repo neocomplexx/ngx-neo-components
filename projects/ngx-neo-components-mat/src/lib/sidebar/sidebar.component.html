@@ -1,0 +1,4 @@
+<div class="neo-sidebar" [class.neo-sidebar-closed]="!open"><!--[ngStyle]="{'width':open ? 'initial' : '30px' }"-->
+  <ng-content *ngIf="open" select="full-sidebar"></ng-content>
+  <ng-content *ngIf="!open" select="small-sidebar"></ng-content>
+</div>

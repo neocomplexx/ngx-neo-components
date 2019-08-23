@@ -1,0 +1,71 @@
+$neo-stepper-label-header-height: 24px !default;
+$neo-stepper-label-min-width: 50px !default;
+$neo-stepper-side-gap: 24px !default;
+$neo-vertical-stepper-content-margin: 36px !default;
+$neo-stepper-line-gap: 8px !default;
+$neo-step-sub-label-font-size: 12px;
+$neo-step-header-icon-size: 16px !default;
+
+.neo-step-header {
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  box-sizing: content-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.neo-step-optional,
+.neo-step-sub-label-error {
+  font-size: $neo-step-sub-label-font-size;
+}
+
+.neo-step-icon {
+  border-radius: 50%;
+  height: $neo-stepper-label-header-height;
+  width: $neo-stepper-label-header-height;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.neo-step-icon-content,
+.neo-step-icon .neo-icon {
+  // Use absolute positioning to center the content, because it works better with text.
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.neo-step-icon .neo-icon {
+  font-size: $neo-step-header-icon-size;
+  height: $neo-step-header-icon-size;
+  width: $neo-step-header-icon-size;
+}
+
+.neo-step-icon-state-error .neo-icon {
+  font-size: $neo-step-header-icon-size + 8;
+  height: $neo-step-header-icon-size + 8;
+  width: $neo-step-header-icon-size + 8;
+}
+
+.neo-step-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: $neo-stepper-label-min-width;
+  vertical-align: middle;
+}
+
+.neo-step-text-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// Increase specificity because ripple styles are part of the `neo-core` mixin and can
+// potentially overwrite the absolute position of the container.
+// .neo-step-header .neo-step-header-ripple {
+//   @include neo-fill;
+//   pointer-events: none;
+// }

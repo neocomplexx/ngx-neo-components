@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-neo-components-mat',
+  selector: 'neo-ngx-neo-components',
   template: `
     <p>
-      ngx-neo-components-mat works!
+      ngx-neo-components works!
     </p>
   `,
   styles: []
 })
-export class NgxNeoComponentsMatComponent implements OnInit {
+export class NgxNeoComponentsComponent implements OnInit {
 
   constructor() { }
 

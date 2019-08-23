@@ -1,0 +1,60 @@
+.slider{
+    display: flex;
+}
+ 
+.slider-panel{
+    width: 100%;
+    z-index: 2;
+}
+
+.slider-panel-auxiliar{
+    z-index: 1;
+    position: absolute;
+}
+ 
+
+.has-slider{
+    overflow: hidden;
+    width: 100%
+}
+
+.leyenda-slider-izq{
+    position: absolute;
+    z-index: 2;
+    left: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .btn {
+        color: white;
+    }
+}
+
+.leyenda-slider-der {
+    position: absolute;
+    right: 1%;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .btn {
+        color: white;
+    }
+}
+
+.slideable {
+    z-index: 3;
+}
+
+.neo-slider {
+    border-radius: .4rem;
+    overflow: hidden;
+}
+
+.position-relative {
+    position: relative !important;
+}
+
+.position-absolute {
+    position: absolute !important;
+}

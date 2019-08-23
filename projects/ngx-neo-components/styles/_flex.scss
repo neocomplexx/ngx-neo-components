@@ -279,6 +279,16 @@
     flex-direction: column-reverse!important;
 }
 
+// Displays
+
+.d-lg-block {
+    display: block!important;
+}
+
+.d-lg-none {
+    display: none!important;
+}
+
 }
 
 @media (min-width: 1200px) {
@@ -312,19 +322,4 @@
     flex-direction: column-reverse!important;
 }
 
-}
-
-
-// Displays
-
-
-
-@media (min-width: 992px){
-.d-lg-block {
-    display: block!important;
-}
-
-.d-lg-none {
-    display: none!important;
-}
 }
