@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-    imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule, MatMenuModule],
-    exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule, MatMenuModule],
+    imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule, MatMenuModule, MatIconModule],
+    exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule, MatMenuModule, MatIconModule],
 })
 export class NgxSharedModule { }

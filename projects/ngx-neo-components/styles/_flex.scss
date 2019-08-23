@@ -297,3 +297,32 @@
 }
 
 }
+
+
+// Displays
+
+.d-none {
+    display: none!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+.ml-2 {
+   margin-left: .5rem!important; 
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+
+@media (min-width: 992px){
+.d-lg-block {
+    display: block!important;
+}
+
+.d-lg-none {
+    display: none!important;
+}
+}

@@ -1,5 +1,8 @@
 <div class="neo-layout">
-  <neo-header [colapsableSidebar]="false"></neo-header>
+  <neo-header [colapsableSidebar]="true">
+    <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Help</button>
+  </neo-header>
   <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
   <neo-mobile-sidebar *ngIf="isMobile">
     
@@ -71,6 +74,12 @@
             <a href="#" class="list-group-item list-group-item-action">P</a>
             <a href="#" class="list-group-item list-group-item-action disabled">V</a>
           </div> -->
+          <mat-list>
+            <mat-list-item> D </mat-list-item>
+            <mat-list-item> M </mat-list-item>
+            <mat-list-item> P</mat-list-item>
+            <mat-list-item> V</mat-list-item>
+        </mat-list>
         </ng-container>
       </neo-sidebar>
     </div>

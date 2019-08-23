@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ViewChild } from '@angular/core';
 import { MobileSidebarService } from '../mobile-sidebar/mobile-sidebar.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification/notification.service';
 import { HeaderService } from './header.service';
 import { Subscription } from 'rxjs';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'neo-header',
@@ -15,9 +16,11 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
   @Input() public colapsableSidebar = false;
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    public router: Router, public notificationService: NotificationService, private sidebarSerive:SidebarService, public headerService: HeaderService) {
+    public router: Router, public notificationService: NotificationService, 
+    private sidebarSerive:SidebarService, public headerService: HeaderService) {
   }
 
   ngOnInit() {
@@ -46,5 +49,9 @@ export class HeaderComponent implements OnInit {
 
   public isAdmin(): boolean {
     return this.headerService.isAdmin();
+  }
+
+  someMethod() {
+    this.trigger.openMenu();
   }
 }
