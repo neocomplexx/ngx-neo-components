@@ -166,6 +166,22 @@
     align-content: stretch!important;
 }
 
+.d-none {
+    display: none!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+.ml-2 {
+   margin-left: .5rem!important; 
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+
 @media (min-width: 576px) {
 .d-sm-flex {
     display: -ms-flexbox!important;
@@ -301,21 +317,7 @@
 
 // Displays
 
-.d-none {
-    display: none!important;
-}
 
-.w-100 {
-    width: 100%!important;
-}
-
-.ml-2 {
-   margin-left: .5rem!important; 
-}
-
-.ml-auto, .mx-auto {
-    margin-left: auto!important;
-}
 
 @media (min-width: 992px){
 .d-lg-block {
