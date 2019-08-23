@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { RouterModule } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([]),
     BrowserAnimationsModule,
     NgxNeoComponentsModule,
+    MatCardModule,
     FormsModule
   ],
   providers: [
