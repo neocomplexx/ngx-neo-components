@@ -1,4 +1,4 @@
-<mat-toolbar>
+<nav class="navbar navbar-expand-lg neo-navbar">
   <!-- Colapse sidebar -->
   <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
     <span class="navbar-toggler-icon">
@@ -14,7 +14,7 @@
     <span class="sm-logo-default"></span>
   </a>
   <!-- Toggler Sidebar -->
-  <button class="navbar-toggler ripple d-lg-none" type="button" (click)="showSidebar()">
+  <button class="navbar-toggler ripple" type="button" (click)="showSidebar()">
     <span class="navbar-toggler-icon">
       <i class="fas fa-bars neo-icon"></i>
     </span>
@@ -25,8 +25,10 @@
     </button>
   </div>
 
+
   <!-- Opciones lado derecho -->
-  <div class="navbar-nav ml-auto">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
       <a class="animated bell-container ripple" (click)="clearBell()"
         [routerLink]="['/notifications']"> <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
         <i class="fas fa-bell neo-icon notification animated" [class.show-count]="notificationService.notificationsNotSeen !== 0"
@@ -34,23 +36,15 @@
           [class.notification-high]="notificationService.notificationMaxPriority == 2"
           [attr.value]="notificationService.notificationsNotSeen"></i>
       </a>
-  </div>
- <!-- <ul class="navbar-nav d-none d-lg-block ml-2">
+    </li>
+  </ul>
+  <ul class="navbar-nav d-none d-lg-block ml-2">
     <li class="nav-item dropdown" ngbDropdown class="d-inline-block my-2 my-lg-0" placement="bottom-right">
       <a id="dropdownBasic1" class="header-dropdown" ngbDropdownToggle tabindex="1">{{getName()}}</a>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1"> -->
-        <!-- Muestra lo pasado entre los tags neo-header -->
-        <!-- <ng-content></ng-content>
-      </div>
-    </li>
-  </ul> -->
-  <div class="navbar-nav d-none d-lg-block ml-2">
-    <mat-menu #appMenu="matMenu">
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <!-- Muestra lo pasado entre los tags neo-header -->
         <ng-content></ng-content>
-    </mat-menu>
-  </div>
-  <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>{{getName()}}</mat-icon>
-  </button>
-</mat-toolbar>
+      </div>
+    </li>
+  </ul>
+</nav>
