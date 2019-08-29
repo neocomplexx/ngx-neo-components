@@ -1,58 +1,48 @@
-
-<mat-toolbar class="neo-header">
-        <!-- Colapse sidebar -->
-      <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
-        <span class="navbar-toggler-icon">
-          <i class="fas fa-bars neo-icon"></i>
-        </span>
-      </button>
-      <!-- Brand Desktop -->
+<nav class="navbar navbar-expand-lg neo-navbar">
+  <!-- Colapse sidebar -->
+  <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
+    <span class="navbar-toggler-icon">
+      <i class="fas fa-bars neo-icon"></i>
+    </span>
+  </button>
+  <!-- Brand Desktop -->
   <a class="navbar-brand d-none d-lg-block" href="#">
-      <img class="lg-logo" src="assets/img/logo-lg.png" alt="">
-    </a>
-    <!-- Brand Mobile -->
-    <a class="sm-logo d-lg-none">
-      <span class="sm-logo-default"></span>
-    </a>
-    <!-- Toggler Sidebar -->
-    <button class="navbar-toggler ripple d-lg-none" type="button" (click)="showSidebar()">
-      <span class="navbar-toggler-icon">
-        <i class="fas fa-bars neo-icon"></i>
-      </span>
+    <img class="lg-logo" src="assets/img/logo-lg.png" alt="">
+  </a>
+  <!-- Brand Mobile -->
+  <a class="sm-logo d-lg-none">
+    <span class="sm-logo-default"></span>
+  </a>
+  <!-- Toggler Sidebar -->
+  <button class="navbar-toggler ripple" type="button" (click)="showSidebar()">
+    <span class="navbar-toggler-icon">
+      <i class="fas fa-bars neo-icon"></i>
+    </span>
+  </button>
+  <div class="d-lg-none">
+    <button class="return-arrow ripple" *ngIf="!(headerService.hideReturn$ | async)" (click)="back()">
+      <i class="fas fa-arrow-left neo-icon"></i>
     </button>
-    <div class="d-lg-none">
-      <button class="return-arrow ripple" *ngIf="!(headerService.hideReturn$ | async)" (click)="back()">
-        <i class="fas fa-arrow-left neo-icon"></i>
-      </button>
+  </div>
+  <!-- Opciones lado derecho -->
+  <div class="navbar-nav ml-auto">
+    <div class="nav-item">
+      <a class="animated bell-container ripple" (click)="clearBell()"
+        [routerLink]="['/notifications']"> <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
+        <i class="fas fa-bell neo-icon notification animated" [class.show-count]="notificationService.notificationsNotSeen !== 0"
+          [class.notify]="notificationService.notificationsNotSeen !== 0"
+          [class.notification-high]="notificationService.notificationMaxPriority == 2"
+          [attr.value]="notificationService.notificationsNotSeen"></i>
+      </a>
     </div>
-  
-    <!-- Opciones lado derecho -->
-    <div class="navbar-nav ml-auto">
-        <a class="animated bell-container ripple" (click)="clearBell()"
-          [routerLink]="['/notifications']"> <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
-          <i class="fas fa-bell neo-icon notification animated" [class.show-count]="notificationService.notificationsNotSeen !== 0"
-            [class.notify]="notificationService.notificationsNotSeen !== 0"
-            [class.notification-high]="notificationService.notificationMaxPriority == 2"
-            [attr.value]="notificationService.notificationsNotSeen"></i>
-        </a>
-    </div>
-   <!-- <ul class="navbar-nav d-none d-lg-block ml-2">
-      <li class="nav-item dropdown" ngbDropdown class="d-inline-block my-2 my-lg-0" placement="bottom-right">
-        <a id="dropdownBasic1" class="header-dropdown" ngbDropdownToggle tabindex="1">{{getName()}}</a>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1"> -->
-          <!-- Muestra lo pasado entre los tags neo-header -->
-          <!-- <ng-content></ng-content>
-        </div>
-      </li>
-    </ul> -->
-    <div class="navbar-nav d-none d-lg-block ml-2">
-      <mat-menu #appMenu="matMenu">
-          <!-- Muestra lo pasado entre los tags neo-header -->
-          <ng-content></ng-content>
-      </mat-menu>
-    </div>
+  </div>
+  <div class="navbar-nav d-none d-lg-block mr-4">
+    <mat-menu #appMenu="matMenu">
+   
+        <ng-content></ng-content>
+    </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>{{getName()}}</mat-icon>
     </button>
-  
-</mat-toolbar>
+  </div>
+</nav>
