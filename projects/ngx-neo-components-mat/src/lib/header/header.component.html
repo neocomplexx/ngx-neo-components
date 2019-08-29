@@ -41,8 +41,9 @@
    
         <ng-content></ng-content>
     </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon>{{getName()}}</mat-icon>
+    <button mat-button="" [matMenuTriggerFor]="appMenu">
+        <span class="mat-button-wrapper">{{getName()}}<i class="fas fa-sort-down pad-icon"></i>
+        </span>
     </button>
   </div>
 </nav>
