@@ -233,3 +233,9 @@ neo-undo {
   padding: 10px;
   border-radius: 50%;
 }
+
+.neo-header {
+  .mat-toolbar-single-row {
+    height: 100%;
+  }
+}

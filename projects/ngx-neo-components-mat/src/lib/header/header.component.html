@@ -1,5 +1,5 @@
-<mat-toolbar>
-  <div class="d-flex justify-content-between">
+<div class="neo-header">
+<mat-toolbar >
         <!-- Colapse sidebar -->
       <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
         <span class="navbar-toggler-icon">
@@ -54,7 +54,6 @@
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>{{getName()}}</mat-icon>
     </button>
-  </div>
-
   
 </mat-toolbar>
+</div>
