@@ -9,6 +9,7 @@
     "@angular/cdk": "^7.3.6",
     "@angular/animations": "~7.1.0",
     "@angular/material": "~7.2.1",
-    "@neocomplexx/ngx-neo-directives-mat": "^7.0.0"
+    "@neocomplexx/ngx-neo-directives-mat": "^7.0.2",
+    "@neocomplexx/ngx-neo-modal-mat": "^7.0.1"
   }
 }
