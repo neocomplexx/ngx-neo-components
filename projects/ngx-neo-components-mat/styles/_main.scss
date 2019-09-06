@@ -239,6 +239,13 @@ neo-undo {
 }
 
 .pad-icon {
-  padding-bottom: 4px;
+  padding-bottom: 8px;
   padding-left: 4px;
+}
+
+img.neo-avatar.mat-card-avatar {
+  border: 1px solid #ababab;
+  width: 25px;
+  height: 25px;
+  margin-right: 2px;
 }
