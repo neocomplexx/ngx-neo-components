@@ -56,6 +56,24 @@ export const stringHash = (value: string) => {
     return hash;
 };
 
+export const stringToDate = (value: string): Date => {
+    if (value.length === 10) { value += 'T03:00:00Z'; }
+    const date = new Date(value);
+    if (date && date.getUTCFullYear() > 1900 && date.getUTCFullYear() < 3000) {
+        return date;
+    }
+    return null;
+};
+
+export const dateToString = (value: Date): string => {
+    if (value) {
+        return value.toISOString().substring(0, 10);
+    } else {
+        return undefined;
+    }
+};
+
+
 
 
 export interface EnumModel {
