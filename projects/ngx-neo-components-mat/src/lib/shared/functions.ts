@@ -42,6 +42,39 @@ export const equalDate = (fecha1: Date, fecha2: Date): boolean => {
         fecha1.getFullYear() === fecha2.getFullYear();
 };
 
+export const compareTime = (fecha1: Date, fecha2: Date): number => {
+    const hora1 = fecha1.getHours();
+    const minutos1 = fecha1.getMinutes();
+    const segundos1 = fecha1.getSeconds();
+
+    const hora2 = fecha2.getHours();
+    const minutos2 = fecha2.getMinutes();
+    const segundos2 = fecha2.getSeconds();
+
+    if (hora1 > hora2) {
+        return 1;
+    }
+    if (hora2 > hora1) {
+        return -1;
+    }
+
+    if (minutos1 > minutos2) {
+        return 1;
+    }
+    if (minutos2 > minutos1) {
+        return -1;
+    }
+
+    if (segundos1 > segundos2) {
+        return 1;
+    }
+    if (segundos2 > segundos1) {
+        return -1;
+    }
+
+    return 0;
+};
+
 // tslint:disable:no-bitwise
 export const stringHash = (value: string) => {
     let hash = 0;
