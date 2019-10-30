@@ -106,7 +106,16 @@ export const dateToString = (value: Date): string => {
     }
 };
 
-
+export const prevMonths = (month: number): Array<Date> => {
+    const fechas = new Array<Date>();
+    const hasta = new Date();
+    const desde = new Date(hasta.getFullYear(), hasta.getMonth() - month, 1);
+    while (desde < hasta) {
+        fechas.unshift(new Date(desde.getFullYear(), desde.getMonth(), 1));
+        desde.setMonth(desde.getMonth() + 1);
+    }
+    return fechas;
+};
 
 
 export interface EnumModel {
