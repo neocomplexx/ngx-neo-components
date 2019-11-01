@@ -1,3 +1,21 @@
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+
+export const ngbDateToDate = (value: NgbDate): Date => {
+    const date = new Date(value.year, value.month - 1, value.day);
+    if (date && date.getUTCFullYear() > 1900 && date.getUTCFullYear() < 3000) {
+        return date;
+    }
+    return null;
+};
+
+export const dateToNgbDate = (value: Date): NgbDate => {
+    if (value) {
+        const ngbDate = new NgbDate(value.getFullYear(), value.getMonth() + 1, value.getDate());
+        return ngbDate;
+    } else {
+        return undefined;
+    }
+};
 
 export const b64DecodeUnicode = (str): string => {
     return decodeURIComponent(Array.prototype.map.call(atob(str), (c) => {

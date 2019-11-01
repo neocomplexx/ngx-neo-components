@@ -12,7 +12,6 @@ import { SliderComponent } from './slider/slider.component';
 import { ListKeydownDirective } from './list/list-keydown.directive';
 import { SortableTableDirective } from './sortable-table/sortable-table.directive';
 import { SortableColumnComponent } from './sortable-table/sortable-column.component';
-//import { DatepickerComponent } from './datepicker/datepicker.component';
 import { UndoComponent } from './undo-component/undo.component';
 import { UndoElementsDirective } from './undo-component/undo-elements.directive';
 import { StepperComponent } from './stepper/stepper.component';
@@ -21,9 +20,11 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 import { NgxSharedModule } from './ngx-shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { NgxSharedModule } from './ngx-shared.module';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-  //  DatepickerComponent,
+    DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
@@ -53,7 +54,9 @@ import { NgxSharedModule } from './ngx-shared.module';
     CdkStepperModule,
     RouterModule,
     FormsModule,
-    NgxSharedModule
+    NgxSharedModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   exports: [
     NgxNeoComponentsComponent,
@@ -68,7 +71,7 @@ import { NgxSharedModule } from './ngx-shared.module';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-   // DatepickerComponent,
+    DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,

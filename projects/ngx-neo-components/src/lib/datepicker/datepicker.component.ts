@@ -1,11 +1,12 @@
-/* import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
- */
+
 /**
  * This component uses the native datepicker in mobile devices and the ngbootstrap
  * datepicker in desktop.
  * The component can receive either a javascript date or a NgbDate.
+*/
 
 @Component({
     selector: 'neo-datepicker',
@@ -13,25 +14,25 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DatepickerComponent {
 
-    // we use a private property so when the other has to modify it it wont cause an 
+    // we use a private property so when the other has to modify it it wont cause an
     // infinite loop
     private _date: Date;
     @Input() set date(value: Date) {
         this._date = value;
         this._ngbdate = new NgbDate(value.getFullYear(), value.getMonth() + 1, value.getDate());
-    };
+    }
     get date() {
         return this._date;
     }
     @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 
-    // we use a private property so when the other has to modify it it wont cause an 
+    // we use a private property so when the other has to modify it it wont cause an
     // infinite loop
     private _ngbdate: NgbDate;
     @Input() set ngbdate(value: NgbDate) {
         this._ngbdate = value;
         this._date = new Date(value.year, value.month - 1, value.day);
-    };
+    }
     get ngbdate(): NgbDate {
         return this._ngbdate;
     }
@@ -54,7 +55,7 @@ export class DatepickerComponent {
         this.dateChange.emit(dateModel);
     }
 
-     // Get and set used by the native datepicker
+    // Get and set used by the native datepicker
     public get dateModel(): string {
         if (this.date) {
             return this.date.toISOString().substring(0, 10);
@@ -118,7 +119,4 @@ export class DatepickerComponent {
         return null;
     }
 
-
-
 }
-*/

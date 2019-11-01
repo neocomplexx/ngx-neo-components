@@ -5,7 +5,6 @@ import { NotificationService } from './notification/notification.service';
 import { HeaderService } from './header.service';
 import { Subscription } from 'rxjs';
 import { SidebarService } from '../sidebar/sidebar.service';
-import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'neo-header',
@@ -16,17 +15,17 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
   @Input() public colapsableSidebar = false;
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    public router: Router, public notificationService: NotificationService, 
-    private sidebarSerive:SidebarService, public headerService: HeaderService) {
+    public router: Router, public notificationService: NotificationService,
+    private sidebarSerive: SidebarService, public headerService: HeaderService) {
   }
 
   ngOnInit() {
   }
 
-  public showSidebar() { console.log('Entre aca :)');
+  public showSidebar() {
+    console.log('Entre aca :)');
     this.mobileSidebarService.showSidebar.next(true);
 
   }
@@ -52,6 +51,5 @@ export class HeaderComponent implements OnInit {
   }
 
   someMethod() {
-    this.trigger.openMenu();
   }
 }
