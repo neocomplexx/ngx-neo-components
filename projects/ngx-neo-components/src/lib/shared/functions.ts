@@ -124,14 +124,21 @@ export const compareTime = (fecha1: Date, fecha2: Date): number => {
     return 0;
 };
 
-export function prevMonths(month) {
+export function prevMonths(month, current = false) {
     const fechas = new Array<Date>();
     const hastaAux = new Date();
     const hasta = new Date(hastaAux.getFullYear(), hastaAux.getMonth(), 1);
     const desde = new Date(hasta.getFullYear(), hasta.getMonth() - month, 1);
-    while (desde < hasta) {
-        fechas.unshift(new Date(desde.getFullYear(), desde.getMonth(), 1));
-        desde.setMonth(desde.getMonth() + 1);
+    if (current) {
+        while (desde <= hasta) {
+            fechas.unshift(new Date(desde.getFullYear(), desde.getMonth(), 1));
+            desde.setMonth(desde.getMonth() + 1);
+        }
+    } else {
+        while (desde < hasta) {
+            fechas.unshift(new Date(desde.getFullYear(), desde.getMonth(), 1));
+            desde.setMonth(desde.getMonth() + 1);
+        }
     }
     return fechas;
 }
