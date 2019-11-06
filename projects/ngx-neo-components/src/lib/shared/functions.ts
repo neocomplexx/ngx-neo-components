@@ -124,17 +124,17 @@ export const compareTime = (fecha1: Date, fecha2: Date): number => {
     return 0;
 };
 
-export const prevMonths = (month: number): Array<Date> => {
+export function prevMonths(month) {
     const fechas = new Array<Date>();
     const hastaAux = new Date();
-    const hasta = new Date(hastaAux.getFullYear(), hastaAux.getMonth(),1);
+    const hasta = new Date(hastaAux.getFullYear(), hastaAux.getMonth(), 1);
     const desde = new Date(hasta.getFullYear(), hasta.getMonth() - month, 1);
-    while (desde <= hasta) {
+    while (desde < hasta) {
         fechas.unshift(new Date(desde.getFullYear(), desde.getMonth(), 1));
         desde.setMonth(desde.getMonth() + 1);
     }
     return fechas;
-};
+}
 
 
 export interface EnumModel {
