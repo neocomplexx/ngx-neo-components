@@ -63,13 +63,13 @@
       <div class="container-fluid">
         <!--       <router-outlet></router-outlet> -->
         <div class="form-group">
-          <input class="form-control" placeholder="Search..." #input>
+          <input class="form-control" placeholder="Search..." #input autofocus>
         </div>
 
         <section class="list-group">
           <neo-list #listC (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
             [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
-            [commandOnClick]="true" [commandOnEnter]="true">
+            [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true">
             <neo-list-item *ngFor="let user of users" class="list-group-item" [item]="user">
               {{user.name }}
             </neo-list-item>
@@ -133,7 +133,8 @@
             </div>
           </div>
         </section> -->
-        <section>
+
+        <!-- <section>
           <div class="mt-1 mb-1">
             <h5>Stepper</h5>
             <neo-stepper>
@@ -148,7 +149,8 @@
               </neo-step>
               <neo-step>
                 <p>Good night</p>
-              </neo-step>
+              </neo-step> -->
+
               <!-- <form >
                     <ng-template matStepLabel>Fill out your name</ng-template>
 
@@ -179,9 +181,10 @@
                     <button mat-button (click)="stepper.reset()">Reset</button>
                   </div> -->
               <!-- </cdk-step> -->
-            </neo-stepper>
+
+            <!-- </neo-stepper>
           </div>
-        </section>
+        </section> -->
       </div>
     </div>
     <neo-undo></neo-undo>

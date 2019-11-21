@@ -6,8 +6,10 @@ import { Labeled } from './list-item.component';
 @Component({
   selector: 'neo-list',
   template: `
-    <ng-content></ng-content>
-    <ng-content select="neo-list-item"></ng-content>
+    <cdk-virtual-scroll-viewport itemSize="50" [style.height.px]="height">
+      <ng-content></ng-content>
+      <ng-content select="neo-list-item"></ng-content>
+    </cdk-virtual-scroll-viewport>
   `,
   providers: [ListService]
 })
@@ -21,6 +23,8 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
       this.listService.executeCommand();
     }));
   }
+
+  public height = 400;
 
 
   @HostBinding('attr.tabindex') tabindex = -1;
