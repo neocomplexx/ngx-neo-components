@@ -2,6 +2,7 @@
 @import 'colors';
 @import 'notifications';
 
+
 .neo-layout {
   display: flex;
   flex-direction: column;
@@ -51,6 +52,10 @@ neo-footer {
 
 neo-layout {
   height: 100%;
+}
+
+.scrollViewport{
+  height: 300px;
 }
 
 neo-list-item {

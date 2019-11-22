@@ -17,10 +17,13 @@ export class AppComponent implements OnDestroy {
   public personList: Array<Person>;
   public notifications: Array<Notification>;
 
+  public userSearch = '';
+
   public model;
 
   // Keyboard list section
   users = new Array<User>();
+  usersAux = new Array<User>();
   public lastIndexSelected = 1232;
   public selected: User;
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
@@ -91,6 +94,7 @@ export class AppComponent implements OnDestroy {
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);
+        this.usersAux.push(x);
       });
     }, 2000);
 
@@ -233,6 +237,13 @@ export class AppComponent implements OnDestroy {
 
   public openModalLarge(): void {
   //  const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+  }
+
+  public onKeyDown(): void {
+    this.usersAux = this.users.filter( (user) => {
+      return user.name.toLowerCase().includes(this.userSearch.toLowerCase(), 0);
+    });
+    console.log(this.userSearch);
   }
 
 }

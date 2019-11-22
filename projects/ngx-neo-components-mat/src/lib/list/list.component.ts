@@ -6,8 +6,10 @@ import { Labeled } from './list-item.component';
 @Component({
   selector: 'neo-list',
   template: `
-    <ng-content></ng-content>
-    <ng-content select="neo-list-item"></ng-content>
+    <cdk-virtual-scroll-viewport itemSize="itemHeightSize" class="scrollViewport">
+      <ng-content></ng-content>
+      <ng-content select="neo-list-item"></ng-content>
+    </cdk-virtual-scroll-viewport>
   `,
   providers: [ListService]
 })
@@ -32,6 +34,8 @@ export class ListComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Output() focusItem: EventEmitter<Labeled> = new EventEmitter();
   @Output() leaveItem: EventEmitter<Labeled> = new EventEmitter();
+
+  @Input() itemHeightSize = 50; // In pixels
 
   @HostListener('keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {

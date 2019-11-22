@@ -43,6 +43,8 @@ export class ListService implements OnDestroy {
 
   public linkedWithInputElem = false;
 
+  public autofocusAfterInput = true;
+
   get preSelectIndex(): number { return this._preSelectIndex; }
   set preSelectIndex(value: number) { this._preSelectIndex = value; }
 
@@ -75,10 +77,10 @@ export class ListService implements OnDestroy {
         case 9: // Tab
           if (this.linkedWithInputElem && this.htmlInputElement) {
             event.preventDefault();
-            if (this._keyManager.activeItemIndex === -1) {
+            if (!this._keyManager.activeItem) {
               this._keyManager.setFirstItemActive();
             } else {
-              // this._keyManager.setActiveItem(-1);
+              this._keyManager.setActiveItem(-1);
               this.htmlInputElement.focus();
             }
           } else {
@@ -119,7 +121,8 @@ export class ListService implements OnDestroy {
           if (this.linkedWithInputElem && this.htmlInputElement && this.isValidKey(event)) {
             this._keyManager.setActiveItem(-1);
             this.htmlInputElement.focus();
-          } else {
+          }
+          if (this.autofocusAfterInput) {
             this._keyManager.onKeydown(event);
           }
       }
