@@ -17,6 +17,7 @@ import { UndoElementsDirective } from './undo-component/undo-elements.directive'
 import { StepperComponent } from './stepper/stepper.component';
 import { StepComponent } from './stepper/step/step.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
@@ -52,11 +53,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     CdkStepperModule,
+    ScrollingModule,
     RouterModule,
     FormsModule,
     NgxSharedModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   exports: [
     NgxNeoComponentsComponent,

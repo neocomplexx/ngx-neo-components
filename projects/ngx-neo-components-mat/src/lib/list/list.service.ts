@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ListItemComponent, Labeled } from './list-item.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { ICommand } from '@neocomplexx/ngx-neo-directives-mat';
+import { ICommand } from '@neocomplexx/ngx-neo-directives';
 
 @Injectable()
 export class ListService implements OnDestroy {
@@ -39,6 +39,12 @@ export class ListService implements OnDestroy {
 
   public leavedObservable = new Subject<Labeled>();
 
+  public htmlInputElement: any;
+
+  public linkedWithInputElem = false;
+
+  public autofocusAfterInput = true;
+
   get preSelectIndex(): number { return this._preSelectIndex; }
   set preSelectIndex(value: number) { this._preSelectIndex = value; }
 
@@ -68,6 +74,19 @@ export class ListService implements OnDestroy {
             this.executeCommand();
           }
           break;
+        case 9: // Tab
+          if (this.linkedWithInputElem && this.htmlInputElement) {
+            event.preventDefault();
+            if (!this._keyManager.activeItem) {
+              this._keyManager.setFirstItemActive();
+            } else {
+              this._keyManager.setActiveItem(-1);
+              this.htmlInputElement.focus();
+            }
+          } else {
+            this._keyManager.onKeydown(event);
+          }
+          break;
         case 33:
           event.preventDefault();
           if (this._keyManager.activeItemIndex - 10 >= 0) {
@@ -92,8 +111,20 @@ export class ListService implements OnDestroy {
           event.preventDefault();
           this._keyManager.setFirstItemActive();
           break;
-        default:
+        case 38: // Arrow up
           this._keyManager.onKeydown(event);
+          break;
+        case 40: // Arrow down
+          this._keyManager.onKeydown(event);
+          break;
+        default:
+          if (this.linkedWithInputElem && this.htmlInputElement && this.isValidKey(event)) {
+            this._keyManager.setActiveItem(-1);
+            this.htmlInputElement.focus();
+          }
+          if (this.autofocusAfterInput) {
+            this._keyManager.onKeydown(event);
+          }
       }
       if (active !== this._keyManager.activeItemIndex) {
         this.emitSelectedIndex();
@@ -115,6 +146,12 @@ export class ListService implements OnDestroy {
         console.warn('Not selected item');
       }
     }
+  }
+
+  public isValidKey(event: KeyboardEvent) {
+    const invalidKeys = [17, 18, 27];
+    const invalidKey = invalidKeys.find((value) => value === event.keyCode);
+    return (invalidKey === undefined);
   }
 
   ngOnDestroy() {

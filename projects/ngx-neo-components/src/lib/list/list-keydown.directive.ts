@@ -1,4 +1,4 @@
-import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input, Renderer, OnDestroy, HostListener } from '@angular/core';
+import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input, OnDestroy, Renderer2 } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Labeled, ListItemComponent } from './list-item.component';
 import { ListService } from './list.service';
@@ -17,13 +17,15 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() commandOnEnter = true;
   @Input() typeAhead = true;
   @Input() typeAheadDelay = 300;
+  @Input() linkedWithInputElem = false;
+  @Input() autofocusAfterInput = true;
 
   private listenerFunction: Function;
   private focusFunction: Function;
 
   private subs = new Subscription();
 
-  constructor(private renderer: Renderer, private listService: ListService) { }
+  constructor(private renderer: Renderer2, private listService: ListService) { }
 
   ngAfterViewInit() {
     this.addKeyManagerListener();
@@ -35,6 +37,9 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.listService.icommand = this.icommand;
     this.listService.commandOnClick = this.commandOnClick;
     this.listService.commandOnEnter = this.commandOnEnter;
+    this.listService.htmlInputElement = this.htmlElement;
+    this.listService.linkedWithInputElem = this.linkedWithInputElem;
+    this.listService.autofocusAfterInput = this.autofocusAfterInput;
   }
 
 
