@@ -24,6 +24,7 @@ import { ConnectionCheckerComponent } from './connection-checker/connection-chec
 import { FormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 import { NgxSharedModule } from './ngx-shared.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgxSharedModule } from './ngx-shared.module';
   imports: [
     CommonModule,
     CdkStepperModule,
+    ScrollingModule,
     RouterModule,
     FormsModule,
     NgxSharedModule
