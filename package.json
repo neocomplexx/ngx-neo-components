@@ -50,6 +50,7 @@
     "@neocomplexx/ngx-neo-directives-mat": "^7.0.0",
     "@neocomplexx/ngx-neo-modal-mat": "^7.0.1",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
+    "bootstrap": "^4.3.1",
     "com.neocomplexx.neocomponents": "file:cordova",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
