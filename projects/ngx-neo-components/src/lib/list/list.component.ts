@@ -6,10 +6,10 @@ import { Labeled } from './list-item.component';
 @Component({
   selector: 'neo-list',
   template: `
-    <cdk-virtual-scroll-viewport itemSize="itemHeightSize" class="scrollViewport">
-      <ng-content></ng-content>
+  <ng-content></ng-content>
+  <cdk-virtual-scroll-viewport itemSize="itemHeightSize" class="scrollViewport">
       <ng-content select="neo-list-item"></ng-content>
-    </cdk-virtual-scroll-viewport>
+  </cdk-virtual-scroll-viewport>
   `,
   providers: [ListService]
 })
