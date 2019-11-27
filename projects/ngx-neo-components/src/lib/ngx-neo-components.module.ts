@@ -24,7 +24,6 @@ import { ConnectionCheckerComponent } from './connection-checker/connection-chec
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
-import { NgxSharedModule } from './ngx-shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -56,7 +55,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ScrollingModule,
     RouterModule,
     FormsModule,
-    NgxSharedModule,
     ReactiveFormsModule,
     NgbModule,
   ],
