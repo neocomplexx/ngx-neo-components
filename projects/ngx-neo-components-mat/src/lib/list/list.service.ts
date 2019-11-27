@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ListItemComponent, Labeled } from './list-item.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { ICommand } from '@neocomplexx/ngx-neo-directives';
+import { ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 
 @Injectable()
 export class ListService implements OnDestroy {
