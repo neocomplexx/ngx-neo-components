@@ -8,7 +8,7 @@ import { Labeled } from './list-item.component';
   template: `
   <ng-content></ng-content>
   <cdk-virtual-scroll-viewport itemSize="itemHeightSize" class="scrollViewport">
-    <ng-content select="neo-list-item"></ng-content>
+    <ng-content select="[items-container]"></ng-content>
   </cdk-virtual-scroll-viewport>
   `,
   providers: [ListService]

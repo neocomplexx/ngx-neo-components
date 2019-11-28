@@ -18,7 +18,6 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
   @Input() typeAhead = true;
   @Input() typeAheadDelay = 300;
   @Input() linkedWithInputElem = false;
-  @Input() autofocusAfterInput = true;
 
   private listenerFunction: Function;
   private focusFunction: Function;
@@ -39,7 +38,6 @@ export class ListKeydownDirective implements AfterViewInit, OnDestroy {
     this.listService.commandOnEnter = this.commandOnEnter;
     this.listService.htmlInputElement = this.htmlElement;
     this.listService.linkedWithInputElem = this.linkedWithInputElem;
-    this.listService.autofocusAfterInput = this.autofocusAfterInput;
   }
 
 

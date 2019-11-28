@@ -68,12 +68,15 @@
 
         <section class="list-group">
           <neo-list #listC (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
-            [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
-            [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true" [autofocusAfterInput]="true">
-            <neo-list-item *ngFor="let user of usersAux" class="list-group-item" [item]="user">
-              {{user.name }}
-            </neo-list-item>
-          </neo-list>
+          [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
+          [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true">
+          <h1>asfasdfasfasdd</h1>
+            <div items-container class="container-fluid">
+              <neo-list-item *ngFor="let user of usersAux" class="list-group-item" [item]="user">
+                {{user.name }}
+              </neo-list-item>
+            </div>
+            </neo-list>
         </section>
 
         <section>
