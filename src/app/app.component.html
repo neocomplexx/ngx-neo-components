@@ -2,7 +2,7 @@
   <neo-header [colapsableSidebar]="false"></neo-header>
   <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
   <neo-mobile-sidebar *ngIf="isMobile">
-    
+
     <label class="image-item ">
       <img src="assets/img/logo-lg.png" />
     </label>
@@ -63,20 +63,23 @@
       <div class="container-fluid">
         <!--       <router-outlet></router-outlet> -->
         <div class="form-group">
-          <input class="form-control" placeholder="Search..." #input autofocus [(ngModel)]="userSearch" (ngModelChange)="onKeyDown()">
+          <input class="form-control" placeholder="Search..." #input autofocus [(ngModel)]="userSearch"
+            (ngModelChange)="onKeyDown()">
         </div>
 
         <section class="list-group">
           <neo-list #listC (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
-          [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
-          [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true">
-          <h1>asfasdfasfasdd</h1>
+            [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
+            [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true">
+            <h1>asfasdfasfasdd</h1>
             <div items-container class="container-fluid">
-              <neo-list-item *ngFor="let user of usersAux" class="list-group-item" [item]="user">
-                {{user.name }}
-              </neo-list-item>
+              <cdk-virtual-scroll-viewport itemSize="42" class="scrollViewport">
+                <neo-list-item  [style.height.px]="42" *cdkVirtualFor="let user of usersAux" class="list-group-item" [item]="user">
+                  {{user.name }}
+                </neo-list-item>
+              </cdk-virtual-scroll-viewport>
             </div>
-            </neo-list>
+          </neo-list>
         </section>
 
         <section>
@@ -154,7 +157,7 @@
                 <p>Good night</p>
               </neo-step> -->
 
-              <!-- <form >
+        <!-- <form >
                     <ng-template matStepLabel>Fill out your name</ng-template>
 
                       <input matInput placeholder="Last name, First name" required>
@@ -163,9 +166,9 @@
                       <button mat-button matStepperNext>Next</button>
                     </div>
                   </form> -->
-              <!-- </cdk-step>
+        <!-- </cdk-step>
                 <cdk-step> -->
-              <!-- <form>
+        <!-- <form>
                     <ng-template matStepLabel>Fill out your address</ng-template>
 
                       <input matInput placeholder="Address" required>
@@ -175,17 +178,17 @@
                       <button mat-button matStepperNext>Next</button>
                     </div>
                   </form> -->
-              <!-- </cdk-step>
+        <!-- </cdk-step>
                 <cdk-step> -->
-              <!-- <ng-template matStepLabel>Done</ng-template>
+        <!-- <ng-template matStepLabel>Done</ng-template>
                   You are now done.
                   <div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button (click)="stepper.reset()">Reset</button>
                   </div> -->
-              <!-- </cdk-step> -->
+        <!-- </cdk-step> -->
 
-            <!-- </neo-stepper>
+        <!-- </neo-stepper>
           </div>
         </section> -->
       </div>

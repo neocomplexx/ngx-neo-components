@@ -28,3 +28,5 @@ export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/step/step.component';
 export * from './lib/connection-checker/connection-checker.component';
 export * from './lib/shared/functions';
+export * from './lib/timepicker/nextHour.directive';
+export * from './lib/timepicker/timepicker.component';

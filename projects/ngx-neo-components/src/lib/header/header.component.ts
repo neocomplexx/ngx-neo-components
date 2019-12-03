@@ -25,9 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public showSidebar() {
-    console.log('Entre aca :)');
     this.mobileSidebarService.showSidebar.next(true);
-
   }
 
   public toggleSidebar() {

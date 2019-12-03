@@ -8,8 +8,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { RouterModule } from '@angular/router';
-import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {MatListModule} from '@angular/material/list';
     NgxNeoComponentsModule,
     MatCardModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    ScrollingModule
   ],
   providers: [
     {

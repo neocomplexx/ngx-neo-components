@@ -90,12 +90,21 @@ export class AppComponent implements OnDestroy {
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Two name', 'Three name'],
         x => new User(x));
       aux.forEach(x => {
         this.users.push(x);
         this.usersAux.push(x);
       });
+      this.usersAux = [...this.usersAux];
     }, 2000);
 
     this.personList = new Array<Person>();

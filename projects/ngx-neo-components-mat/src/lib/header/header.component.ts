@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  public showSidebar() { console.log('Entre aca :)');
+  public showSidebar() {
     this.mobileSidebarService.showSidebar.next(true);
 
   }

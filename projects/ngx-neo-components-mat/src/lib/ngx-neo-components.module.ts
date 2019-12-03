@@ -25,6 +25,9 @@ import { FormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 import { NgxSharedModule } from './ngx-shared.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TimepickerComponent } from './timepicker/timepicker.component';
+import { HoursDirective } from './timepicker/nextHour.directive';
+import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     StepHeaderComponent,
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
+    TimepickerComponent,
+    HoursDirective
   ],
   imports: [
     CommonModule,
@@ -55,7 +60,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ScrollingModule,
     RouterModule,
     FormsModule,
-    NgxSharedModule
+    NgxSharedModule,
+    NgxNeoDirectivesModule
   ],
   exports: [
     NgxNeoComponentsComponent,
@@ -77,6 +83,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     StepComponent,
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
+    TimepickerComponent,
+    HoursDirective
   ]
 })
 export class NgxNeoComponentsModule { }
