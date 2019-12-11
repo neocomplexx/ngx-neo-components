@@ -177,6 +177,30 @@ neo-undo {
   margin-left: -12px;
 }
 
+.connection-lost {
+  color: white;
+  background: #F0AB00;
+  z-index: 999;
+  top: 56px;
+  position: fixed;
+  width: 100vw;
+  opacity: 0.8;
+}
+
+.header.ios-header {
+  padding-top: 14px;
+  height: 70px;
+}
+
+.ios-header .header-logo {
+  top: 30px;
+}
+
+.ios-header .connection-lost {
+  top: 73px;
+}
+
+
 .footer-button {
   width: 100%;
   height: 100%;
