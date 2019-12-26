@@ -16,11 +16,12 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
   @Input() public colapsableSidebar = false;
+  @Input() public showBell = true;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor(private mobileSidebarService: MobileSidebarService,
-    public router: Router, public notificationService: NotificationService, 
-    private sidebarSerive:SidebarService, public headerService: HeaderService) {
+    public router: Router, public notificationService: NotificationService,
+    private sidebarSerive: SidebarService, public headerService: HeaderService) {
   }
 
   ngOnInit() {

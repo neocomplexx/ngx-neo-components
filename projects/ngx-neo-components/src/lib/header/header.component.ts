@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() dropdownType: string;
   @Input() public colapsableSidebar = false;
+  @Input() public showBell = true;
 
   constructor(private mobileSidebarService: MobileSidebarService,
     public router: Router, public notificationService: NotificationService,
