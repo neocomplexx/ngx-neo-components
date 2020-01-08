@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg neo-navbar">
   <!-- Colapse sidebar -->
-  <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button" (click)="toggleSidebar()">
+  <button *ngIf="colapsableSidebar" class="sidebar-toggler navbar-toggler ripple mr-4" type="button"
+    (click)="toggleSidebar()">
     <span class="navbar-toggler-icon">
       <i class="fas fa-bars neo-icon"></i>
     </span>
@@ -26,25 +27,26 @@
   </div>
   <!-- Opciones lado derecho -->
   <div class="navbar-nav ml-auto">
-    <div class="nav-item">
-      <a class="animated bell-container ripple" (click)="clearBell()"
-        [routerLink]="['/notifications']"> <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
-        <i class="fas fa-bell neo-icon notification animated" [class.show-count]="notificationService.notificationsNotSeen !== 0"
+    <div *ngIf="showBell" class="nav-item">
+      <a class="animated bell-container ripple" (click)="clearBell()" [routerLink]="['/notifications']">
+        <!--(isAdmin()) ? ['/admin/notificaciones'] : ['/cliente/notificaciones']-->
+        <i class="fas fa-bell neo-icon notification animated"
+          [class.show-count]="notificationService.notificationsNotSeen !== 0"
           [class.notify]="notificationService.notificationsNotSeen !== 0"
           [class.notification-high]="notificationService.notificationMaxPriority == 2"
           [attr.value]="notificationService.notificationsNotSeen"></i>
       </a>
     </div>
   </div>
-  <div class="navbar-nav d-none d-lg-block mr-4">
+  <div class="navbar-nav d-none d-lg-block .margin-user">
     <mat-menu #appMenu="matMenu">
-   
-        <ng-content></ng-content>
+
+      <ng-content></ng-content>
     </mat-menu>
     <button mat-button="" [matMenuTriggerFor]="appMenu">
-        <img mat-card-avatar class="neo-avatar" src="assets/img/user.png" alt="User Avatar">
-        <span class="mat-button-wrapper">{{getName()}}<i class="fas fa-sort-down pad-icon"></i>
-        </span>
+      <img mat-card-avatar class="neo-avatar" src="assets/img/user.png" alt="User Avatar">
+      <span class="mat-button-wrapper">{{getName()}}<i class="fas fa-sort-down pad-icon"></i>
+      </span>
     </button>
   </div>
 </nav>
