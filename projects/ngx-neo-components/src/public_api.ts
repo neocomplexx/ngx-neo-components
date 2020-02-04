@@ -24,8 +24,6 @@ export * from './lib/sortable-table/sortable-column.component';
 export * from './lib/undo-component/undo.component';
 export * from './lib/shared/animations/keyframes';
 export * from './lib/undo-component/undo-elements.directive';
-export * from './lib/stepper/stepper.component';
-export * from './lib/stepper/step/step.component';
 export * from './lib/connection-checker/connection-checker.component';
 export * from './lib/shared/functions';
 export * from './lib/datepicker/datepicker.component';
