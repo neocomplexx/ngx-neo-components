@@ -8,6 +8,7 @@ export class TimepickerComponent implements OnInit {
 
   @Input() time: Date;
   @Input() isRequired: boolean;
+  @Input() disabled: boolean;
   @Output() timeChange = new EventEmitter();
 
   public hours: string;
