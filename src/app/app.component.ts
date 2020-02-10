@@ -12,7 +12,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent implements OnDestroy {
 
 
- @ViewChild('listC') listC: ListComponent;
+ @ViewChild('listC', { static: true }) listC: ListComponent;
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;

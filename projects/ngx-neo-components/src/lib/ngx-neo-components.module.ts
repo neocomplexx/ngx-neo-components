@@ -14,11 +14,8 @@ import { SortableTableDirective } from './sortable-table/sortable-table.directiv
 import { SortableColumnComponent } from './sortable-table/sortable-column.component';
 import { UndoComponent } from './undo-component/undo.component';
 import { UndoElementsDirective } from './undo-component/undo-elements.directive';
-import { StepperComponent } from './stepper/stepper.component';
-import { StepComponent } from './stepper/step/step.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,9 +40,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
-    StepperComponent,
-    StepComponent,
-    StepHeaderComponent,
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
   ],
@@ -74,8 +68,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
-    StepperComponent,
-    StepComponent,
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
   ]

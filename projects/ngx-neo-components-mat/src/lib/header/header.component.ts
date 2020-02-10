@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   @Input() dropdownType: string;
   @Input() public colapsableSidebar = false;
   @Input() public showBell = true;
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  @ViewChild(MatMenuTrigger, { static: true }) trigger: MatMenuTrigger;
 
   constructor(private mobileSidebarService: MobileSidebarService,
     public router: Router, public notificationService: NotificationService,
