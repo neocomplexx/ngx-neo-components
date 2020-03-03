@@ -5,7 +5,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './timepicker.component.html'
 })
 export class TimepickerComponent implements OnInit {
-
+  // https://stackoverflow.com/questions/38571812/how-to-detect-when-an-input-value-changes-in-angular
+  
   private _time: Date;
   @Input() set time(value: Date) {
     this._time = value;
