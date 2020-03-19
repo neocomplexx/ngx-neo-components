@@ -1,12 +1,12 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';
+import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components-mat';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.mat.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {

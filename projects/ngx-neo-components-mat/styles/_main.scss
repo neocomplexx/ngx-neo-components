@@ -239,6 +239,16 @@ neo-undo {
   color: #1d84bf;
 }
 
+.hours-outline .mat-form-field-outline-end{
+  border-right: none !important;
+  border-radius: 0 !important;
+}
+
+.minutes-outline  .mat-form-field-outline-start {
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
 .sidebar-toggle {
   border-color: transparent;
   outline: none !important;
