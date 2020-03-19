@@ -2,12 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'neo-timepicker',
-  templateUrl: './timepicker.component.html'
+  templateUrl: './timepicker.component.html',
+  styleUrls: ['./timepicker.component.scss']
 })
 export class TimepickerComponent implements OnInit {
 
   @Input() time: Date;
   @Input() isRequired: boolean;
+  @Input() appearance = '';
   @Input() disabled: boolean;
   @Output() timeChange = new EventEmitter();
 
@@ -20,8 +22,8 @@ export class TimepickerComponent implements OnInit {
   ngOnInit() {
     // Inicialización de hora
     if (this.time) {
-      this.hours = ('00' + this.time.getHours()).slice(-2);
-      this.minutes = ('00' + this.time.getMinutes()).slice(-2);
+        this.hours = ('00' + this.time.getHours()).slice(-2);
+        this.minutes = ('00' + this.time.getMinutes()).slice(-2);
     }
   }
 
@@ -41,8 +43,7 @@ export class TimepickerComponent implements OnInit {
     this.timeChange.emit(this.time);
   }
 
-  minutesChange(event) { console.log(event);
-
+  minutesChange(event) {
     let minutos: number = Number(event);
     if (minutos !== null && minutos !== undefined) {
       if (minutos < 0) { minutos = 0; this.minutes = '00'; } else if (minutos > 59) { minutos = 59; this.minutes = '59'; } else { this.minutes = '' + minutos; }
@@ -55,9 +56,7 @@ export class TimepickerComponent implements OnInit {
       this.time.setMinutes(minutos);
       this.time.setSeconds(0);
     }
-
     this.timeChange.emit(this.time);
-
   }
 
 }

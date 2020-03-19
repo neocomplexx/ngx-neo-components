@@ -1,16 +1,18 @@
 <div class="timepicker-max-height">
   <div class="d-flex flex-row">
-    <mat-form-field class="flex-6 text-right">
+    <mat-form-field class="flex-6 text-right" [class.hours-outline]="appearance !== ''" appearance={{appearance}}>
       <mat-label>HH</mat-label>
       <input #hh id="hh" [required]="isRequired" name="hh" type="number" matInput placeholder="HH" [ngModel]="hours" [disabled]="this.disabled"
-        (ngModelChange)="hourChange($event)" [onReturn]="mm" compositeInput [nextInput]="mm" maxLength='2' minLength='2'
-        [nextHour]>
+        (ngModelChange)="hourChange($event)"
+        [onReturn]="mm" compositeInput [nextInput]="mm" maxLength='2' minLength='2'
+        [nextHour]> <!---->
       <span matSuffix>: &nbsp;</span>
     </mat-form-field>
-    <mat-form-field class="flex-6">
+    <mat-form-field class="flex-6" [class.minutes.outline]="appearance !== ''" appearance={{appearance}}>
       <mat-label>MM</mat-label>
-      <input #mm [required]="isRequired" id="mm" name="mm" type="number" matInput placeholder="MM" [ngModel]="minutes" [disabled]="this.disabled"
-        (ngModelChange)="minutesChange($event)" maxLength='2' [nextHour]>
+      <input #mm [required]="isRequired" id="mm" name="mm" type="number" matInput placeholder="MM" 
+      [ngModel]="minutes" [disabled]="this.disabled"
+        (ngModelChange)="minutesChange($event)" maxLength='2' [nextHour]> <!-- -->
     </mat-form-field>
   </div>
 </div>
