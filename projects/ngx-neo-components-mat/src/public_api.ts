@@ -10,6 +10,7 @@ export * from './lib/header/notification/notification.service';
 export * from './lib/footer/footer.component';
 export * from './lib/pull-to-refresh/pull-to-refresh.component';
 export * from './lib/sidebar/sidebar.component';
+export * from './lib/sidebar/sidebar.service';
 export * from './lib/mobile-sidebar/mobile-sidebar.component';
 export * from './lib/mobile-notification-bar/mobile-notification-bar.component';
 export * from './lib/mobile-sidebar/mobile-sidebar.service';
