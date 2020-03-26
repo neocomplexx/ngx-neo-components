@@ -71,13 +71,11 @@
           <neo-list #listC (leaveItem)="onDeactive($event)" (activeIndexChange)="onActive($event)"
             [activeIndex]="lastIndexSelected" [neoListKeydown]="input" [icommand]="testItemCmd" class="list-group"
             [commandOnClick]="true" [commandOnEnter]="true" [linkedWithInputElem]="true">
-            <h1>asfasdfasfasdd</h1>
+            <h1>Title</h1>
             <div items-container class="container-fluid">
-              <cdk-virtual-scroll-viewport itemSize="42" class="scrollViewport">
-                <neo-list-item  [style.height.px]="42" *cdkVirtualFor="let user of usersAux" class="list-group-item" [item]="user">
+                <neo-list-item  [style.height.px]="42" *ngFor="let user of users" class="list-group-item" [item]="user">
                   {{user.name }}
                 </neo-list-item>
-              </cdk-virtual-scroll-viewport>
             </div>
           </neo-list>
         </section>
