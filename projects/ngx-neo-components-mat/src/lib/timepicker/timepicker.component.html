@@ -1,6 +1,6 @@
 <div class="timepicker-max-height">
   <div class="d-flex flex-row">
-    <mat-form-field class="flex-6 text-right hours-outline" appearance={{appearance}}>
+    <mat-form-field class="flex-fill text-right hours-outline" appearance={{appearance}}>
       <mat-label>HH</mat-label>
       <input #hh id="hh" [required]="isRequired" name="hh" type="number" matInput placeholder="HH" [ngModel]="hours" [disabled]="this.disabled"
         (ngModelChange)="hourChange($event)"
@@ -8,7 +8,7 @@
         [nextHour]> <!---->
       <span matSuffix>: &nbsp;</span>
     </mat-form-field>
-    <mat-form-field class="flex-6 minutes-outline" appearance={{appearance}}>
+    <mat-form-field class="flex-fill minutes-outline" appearance={{appearance}}>
       <mat-label>MM</mat-label>
       <input #mm [required]="isRequired" id="mm" name="mm" type="number" matInput placeholder="MM" 
       [ngModel]="minutes" [disabled]="this.disabled"
