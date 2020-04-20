@@ -9,13 +9,13 @@ import { SidebarService } from './sidebar.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   private subs = new Subscription();
-  public open = true;
+  public open: boolean;
 
   constructor(private sidebarService: SidebarService) { }
 
   ngOnInit() {
-    this.subs.add(this.sidebarService.toggleSidebar.subscribe(() => {
-      this.open = !this.open;
+    this.subs.add(this.sidebarService.openSate$.subscribe((state) => {
+      this.open = state;
     }));
   }
 

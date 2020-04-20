@@ -122,7 +122,7 @@ export class ListService implements OnDestroy {
           }
           this._keyManager.onKeydown(event);
       }
-      if (active !== this._keyManager.activeItemIndex) {
+      if (this._keyManager !== null && this._keyManager !== undefined && active !== this._keyManager.activeItemIndex) {
         this.emitSelectedIndex();
       }
     } else {

@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-components",
-  "version": "8.0.0",
+  "version": "8.0.3",
   "peerDependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -8,7 +8,7 @@
     "hammerjs": "^2.0.8",
     "@angular/cdk": "^8.2.3",
     "@angular/animations": "^8.2.14",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.3",
     "@neocomplexx/ngx-neo-directives": "^7.0.9"
   }
 }
