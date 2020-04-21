@@ -1,16 +1,16 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';
+import { Component, HostListener, OnDestroy, ViewChild, OnInit } from '@angular/core';
+import { MobileSidebarService, Labeled, ListComponent, SidebarService } from 'ngx-neo-components-mat';
 // import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components-mat';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.mat.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
 
 
  @ViewChild('listC', { static: true }) listC: ListComponent;
@@ -73,6 +73,7 @@ export class AppComponent implements OnDestroy {
 
   constructor(
     private mobileSidebarService: MobileSidebarService,
+    private sidebarService: SidebarService,
     private breakpointObserver: BreakpointObserver
   ) {
 
@@ -144,6 +145,10 @@ export class AppComponent implements OnDestroy {
     notification2.show = true;
     notification2.text = 'Soy otra notificacion con swipe';
     this.notifications.push(notification2);
+  }
+
+  ngOnInit() {
+   // this.sidebarService.closeSidebar();
   }
 
   ngOnDestroy() {
