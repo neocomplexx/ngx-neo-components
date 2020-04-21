@@ -11,23 +11,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class SidebarComponent implements OnInit, OnDestroy {
   private subs = new Subscription();
   public open: boolean;
-  public isMobile: boolean;
 
-  constructor(private sidebarService: SidebarService, private breakpointObserver: BreakpointObserver) { }
+  constructor(private sidebarService: SidebarService) { }
 
   ngOnInit() {
     this.subs.add(this.sidebarService.openSate$.subscribe((state) => {
       this.open = state;
-    }))
-    .add(this.breakpointObserver.observe([
-      Breakpoints.Small,
-      Breakpoints.XSmall
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
     }));
   }
 
