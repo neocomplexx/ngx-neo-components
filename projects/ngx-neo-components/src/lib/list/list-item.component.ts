@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, HostListener, ElementRef, Renderer } from '@angular/core';
+import { Component, Input, HostBinding, HostListener, ElementRef, Renderer2 } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 import { ListService } from './list.service';
 
@@ -23,11 +23,11 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
     this.listService.clickedObservable.next(item);
   }
 
-  constructor(private listService: ListService, private hostElement: ElementRef, private renderer: Renderer) { }
+  constructor(private listService: ListService, private hostElement: ElementRef, private renderer: Renderer2) { }
 
   public setActiveStyles() {
     this._isActive = true;
-    this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
+    this.renderer.selectRootElement(this.hostElement.nativeElement, true).focus();
     this.listService.focusedObservable.next(this.item);
   }
 
