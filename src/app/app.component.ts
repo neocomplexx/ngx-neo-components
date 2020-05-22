@@ -1,13 +1,13 @@
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, HostListener, OnDestroy, ViewChild, OnInit } from '@angular/core';
-import { MobileSidebarService, Labeled, ListComponent, SidebarService } from 'ngx-neo-components-mat';
-// import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components-mat';
+// import { MobileSidebarService, Labeled, ListComponent, SidebarService } from 'ngx-neo-components-mat';
+import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.mat.html',
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private mobileSidebarService: MobileSidebarService,
-    private sidebarService: SidebarService,
+    // private sidebarService: SidebarService,
     private breakpointObserver: BreakpointObserver
   ) {
 
