@@ -27,7 +27,7 @@ export class ListItemComponent<T extends Labeled> implements Highlightable {
 
   public setActiveStyles() {
     this._isActive = true;
-    this.hostElement.nativeElement.focus();
+    this.renderer.selectRootElement(this.hostElement.nativeElement, true).focus();
     this.listService.focusedObservable.next(this.item);
   }
 
