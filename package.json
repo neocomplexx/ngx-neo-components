@@ -1,6 +1,6 @@
 {
   "name": "neo-components",
-  "version": "8.0.1",
+  "version": "9.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -49,8 +49,8 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "@neocomplexx/ngx-neo-directives": "file:../../neocomplexx-ngx-neo-directives-8.0.0.tgz",
-    "@neocomplexx/ngx-neo-directives-mat": "^7.0.0",
+    "@neocomplexx/ngx-neo-directives": "^9.0.0",
+    "@neocomplexx/ngx-neo-directives-mat": "^9.0.0",
     "@neocomplexx/ngx-neo-modal-mat": "^8.1.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.4.1",
