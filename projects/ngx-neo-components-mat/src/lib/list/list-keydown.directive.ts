@@ -1,4 +1,5 @@
-import { Directive, QueryList, AfterViewInit, ContentChildren, ElementRef, Input, OnDestroy, Renderer2 } from '@angular/core';
+import type { AfterViewInit, OnDestroy } from '@angular/core';
+import { Directive, QueryList, ContentChildren, ElementRef, Input, Renderer2 } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Labeled, ListItemComponent } from './list-item.component';
 import { ListService } from './list.service';
@@ -10,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ListKeydownDirective implements AfterViewInit, OnDestroy {
 
-  @ContentChildren(ListItemComponent) public items: QueryList<ListItemComponent<Labeled>>;
+  @ContentChildren(ListItemComponent, {descendants: true}) public items: QueryList<ListItemComponent<Labeled>>;
   @Input('neoListKeydown') htmlElement: ElementRef;
   @Input() icommand: ICommand;
   @Input() commandOnClick = true;
