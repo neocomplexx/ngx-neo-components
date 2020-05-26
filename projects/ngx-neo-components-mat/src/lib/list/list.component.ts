@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, AfterContentInit, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
+import type { OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { ListService } from './list.service';
 import { Labeled } from './list-item.component';

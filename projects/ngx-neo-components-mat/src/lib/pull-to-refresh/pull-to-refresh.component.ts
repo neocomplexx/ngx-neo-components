@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
+import type { OnDestroy } from '@angular/core';
 import { Observable, fromEvent, timer, defer, Subscription } from 'rxjs';
 import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';
 import { HeaderService } from '../header/header.service';

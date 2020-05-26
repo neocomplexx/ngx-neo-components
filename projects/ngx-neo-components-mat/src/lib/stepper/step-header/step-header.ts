@@ -1,7 +1,8 @@
 
 import {FocusMonitor} from '@angular/cdk/a11y';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, ViewEncapsulation, TemplateRef,
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, ViewEncapsulation,
 } from '@angular/core';
+import type { OnDestroy } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CdkStepHeader, StepState} from '@angular/cdk/stepper';
 
