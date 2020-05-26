@@ -8,8 +8,9 @@
     "hammerjs": "^2.0.8",
     "@angular/cdk": "^9.0.0",
     "@angular/animations": "^9.0.0",
+    "@angular/localize": "^9.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1",
     "bootstrap": "^4.4.1",
-    "@neocomplexx/ngx-neo-directives": "^8.0.1"
+    "@neocomplexx/ngx-neo-directives": "^9.0.0"
   }
 }
