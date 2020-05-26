@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HammerModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    HammerModule
   ],
   exports: [
     NgxNeoComponentsComponent,

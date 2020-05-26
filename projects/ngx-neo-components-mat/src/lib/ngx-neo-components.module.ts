@@ -28,6 +28,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { HoursDirective } from './timepicker/nextHour.directive';
 import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
+import { HammerModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
     RouterModule,
     FormsModule,
     NgxSharedModule,
-    NgxNeoDirectivesModule
+    NgxNeoDirectivesModule,
+    HammerModule,
   ],
   exports: [
     NgxNeoComponentsComponent,
