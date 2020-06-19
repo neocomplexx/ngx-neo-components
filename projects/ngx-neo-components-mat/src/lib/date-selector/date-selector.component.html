@@ -1,0 +1,14 @@
+<mat-form-field #formField>
+
+  <input [formControl]="dateFormControl" type="text" #formInp matInput [placeholder]="placeholder" [id]="id"
+    [name]="name" [min]="minDate" [max]="maxDate" [neoAutofocus]="neoAutoFocus" [required]="required"
+    (click)="clickInput()" mask="00/00/0000">
+
+  <input type="hidden" [matDatepicker]="picker" [formControl]="_date" [min]="minDate" [max]="maxDate"
+    (dateChange)="newDate($event)">
+
+  <mat-datepicker-toggle matSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker [touchUi]="small" #picker></mat-datepicker>
+</mat-form-field>

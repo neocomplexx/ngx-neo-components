@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-components-mat",
-  "version": "8.0.6",
+  "version": "8.0.7",
   "peerDependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -9,7 +9,10 @@
     "@angular/cdk": "^8.2.3",
     "@angular/animations": "^8.2.14",
     "@angular/material": "^8.2.3",
+    "@angular/material-moment-adapter": "^9.2.4",
     "@neocomplexx/ngx-neo-directives-mat": "^7.0.2",
-    "@neocomplexx/ngx-neo-modal-mat": "^7.0.1"
+    "@neocomplexx/ngx-neo-modal-mat": "^7.0.1",
+    "moment": "^2.26.0",
+    "ngx-mask": "^8.2.0"
   }
 }
