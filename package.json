@@ -50,7 +50,7 @@
     "@angular/router": "~8.2.14",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@neocomplexx/ngx-neo-directives": "^7.0.14",
-    "@neocomplexx/ngx-neo-directives-mat": "^7.0.0",
+    "@neocomplexx/ngx-neo-directives-mat": "^8.0.0",
     "@neocomplexx/ngx-neo-modal-mat": "^7.0.1",
     "@ng-bootstrap/ng-bootstrap": "^5.3",
     "bootstrap": "^4.3.1",

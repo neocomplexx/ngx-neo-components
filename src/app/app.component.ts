@@ -13,7 +13,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class AppComponent implements OnInit, OnDestroy {
 
 
- @ViewChild('listC', { static: true }) listC: ListComponent;
+  @ViewChild('listC', { static: true }) listC: ListComponent;
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;
@@ -21,6 +21,10 @@ export class AppComponent implements OnInit, OnDestroy {
   public userSearch = '';
 
   public model;
+
+  public desde: Date;
+  public hasta: Date;
+  public min: Date;
 
   // Keyboard list section
   users = new Array<User>();
@@ -30,6 +34,9 @@ export class AppComponent implements OnInit, OnDestroy {
   public testItemCmd: ICommand = new Command((value) => this.testCommand(value), new BehaviorSubject(true), false);
 
 
+  public dateChange() {
+    console.log(this.desde);
+  }
 
 
 
@@ -69,14 +76,16 @@ export class AppComponent implements OnInit, OnDestroy {
   public resizeSubscription: Subscription = new Subscription();
 
   public date = new Date();
-//  public ngbDate = new NgbDate(2019, 5, 1);
+  //  public ngbDate = new NgbDate(2019, 5, 1);
 
   constructor(
     private mobileSidebarService: MobileSidebarService,
     private sidebarService: SidebarService,
     private breakpointObserver: BreakpointObserver
   ) {
-
+    this.desde = new Date();
+    this.min = new Date();
+    this.min.setMonth(this.min.getMonth() - 1);
     this.resizeSubscription.add(breakpointObserver.observe([
       Breakpoints.Small,
       Breakpoints.XSmall
@@ -88,17 +97,17 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     }));
 
-   setTimeout(() => {// Emulate async init
+    setTimeout(() => {// Emulate async init
       const aux = Array.from(
         ['One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
-          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name', 'One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
-          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name', 'One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
-          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name', 'One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
-          'Hello name', 'Two name', 'Three name','One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
+          'Hello name', 'Two name', 'Three name', 'One name', 'Two name', 'Three name', 'Fourteen name', 'Hello name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Hello name', 'Hola name', 'One name', 'One name', 'Two name', 'Three name', 'Fourteen name',
           'Hello name', 'Two name', 'Three name'],
         x => new User(x));
@@ -148,7 +157,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-   // this.sidebarService.closeSidebar();
+    // this.sidebarService.closeSidebar();
   }
 
   ngOnDestroy() {
@@ -247,15 +256,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   public openModal(): void {
-   // const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+    // const modalRef = this.modalService.open(PopUpPruebaComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
 
   public openModalLarge(): void {
-  //  const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
+    //  const modalRef = this.modalService.open(PopUpPruebaLargoComponent, { size: 'lg', windowClass: 'modal-xxl', backdrop: 'static' });
   }
 
   public onKeyDown(): void {
-    this.usersAux = this.users.filter( (user) => {
+    this.usersAux = this.users.filter((user) => {
       return user.name.toLowerCase().includes(this.userSearch.toLowerCase(), 0);
     });
     console.log(this.userSearch);

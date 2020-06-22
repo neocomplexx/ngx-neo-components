@@ -46,14 +46,18 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
   public dateFormControl: FormControl;
 
   @Input() set date(date: Date) {
-    this._date = new FormControl(moment(date));
-    const _dateCustom = moment(date).format('DDMMYYYY');
-    this.dateFormControl.setValue(_dateCustom);
+    if (date) {
+      this._date.setValue(moment(date));
+      const _dateCustom = moment(date).format('DDMMYYYY');
+      if (_dateCustom) {
+        this.dateFormControl.setValue(_dateCustom);
+      }
+    }
   }
   @Output() dateChange = new EventEmitter<Date>();
 
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
+  @Input() min: Date;
+  @Input() max: Date;
   @Input() id: string;
   @Input() name: string;
   @Input() formClass: string;
@@ -61,6 +65,17 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
   @Input() placeholder: string;
   @Input() neoAutoFocus: boolean = false;
   @Input() required: boolean = false;
+  @Input() set disabled(value: boolean) {
+    if (value) {
+      this.dateFormControl.disable();
+      this._date.disable();
+    } else {
+      this._date.enable();
+      this.dateFormControl.enable();
+
+    }
+
+  }
   @Input() onlyValidDate: boolean = false;
 
 
@@ -80,6 +95,7 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
     });
 
     this.dateFormControl = new FormControl();
+    this._date = new FormControl();
   }
 
   ngOnInit() {
@@ -122,9 +138,29 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
     const _dateCustom = this.dateFormControl.value;
     if (_dateCustom && _dateCustom.length === 8) {
       const date = moment(_dateCustom, 'DDMMYYYY', true);
+      const nativeDate = date.toDate();
+
       if (date.isValid()) {
-        this._date.setValue(moment(date));
-        this.emit(date.toDate());
+
+        let valid = true;
+
+        if (this.min && this.min > nativeDate) {
+          this.dateFormControl.setErrors({ 'min': true });
+          valid = false;
+        }
+
+        if (this.max && this.max < nativeDate) {
+          this.dateFormControl.setErrors({ 'max': true });
+          valid = false;
+        }
+
+        if (valid) {
+          this._date.setValue(moment(date));
+          this.emit(nativeDate);
+        } else {
+          this.emit(null);
+        }
+
       } else {
         this.dateFormControl.setErrors({ 'incorrect': true });
         this.emit(null);
