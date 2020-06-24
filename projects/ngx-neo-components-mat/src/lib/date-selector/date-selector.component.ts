@@ -85,7 +85,7 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
 
   public small: boolean;
 
-  constructor(private renderer: Renderer2, private platform: Platform, private breakpointObserver: BreakpointObserver) {
+  constructor(private el: ElementRef, private renderer: Renderer2, private platform: Platform, private breakpointObserver: BreakpointObserver) {
     this.small = this.breakpointObserver.isMatched('(max-width: 599px)');
     this.breakpointObserver.observe([
       Breakpoints.Small,
@@ -101,6 +101,7 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (<any>this.required === '') this.required = true;
     if (this.name == undefined && this.id && this.id.length > 0) this.name = this.id;
+    this.el.nativeElement.id = undefined;
   }
 
   ngAfterViewInit() {

@@ -114,10 +114,10 @@
         </section>
         <section>
           <h4>Date picker example</h4>
-          <input [onReturn]="'fecH'" type="text">
+          <input #inputText [onReturn]="pepe" type="text">
 
-          <neo-date-selector class="d-flex flex-fill pad-form" formClass="flex-fill" placeholder="Hasta" [id]="'fecH'"
-            [(date)]="hasta" (dateChange)="dateChange()" [neoAutofocus]="true">
+          <neo-date-selector #pepe class="d-flex flex-fill pad-form" formClass="flex-fill" placeholder="Hasta" id="fecH"
+            [(date)]="hasta" (dateChange)="dateChange()" [neoAutofocus]="true" [onReturn]="inputText">
           </neo-date-selector>
 
         </section>
