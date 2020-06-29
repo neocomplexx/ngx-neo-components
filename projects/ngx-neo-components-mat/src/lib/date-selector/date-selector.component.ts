@@ -63,6 +63,7 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
   @Input() formClass: string;
   @Input() inpClass: string;
   @Input() appearance: string;
+  @Input() label: string;
   @Input() placeholder: string;
   @Input() neoAutoFocus: boolean = false;
   @Input() required: boolean = false;
