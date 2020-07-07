@@ -106,7 +106,13 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
     if (this.name == undefined && this.id && this.id.length > 0) this.name = this.id;
     this.el.nativeElement.id = undefined;
 
-
+    if (this.required) {
+      this.dateFormControl.setValidators(Validators.required);
+    }
+    if (this.form) {
+      this.form.control.addControl(this.name, this.dateFormControl);
+      this.form.control.get(this.name).updateValueAndValidity();
+    }
   }
 
   ngAfterViewInit() {
@@ -118,13 +124,6 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
       const classes = this.inpClass.split(' ');
       classes.forEach(htmlClass => this.renderer.addClass(this.formInp.nativeElement, htmlClass));
 
-    }
-    if (this.required) {
-      this.dateFormControl.setValidators(Validators.required);
-    }
-    if (this.form) {
-      this.form.control.addControl('dateFormControl', this.dateFormControl);
-      this.form.control.get('dateFormControl').updateValueAndValidity();
     }
 
     fromEvent(this.formInp.nativeElement, 'keyup').pipe(
