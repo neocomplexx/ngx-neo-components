@@ -1,7 +1,7 @@
 <mat-form-field [appearance]="appearance" #formField>
   <mat-label>{{label}}</mat-label>
   <input [formControl]="dateFormControl" type="text" #formInp matInput [placeholder]="placeholder" [id]="id"
-    [name]="name" [neoAutofocus]="neoAutoFocus" [required]="required" (click)="clickInput()" mask="00/00/0000">
+    [name]="name" [neoAutofocus]="neoAutoFocus" (click)="clickInput()" mask="00/00/0000">
 
   <input [required]="required" type="hidden" [matDatepicker]="picker" [formControl]="_date" [min]="min" [max]="max"
     (dateChange)="newDate($event)">

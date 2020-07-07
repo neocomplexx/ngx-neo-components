@@ -4,6 +4,7 @@ import { Component, HostListener, OnDestroy, ViewChild, OnInit } from '@angular/
 import { MobileSidebarService, Labeled, ListComponent, SidebarService } from 'ngx-neo-components-mat';
 // import { HeaderService, MobileSidebarService, Labeled, ListComponent } from 'ngx-neo-components-mat';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   @ViewChild('listC', { static: true }) listC: ListComponent;
+  @ViewChild('testForm', { static: true }) testForm: NgForm;
 
   public personList: Array<Person>;
   public notifications: Array<Notification>;
@@ -164,6 +166,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.resizeSubscription.unsubscribe();
   }
 
+  public checkValid() {
+    this.testForm.control.markAllAsTouched();
+  }
   private testCommand(user: User) {
     console.log('Command execution:', user);
   }

@@ -113,12 +113,17 @@
           </div>
         </section>
         <section>
-          <h4>Date picker example</h4>
-          <input #inputText [onReturn]="pepe" type="text">
+          <form #testForm="ngForm">
 
-          <neo-date-selector #pepe class="d-flex flex-fill pad-form" formClass="flex-fill" placeholder="Hasta" id="fecH"
-            [(date)]="hasta" (dateChange)="dateChange()" [neoAutofocus]="true" [onReturn]="inputText">
-          </neo-date-selector>
+            <h4>Date picker example</h4>
+            <input #inputText [onReturn]="pepe" type="text">
+            <neo-date-selector required #pepe class="d-flex flex-fill pad-form" formClass="flex-fill"
+              placeholder="Hasta" id="fecH" [(date)]="hasta" (dateChange)="dateChange()" [neoAutofocus]="true"
+              [onReturn]="inputText" [form]="testForm">
+            </neo-date-selector>
+            <button (click)="checkValid()">Mark all</button>
+            <p>{{testForm.valid}}</p>
+          </form>
 
         </section>
 

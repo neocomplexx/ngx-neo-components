@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatFormField } from '@angular/material/form-field';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 
 import * as moment_ from 'moment';
 
@@ -67,6 +67,7 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
   @Input() placeholder: string;
   @Input() neoAutoFocus: boolean = false;
   @Input() required: boolean = false;
+  @Input() form: NgForm;
   @Input() set disabled(value: boolean) {
     if (value) {
       this.dateFormControl.disable();
@@ -104,6 +105,8 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
     if (<any>this.required === '') this.required = true;
     if (this.name == undefined && this.id && this.id.length > 0) this.name = this.id;
     this.el.nativeElement.id = undefined;
+
+
   }
 
   ngAfterViewInit() {
@@ -115,6 +118,13 @@ export class DateSelectorComponent implements OnInit, AfterViewInit {
       const classes = this.inpClass.split(' ');
       classes.forEach(htmlClass => this.renderer.addClass(this.formInp.nativeElement, htmlClass));
 
+    }
+    if (this.required) {
+      this.dateFormControl.setValidators(Validators.required);
+    }
+    if (this.form) {
+      this.form.control.addControl('dateFormControl', this.dateFormControl);
+      this.form.control.get('dateFormControl').updateValueAndValidity();
     }
 
     fromEvent(this.formInp.nativeElement, 'keyup').pipe(
