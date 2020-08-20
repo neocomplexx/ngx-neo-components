@@ -25,7 +25,13 @@ export class AppComponent implements OnInit, OnDestroy {
   public model;
 
   public desde: Date;
-  public hasta: Date;
+  private _hasta: Date;
+  public get hasta(): Date { return this._hasta; };
+  public set hasta(value: Date) { 
+    this._hasta = value; 
+    console.log('set hasta: ', this._hasta);
+  };
+
   public min: Date;
 
   // Keyboard list section
@@ -37,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   public dateChange() {
-    console.log(this.desde);
+    //console.log(this.desde);
   }
 
 
