@@ -21,14 +21,15 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepHeaderComponent } from './stepper/step-header/step-header';
 import { RouterModule } from '@angular/router';
 import { ConnectionCheckerComponent } from './connection-checker/connection-checker.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MobileNotificationBarComponent } from './mobile-notification-bar/mobile-notification-bar.component';
 import { NgxSharedModule } from './ngx-shared.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { HoursDirective } from './timepicker/nextHour.directive';
 import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
-import { HammerModule } from '@angular/platform-browser';
+import { DateSelectorComponent } from './date-selector/date-selector.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { HammerModule } from '@angular/platform-browser';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-  //  DatepickerComponent,
+    //  DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
@@ -53,7 +54,8 @@ import { HammerModule } from '@angular/platform-browser';
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
     TimepickerComponent,
-    HoursDirective
+    HoursDirective,
+    DateSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -61,9 +63,10 @@ import { HammerModule } from '@angular/platform-browser';
     ScrollingModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxSharedModule,
     NgxNeoDirectivesModule,
-    HammerModule,
+    NgxMaskModule
   ],
   exports: [
     NgxNeoComponentsComponent,
@@ -78,7 +81,7 @@ import { HammerModule } from '@angular/platform-browser';
     SliderComponent,
     SortableTableDirective,
     SortableColumnComponent,
-   // DatepickerComponent,
+    // DatepickerComponent,
     UndoComponent,
     UndoElementsDirective,
     StepperComponent,
@@ -86,7 +89,8 @@ import { HammerModule } from '@angular/platform-browser';
     ConnectionCheckerComponent,
     MobileNotificationBarComponent,
     TimepickerComponent,
-    HoursDirective
+    HoursDirective,
+    DateSelectorComponent
   ]
 })
 export class NgxNeoComponentsModule { }

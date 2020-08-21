@@ -1,4 +1,4 @@
-import type { AfterViewInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, OnDestroy } from '@angular/core';
 import { ElementRef, Renderer2, QueryList, ContentChildren, Directive, Input } from '@angular/core';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { Labeled, ListItemComponent } from './list-item.component';

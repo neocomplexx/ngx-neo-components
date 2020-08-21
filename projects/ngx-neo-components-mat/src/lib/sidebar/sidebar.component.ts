@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SidebarService } from './sidebar.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';

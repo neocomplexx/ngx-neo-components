@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import type { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { Subject, Subscription, fromEvent, defer, timer, Observable } from 'rxjs';
 import { MobileSidebarService } from './mobile-sidebar.service';
 import { take, switchMap, map, repeat, tap, takeUntil, concat, takeWhile, merge, startWith, debounceTime } from 'rxjs/operators';

@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CustomHammerConfig } from 'projects/ngx-neo-components-mat/src/lib/shared/services/hammer/custom-hammer-config';
+import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,10 @@ import { CustomHammerConfig } from 'projects/ngx-neo-components-mat/src/lib/shar
     RouterModule.forRoot([]),
     BrowserAnimationsModule,
     NgxNeoComponentsModule,
+    NgxNeoDirectivesModule,
     MatCardModule,
     MatListModule,
+    NgxMaskModule.forRoot(),
     FormsModule,
     ScrollingModule
   ],
