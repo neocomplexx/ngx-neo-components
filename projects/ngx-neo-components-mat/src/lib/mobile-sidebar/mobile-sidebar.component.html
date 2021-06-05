@@ -8,4 +8,4 @@
 </div>
 
 <div *ngIf="showBackdrop()" class="mobile-sidebar-backdrop" [ngClass]="{'opacity-transition': showTransition}"
-  [@fadeShadow]="state" (tap)="onTapBackdrop()" [style.opacity]="getOpacity()"></div>
+  [@fadeShadow]="state" (tap)="onTapBackdrop()" (click)="onTapBackdrop()" [style.opacity]="getOpacity()"></div>

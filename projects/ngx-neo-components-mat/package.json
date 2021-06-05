@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-components-mat",
-  "version": "9.1.2",
+  "version": "9.1.3",
   "peerDependencies": {
     "@angular/common": "~9.1.9",
     "@angular/core": "~9.1.9",
